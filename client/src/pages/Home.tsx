@@ -187,14 +187,14 @@ export default function Home() {
       </section>
 
       {/* STATS BANNER */}
-      <section className="bg-primary py-12 text-white relative z-20 shadow-lg">
+      <section className="bg-slate-900 py-12 text-white relative z-20 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
             {stats.map((stat, i) => (
               <div key={i} className="p-4">
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-secondary" />
+                <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
                 <div className="text-4xl font-bold mb-1">{stat.value}</div>
-                <div className="text-sm text-red-200 uppercase tracking-wider">{stat.label}</div>
+                <div className="text-sm text-gray-300 uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -1,0 +1,39 @@
+Da, **exact acolo** sunt setările principale pentru cum se construiește site-ul ("Build").
+
+Faptul că la **Framework Preset** scrie `Vite` și la **Output Directory** scrie `dist` este corect pentru o aplicație React/Vue modernă, **DAR** motivul pentru care tu vezi codul sursă în loc de site este unul dintre următoarele două:
+
+### 1. Folderul `dist` nu se creează unde trebuie
+Vercel se așteaptă ca, după ce rulează comanda `npm run build`, să apară un folder nou numit `dist` care conține fișierul `index.html`. Dacă acest folder nu apare, Vercel îți arată fișierele "la grămadă" (codul sursă).
+
+**Verificare:**
+* Deschide fișierul tău `package.json`.
+* Caută la secțiunea `"scripts"`.
+* Trebuie să ai o linie care arată cam așa: `"build": "vite build"`.
+* Dacă scrie `"build": "tsc"` sau altceva care nu generează fișiere HTML/CSS, atunci setarea din Vercel nu are ce să afișeze.
+
+### 2. Structura proiectului (Cea mai probabilă cauză)
+Uitându-mă la prima poză pe care ai trimis-o (cea cu codul `server/index-prod.ts`), se pare că ai **backend-ul** și **frontend-ul** amestecate sau structurate într-un mod pe care Vercel nu l-a ghicit perfect.
+
+**Întrebarea cheie:**
+Unde se află fișierele `index.html` și `vite.config.ts` în proiectul tău?
+* **Cazul A:** Sunt direct în folderul principal (lângă `server`, `package.json` etc.)?
+* **Cazul B:** Sunt într-un sub-folder (de exemplu, ai un folder `client` sau `frontend`)?
+
+---
+
+### Cum rezolvi?
+
+#### Dacă ești în Cazul B (Frontend-ul e într-un sub-folder):
+Nu trebuie să modifici setările din poza ta ("Build and Deployment"), ci trebuie să mergi în meniul din stânga la **General**:
+1.  Caută secțiunea **Root Directory**.
+2.  Apasă pe **Edit** și selectează folderul unde se află partea de frontend (ex: `client`).
+3.  Vercel va ști să intre acolo și să facă build-ul corect.
+
+#### Dacă ești în Cazul A (Totul e în root, dar nu merge):
+Este posibil ca scriptul tău de build să fie suprascris sau să nu funcționeze cum trebuie din cauza fișierelor de backend.
+
+1.  În poza pe care mi-ai trimis-o acum, activează butonul **Override** din dreptul la **Build Command**.
+2.  Scrie manual comanda: `npm install && npm run build` (sau doar `npm run build` dacă dependențele se instalează automat).
+3.  Asigură-te că în `package.json`-ul tău, comanda `build` chiar face build la Vite (`vite build`).
+
+**Poți să îmi arăți o poză cu conținutul fișierului `package.json`?** Acolo se află "rețeta" pe care o citește Vercel și îți pot spune exact ce să modifici.

@@ -26,7 +26,7 @@ export function BookingModal({ trigger, buttonText = "Programare Online", button
       ) : (
         <Button 
           onClick={() => setIsOpen(true)} 
-          className={buttonClassName}
+          className={buttonClassName || "bg-primary hover:bg-primary/90 text-white"}
           data-testid="button-open-booking"
         >
           <Calendar className="w-4 h-4 mr-2" />
