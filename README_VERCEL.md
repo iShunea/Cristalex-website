@@ -39,15 +39,28 @@ git push -u origin main
 2. Sign in cu GitHub
 3. Click **Add New Project**
 4. Selectează repository-ul tău
-5. Configurare (automat-detectat):
-   - Framework: **Vite**
-   - Build Command: `npm run build`
-   - Output Directory: `dist/public`
+5. **Configurare (IMPORTANT - Modifică Setările):**
+   - **Framework Preset**: Selectează **Vite** (default corect ✅)
+   - **Build Command**: `npm run build` (default corect ✅)
+   - **Output Directory**: ⚠️ **SCHIMBĂ din `dist` în `dist/public`**
+     - Click pe **Override** lângă "Output Directory"
+     - Scrie: `dist/public`
+   - **Install Command**: `npm install` (default corect ✅)
 6. **Environment Variables** - Adaugă:
    - Name: `MONGODB_URI`
    - Value: Connection string-ul de la MongoDB
    - (Exemplu: `mongodb+srv://user:pass@cluster.mongodb.net/cristalexdent`)
 7. Click **Deploy**
+
+### ⚠️ FOARTE IMPORTANT
+
+Dacă după deploy vezi **codul sursă** în loc de site, cauza este că **Output Directory** este setat greșit!
+
+**Soluție:**
+1. Mergi în Project Settings → General → Build & Development Settings
+2. La **Output Directory**, apasă **Override**
+3. Schimbă din `dist` în `dist/public`
+4. Salvează și fă **Redeploy** din Deployments
 
 ### 4. Verifică Deployment
 
