@@ -1,0 +1,10 @@
+node_modules
+.git
+.replit
+.upm
+.cache
+.config
+replit.nix
+server/index-dev.ts
+server/index-prod.ts
+*.log
