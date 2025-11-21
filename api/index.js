@@ -1,5 +1,5 @@
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import mongoose from 'mongoose';
 
 // MongoDB Connection with pooling for serverless
 let cachedDb = null;
@@ -19,7 +19,7 @@ async function connectToDatabase() {
   try {
     await mongoose.connect(MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,
-      maxPoolSize: 10, // Connection pooling for serverless
+      maxPoolSize: 10,
     });
     cachedDb = mongoose.connection;
     console.log('✓ Connected to MongoDB (serverless)');
@@ -146,7 +146,6 @@ app.post('/api/blog-posts', async (req, res) => {
       return res.status(503).json({ error: 'Database not available' });
     }
     
-    // Get next ID
     const maxPost = await BlogPost.findOne().sort({ id: -1 });
     const nextId = maxPost ? maxPost.id + 1 : 1;
     
@@ -504,4 +503,4 @@ app.delete('/api/services/:id', async (req, res) => {
 });
 
 // Export for Vercel Serverless
-module.exports = app;
+export default app;
