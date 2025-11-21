@@ -60,10 +60,10 @@ export default function Contact() {
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900">Program</h4>
-                  <p className="text-gray-600">Luni - Vineri: 09:00 - 19:00</p>
-                  <p className="text-gray-600">Sâmbătă: 09:00 - 14:00</p>
-                  <p className="text-gray-600">Duminică: Închis</p>
+                  <h4 className="font-bold text-gray-900">Programul nostru</h4>
+                  <p className="text-gray-600">Luni - Vineri: 09:00 - 18:00</p>
+                  <p className="text-gray-600">Sâmbătă: 09:00 - 13:00</p>
+                  <p className="text-gray-600">Duminică: Zi liberă</p>
                 </div>
               </div>
             </div>

@@ -18,7 +18,12 @@ const resources = {
         title: "Excelență în Stomatologie Modernă",
         subtitle: "Redescoperă încrederea zâmbetului tău la CristAlex Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
         cta: "Programează o Consultație",
-        emergency: "Urgențe: +373 22 000 000"
+        emergency: "Urgențe: +373 78388000"
+      },
+      contact: {
+        address: "Chișinău, str. Alba Iulia 23",
+        phone: "+373 78388000",
+        email: "cristalexdent23@gmail.com"
       },
       stats: {
         patients: "Pacienți Fericiți",
@@ -91,7 +96,12 @@ const resources = {
         title: "Совершенство в Современной Стоматологии",
         subtitle: "Верните уверенность в своей улыбке в CristAlex Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
         cta: "Записаться на Консультацию",
-        emergency: "Срочно: +373 22 000 000"
+        emergency: "Срочно: +373 78388000"
+      },
+      contact: {
+        address: "Кишинев, ул. Альба Юлия 23",
+        phone: "+373 78388000",
+        email: "cristalexdent23@gmail.com"
       },
       stats: {
         patients: "Счастливых Пациентов",

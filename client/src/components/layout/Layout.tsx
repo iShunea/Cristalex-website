@@ -31,15 +31,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>+373 22 000 000</span>
+              <span>+373 78388000</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>Chișinău, Moldova</span>
+              <span>str. Alba Iulia 23, Chișinău</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Lun-Vin: 09:00 - 19:00</span>
+              <span>Lun-Vin: 09:00 - 18:00</span>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -154,15 +154,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-4 text-gray-400 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary shrink-0" />
-                  <span>Str. Exemplu 123,<br/>Chișinău, Moldova</span>
+                  <span>str. Alba Iulia 23,<br/>Chișinău, Moldova</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <span>+373 22 000 000</span>
+                  <span>+373 78388000</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
-                  <span>Lun - Vin: 09:00 - 19:00</span>
+                  <span>Lun - Vin: 09:00 - 18:00<br/>Sâm: 09:00 - 13:00</span>
                 </li>
               </ul>
             </div>
