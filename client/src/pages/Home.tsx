@@ -28,6 +28,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { Link } from "wouter";
+import { blogPosts } from "./Blog";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -398,6 +400,45 @@ export default function Home() {
                 <CarouselPrevious />
                 <CarouselNext />
              </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* LATEST FROM BLOG */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="section-title block text-left">Articole Recente</h2>
+              <p className="text-gray-500 text-lg">Noutăți și sfaturi pentru sănătatea ta orală.</p>
+            </div>
+            <Link href="/blog">
+              <a className="text-primary font-bold hover:underline flex items-center gap-2">
+                Vezi tot Blogul <ArrowRight className="w-4 h-4" />
+              </a>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogPosts.slice(0, 3).map((post) => (
+              <Link key={post.id} href={`/blog/${post.id}`}>
+                <a className="group cursor-pointer">
+                  <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
+                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary uppercase">
+                       {post.category}
+                     </div>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-gray-400 mb-3">
+                    <span>{post.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                    <span>{post.author}</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
+                  <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

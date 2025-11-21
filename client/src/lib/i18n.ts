@@ -11,6 +11,7 @@ const resources = {
         prices: "Tarife",
         team: "Echipa",
         contact: "Contact",
+        blog: "Blog",
         book: "Programare Online"
       },
       hero: {
@@ -83,6 +84,7 @@ const resources = {
         prices: "Цены",
         team: "Команда",
         contact: "Контакты",
+        blog: "Блог",
         book: "Запись Онлайн"
       },
       hero: {
