@@ -77,7 +77,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             ))}
             <BookingModal 
               buttonText={t("nav.book")}
-              buttonClassName="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-md h-11 px-6"
+              buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold shadow-md h-11 px-6"
             />
           </nav>
 
