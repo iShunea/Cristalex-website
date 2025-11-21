@@ -154,7 +154,7 @@ export default function Home() {
             >
               <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md ml-auto relative z-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-blue-50 p-3 rounded-full">
+                  <div className="bg-red-50 p-3 rounded-full">
                     <PhoneCall className="w-6 h-6 text-primary" />
                   </div>
                   <div>
@@ -194,7 +194,7 @@ export default function Home() {
               <div key={i} className="p-4">
                 <stat.icon className="w-8 h-8 mx-auto mb-3 text-secondary" />
                 <div className="text-4xl font-bold mb-1">{stat.value}</div>
-                <div className="text-sm text-blue-200 uppercase tracking-wider">{stat.label}</div>
+                <div className="text-sm text-red-200 uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -213,7 +213,7 @@ export default function Home() {
             {/* Large Feature */}
             <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
               <div className="flex-1">
-                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6">
                   <Microscope className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4">{t("features.tech_title")}</h3>
@@ -341,7 +341,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-2 gap-3 mb-6">
                       {selectedService.features?.map((feat: string, idx: number) => (
-                        <div key={idx} className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg">
+                        <div key={idx} className="flex items-center gap-2 bg-red-50 p-2 rounded-lg">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                           <span className="text-sm font-medium text-gray-700">{feat}</span>
                         </div>
@@ -379,7 +379,7 @@ export default function Home() {
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                           <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
                             <h3 className="text-xl font-bold text-white">{doc.name}</h3>
-                            <p className="text-blue-200 text-sm font-medium">{doc.role}</p>
+                            <p className="text-red-200 text-sm font-medium">{doc.role}</p>
                           </div>
                         </div>
                         <div className="p-6">
@@ -505,7 +505,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">{t("cta_banner.title")}</h2>
-          <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-red-100 text-lg mb-10 max-w-2xl mx-auto">
             {t("cta_banner.text")}
           </p>
           <BookingModal 

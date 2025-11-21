@@ -95,12 +95,12 @@ export default function BlogPost() {
 
               <div className="bg-primary text-white p-6 rounded-xl sticky top-[300px]">
                 <h3 className="text-xl font-bold mb-4">Programează-te</h3>
-                <p className="text-blue-100 mb-6 text-sm">
+                <p className="text-red-100 mb-6 text-sm">
                   Ai întrebări despre {post.category.toLowerCase()}? Specialiștii noștri sunt aici să te ajute.
                 </p>
                 <BookingModal 
                   buttonText="Programează Online"
-                  buttonClassName="w-full bg-white text-primary hover:bg-blue-50 font-bold"
+                  buttonClassName="w-full bg-white text-primary hover:bg-red-50 font-bold"
                 />
               </div>
             </div>
