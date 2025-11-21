@@ -4,11 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-  
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
   
@@ -24,87 +19,47 @@
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
   
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
   
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  
   --font-sans: 'Open Sans', sans-serif;
   --font-heading: 'Montserrat', sans-serif;
   
   --radius: 0.5rem;
+  
+  --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 20px rgba(0, 145, 213, 0.3);
 }
 
 :root {
-  /* Clean Medical Blue Theme */
-  --background: 0 0% 100%; /* White */
-  --foreground: 215 28% 17%; /* Dark Slate */
+  /* More Corporate/Premium Palette */
+  --background: 0 0% 100%;
+  --foreground: 215 28% 17%;
 
   --card: 0 0% 100%;
   --card-foreground: 215 28% 17%;
  
-  --popover: 0 0% 100%;
-  --popover-foreground: 215 28% 17%;
- 
-  /* Primary: Deep Professional Blue */
-  --primary: 200 98% 39%; /* #0091D5 (Bright Blue) or slightly deeper 210 100% 35% */
+  /* Deeper, more authoritative Blue */
+  --primary: 210 100% 25%; /* Deep Royal Blue */
   --primary-foreground: 0 0% 100%;
  
-  /* Secondary: Soft Mint/Teal for hygiene/calm */
-  --secondary: 170 50% 95%;
-  --secondary-foreground: 175 80% 25%;
+  /* Clean Medical Cyan/Teal for accents */
+  --secondary: 190 90% 45%; 
+  --secondary-foreground: 0 0% 100%;
  
   --muted: 210 20% 96%;
   --muted-foreground: 215 16% 47%;
  
-  --accent: 45 100% 50%; /* Gold accent for "Corporate/Premium" touches */
-  --accent-foreground: 215 28% 17%;
+  /* Gold/Bronze for "Premium" touches */
+  --accent: 35 90% 55%; 
+  --accent-foreground: 0 0% 100%;
  
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-
-  --border: 214 32% 91%;
-  --input: 214 32% 91%;
-  --ring: 200 98% 39%;
-}
-
-.dark {
-  /* Keeping it light mode centric for medical, but defining dark just in case */
-  --background: 222 47% 11%;
-  --foreground: 210 40% 98%;
- 
-  --card: 222 47% 11%;
-  --card-foreground: 210 40% 98%;
- 
-  --popover: 222 47% 11%;
-  --popover-foreground: 210 40% 98%;
- 
-  --primary: 200 98% 39%;
-  --primary-foreground: 0 0% 100%;
- 
-  --secondary: 170 30% 20%;
-  --secondary-foreground: 170 50% 95%;
- 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20% 65%;
- 
-  --accent: 45 100% 50%;
-  --accent-foreground: 215 28% 17%;
- 
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 210 40% 98%;
- 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 212 96% 78%;
+  --border: 214 20% 90%;
+  --input: 214 20% 90%;
+  --ring: 210 100% 25%;
 }
 
 @layer base {
@@ -115,15 +70,31 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold;
+    @apply font-heading font-bold text-slate-900;
   }
 }
 
-/* Custom Utilities */
-.text-gradient {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[#00C2FF];
+.glass-card {
+  @apply bg-white/90 backdrop-blur-sm border border-white/20 shadow-soft;
 }
 
-.glass-panel {
-  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-lg;
+.section-title {
+  @apply text-3xl md:text-4xl font-bold text-center mb-4 relative inline-block;
+}
+
+.section-subtitle {
+  @apply text-gray-500 text-center max-w-2xl mx-auto mb-12 text-lg;
+}
+
+.nav-link {
+  @apply relative text-sm font-semibold tracking-wide hover:text-primary transition-colors py-2;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
 }

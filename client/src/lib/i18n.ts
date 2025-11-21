@@ -7,36 +7,70 @@ const resources = {
       nav: {
         home: "Acasă",
         about: "Despre Noi",
-        services: "Servicii",
+        services: "Tratamente",
+        prices: "Tarife",
+        team: "Echipa",
         contact: "Contact",
-        book: "Programează-te"
+        book: "Programare Online"
       },
       hero: {
-        title: "Zâmbetul Tău, Prioritatea Noastră",
-        subtitle: "Servicii stomatologice de top în inima Chișinăului. Tehnologie modernă, medici experți și grijă pentru pacienți.",
-        cta: "Fă o Programare"
+        title: "Excelență în Stomatologie Modernă",
+        subtitle: "Redescoperă încrederea zâmbetului tău la CristalEx Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
+        cta: "Programează o Consultație",
+        emergency: "Urgențe: +373 22 000 000"
+      },
+      stats: {
+        patients: "Pacienți Fericiți",
+        years: "Ani de Experiență",
+        implants: "Implanturi Inserate",
+        doctors: "Medici Specialiști"
       },
       features: {
-        tech: "Tehnologie Avansată",
-        team: "Echipă Expertă",
-        care: "Grijă Personalizată"
+        title: "De ce să alegi CristalEx Dent?",
+        tech_title: "Tehnologie Digitală 3D",
+        tech_desc: "Scanare intraorală și planificare digitală pentru precizie maximă și confort.",
+        pain_title: "Tratamente Fără Durere",
+        pain_desc: "Utilizăm cele mai noi metode de sedare și anestezie pentru confortul tău.",
+        garantie_title: "Garanție Extinsă",
+        garantie_desc: "Oferim certificat de garanție pentru toate lucrările protetice și implanturi.",
+        steril_title: "Sterilizare Premium",
+        steril_desc: "Protocoale stricte de sterilizare conform standardelor europene."
+      },
+      testimonials: {
+        title: "Ce spun pacienții noștri",
+        subtitle: "Părerile celor care ne-au trecut pragul sunt cartea noastră de vizită."
+      },
+      faq: {
+        title: "Întrebări Frecvente",
+        q1: "Cât costă un implant dentar?",
+        a1: "Prețul unui implant variază în funcție de tipul și marca aleasă. Vă invităm la o consultație pentru un plan de tratament personalizat.",
+        q2: "Oferiți servicii de urgență?",
+        a2: "Da, preluăm urgențe stomatologice în timpul programului de lucru cu prioritate.",
+        q3: "Se poate plăti în rate?",
+        a3: "Colaborăm cu parteneri bancari pentru a oferi soluții flexibile de plată în rate fără dobândă."
       },
       services: {
-        title: "Serviciile Noastre",
-        implant: "Implantologie",
-        ortho: "Ortodonție",
-        cosmetic: "Estetică Dentară",
-        general: "Stomatologie Generală"
+        title: "Spectrul Nostru de Servicii",
+        subtitle: "Abordăm fiecare caz multidisciplinar pentru rezultate estetice și funcționale optime.",
+        implant: "Implantologie Avansată",
+        implant_desc: "Restaurarea completă a danturii folosind implanturi premium (Straumann, Nobel).",
+        ortho: "Ortodonție Digitală",
+        ortho_desc: "Aparate dentare invizibile (Aligners) și clasice pentru toate vârstele.",
+        aesthetics: "Estetică Dentară",
+        aesthetics_desc: "Fațete dentare ceramice E-MAX și albire profesională cu lampă.",
+        endo: "Endodonție la Microscop",
+        endo_desc: "Tratamente de canal precise sub magnificație pentru salvarea dinților."
       },
-      about: {
-        title: "Despre CristalEx Dent",
-        text: "Suntem o clinică stomatologică dedicată excelenței. Cu o echipă de specialiști pasionați, oferim tratamente personalizate pentru sănătatea ta orală."
+      cta_banner: {
+        title: "Ești pregătit pentru o schimbare?",
+        text: "Nu lăsa problemele dentare să se agraveze. Programează-te acum.",
+        btn: "Vreau o Programare"
       },
-      contact: {
-        title: "Contactează-ne",
-        address: "Strada Exemplu 123, Chișinău, Moldova",
-        phone: "+373 22 000 000",
-        email: "info@cristalexdent.md"
+      footer: {
+        desc: "CristalEx Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
+        links: "Link-uri Utile",
+        program: "Program Clinica",
+        contact: "Informații Contact"
       }
     }
   },
@@ -44,37 +78,71 @@ const resources = {
     translation: {
       nav: {
         home: "Главная",
-        about: "О Нас",
+        about: "О Клинике",
         services: "Услуги",
+        prices: "Цены",
+        team: "Команда",
         contact: "Контакты",
-        book: "Записаться"
+        book: "Запись Онлайн"
       },
       hero: {
-        title: "Ваша Улыбка - Наш Приоритет",
-        subtitle: "Стоматологические услуги высшего класса в центре Кишинева. Современные технологии, экспертные врачи и забота о пациентах.",
-        cta: "Записаться на Прием"
+        title: "Совершенство в Современной Стоматологии",
+        subtitle: "Верните уверенность в своей улыбке в CristalEx Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
+        cta: "Записаться на Консультацию",
+        emergency: "Срочно: +373 22 000 000"
+      },
+      stats: {
+        patients: "Счастливых Пациентов",
+        years: "Лет Опыта",
+        implants: "Установленных Имплантов",
+        doctors: "Врачей Специалистов"
       },
       features: {
-        tech: "Передовые Технологии",
-        team: "Команда Экспертов",
-        care: "Индивидуальный Подход"
+        title: "Почему выбирают CristalEx Dent?",
+        tech_title: "Цифровые 3D Технологии",
+        tech_desc: "Интраоральное сканирование и цифровое планирование для максимальной точности.",
+        pain_title: "Лечение Без Боли",
+        pain_desc: "Используем новейшие методы седации и анестезии для вашего комфорта.",
+        garantie_title: "Расширенная Гарантия",
+        garantie_desc: "Предоставляем гарантийный сертификат на все протезные работы и импланты.",
+        steril_title: "Премиум Стерилизация",
+        steril_desc: "Строгие протоколы стерилизации в соответствии с европейскими стандартами."
+      },
+      testimonials: {
+        title: "Отзывы наших пациентов",
+        subtitle: "Мнения тех, кто доверил нам свою улыбку - наша визитная карточка."
+      },
+      faq: {
+        title: "Частые Вопросы",
+        q1: "Сколько стоит зубной имплант?",
+        a1: "Цена импланта варьируется в зависимости от типа и бренда. Приглашаем на консультацию для составления плана лечения.",
+        q2: "Оказываете ли вы срочную помощь?",
+        a2: "Да, мы принимаем стоматологические срочные случаи в рабочее время в приоритетном порядке.",
+        q3: "Можно ли платить в рассрочку?",
+        a3: "Мы сотрудничаем с банковскими партнерами для предоставления гибких решений по оплате в рассрочку."
       },
       services: {
-        title: "Наши Услуги",
-        implant: "Имплантология",
-        ortho: "Ортодонтия",
-        cosmetic: "Эстетическая Стоматология",
-        general: "Общая Стоматология"
+        title: "Наш Спектр Услуг",
+        subtitle: "Мы подходим к каждому случаю мультидисциплинарно для оптимальных эстетических и функциональных результатов.",
+        implant: "Передовая Имплантология",
+        implant_desc: "Полное восстановление зубов с использованием премиальных имплантов (Straumann, Nobel).",
+        ortho: "Цифровая Ортодонтия",
+        ortho_desc: "Невидимые брекеты (Элайнеры) и классические системы для всех возрастов.",
+        aesthetics: "Эстетическая Стоматология",
+        aesthetics_desc: "Керамические виниры E-MAX и профессиональное отбеливание лампой.",
+        endo: "Эндодонтия под Микроскопом",
+        endo_desc: "Точное лечение каналов под увеличением для спасения зубов."
       },
-      about: {
-        title: "О CristalEx Dent",
-        text: "Мы - стоматологическая клиника, стремящаяся к совершенству. С командой увлеченных специалистов мы предлагаем индивидуальное лечение для здоровья вашей улыбки."
+      cta_banner: {
+        title: "Готовы к переменам?",
+        text: "Не позволяйте стоматологическим проблемам усугубляться. Запишитесь сейчас.",
+        btn: "Хочу Записаться"
       },
-      contact: {
-        title: "Свяжитесь с Нами",
-        address: "Улица Пример 123, Кишинев, Молдова",
-        phone: "+373 22 000 000",
-        email: "info@cristalexdent.md"
+      footer: {
+        desc: "CristalEx Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
+        links: "Полезные Ссылки",
+        program: "График Работы",
+        contact: "Контактная Информация"
       }
     }
   }
