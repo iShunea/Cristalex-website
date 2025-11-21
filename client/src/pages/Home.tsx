@@ -23,6 +23,12 @@ import {
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
+import techImage from "@assets/generated_images/dental_digital_technology_scanner.png";
+import sterileImage from "@assets/generated_images/dental_sterilization_equipment.png";
+import implantImage from "@assets/generated_images/dental_implant_model.png";
+import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
+import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
+import endoImage from "@assets/generated_images/dental_microscope_treatment.png";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -156,7 +162,7 @@ export default function Home() {
                 <Button variant="link" className="p-0 text-primary font-bold">Află mai multe <ArrowRight className="w-4 h-4 ml-2" /></Button>
               </div>
               <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1584362917165-526a968579e8?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover" alt="Tech" />
+                <img src={techImage} className="absolute inset-0 w-full h-full object-cover" alt="Tech" />
               </div>
             </div>
 
@@ -189,8 +195,8 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-4">{t("features.steril_title")}</h3>
                 <p className="text-gray-600 leading-relaxed mb-6">{t("features.steril_desc")}</p>
               </div>
-               <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f72?auto=format&fit=crop&q=80&w=800" className="absolute inset-0 w-full h-full object-cover" alt="Sterile" />
+              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
+                <img src={sterileImage} className="absolute inset-0 w-full h-full object-cover" alt="Sterile" />
               </div>
             </div>
           </div>
@@ -210,10 +216,10 @@ export default function Home() {
 
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: t("services.implant"), desc: t("services.implant_desc"), img: "https://images.unsplash.com/photo-1628130947289-77c006a08405?auto=format&fit=crop&q=80&w=500" },
-                { title: t("services.ortho"), desc: t("services.ortho_desc"), img: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=500" },
-                { title: t("services.aesthetics"), desc: t("services.aesthetics_desc"), img: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&q=80&w=500" },
-                { title: t("services.endo"), desc: t("services.endo_desc"), img: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=500" }
+                { title: t("services.implant"), desc: t("services.implant_desc"), img: implantImage },
+                { title: t("services.ortho"), desc: t("services.ortho_desc"), img: orthoImage },
+                { title: t("services.aesthetics"), desc: t("services.aesthetics_desc"), img: aestheticImage },
+                { title: t("services.endo"), desc: t("services.endo_desc"), img: endoImage }
               ].map((s, i) => (
                 <div key={i} className="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
                   <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />

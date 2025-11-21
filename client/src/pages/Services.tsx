@@ -2,6 +2,9 @@ import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { CheckCircle2, ArrowRight, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import implantImage from "@assets/generated_images/dental_implant_model.png";
+import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
+import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 
 export default function Services() {
   const { t } = useTranslation();
@@ -13,7 +16,7 @@ export default function Services() {
       desc: "Soluții complete pentru edentații, de la un singur dinte la arcade complete.",
       price: "de la 350€",
       features: ["Implanturi Straumann/Nobel", "Chirurgie ghidată digital", "Garanție pe viață", "Sedare conștientă"],
-      image: "https://images.unsplash.com/photo-1551601651-2a8dc88c6743?auto=format&fit=crop&q=80&w=800"
+      image: implantImage
     },
     {
       id: "ortho",
@@ -21,7 +24,7 @@ export default function Services() {
       desc: "Îndreptarea dinților pentru copii și adulți folosind tehnologii moderne.",
       price: "de la 500€",
       features: ["Alignere Invizibile (Invisalign)", "Aparate Safir/Ceramice", "Planificare Digitală", "Consultație gratuită"],
-      image: "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&q=80&w=800"
+      image: orthoImage
     },
     {
       id: "aesthetic",
@@ -29,7 +32,7 @@ export default function Services() {
       desc: "Transformarea zâmbetului prin proceduri minim invazive.",
       price: "de la 200€",
       features: ["Fațete E-MAX", "Albire Zoom", "Coroane Zirconiu", "DSD - Digital Smile Design"],
-      image: "https://images.unsplash.com/photo-1609840114035-3c981b782afe?auto=format&fit=crop&q=80&w=800"
+      image: aestheticImage
     }
   ];
 
