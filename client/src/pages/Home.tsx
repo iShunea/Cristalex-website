@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - More Corporate & Impactful */}
-      <section className="relative min-h-[90vh] flex items-center bg-slate-900 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center bg-slate-900 overflow-hidden brandbook-overlay">
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
@@ -202,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE US - Bento Grid Style */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 brandbook-pattern">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="section-title">{t("features.title")}</h2>
@@ -501,7 +501,7 @@ export default function Home() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-20 bg-primary relative overflow-hidden">
+      <section className="py-20 bg-primary relative overflow-hidden brandbook-gradient">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">{t("cta_banner.title")}</h2>
