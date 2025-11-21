@@ -440,31 +440,27 @@ export default function Home() {
               <h2 className="section-title block text-left">Articole Recente</h2>
               <p className="text-gray-500 text-lg">Noutăți și sfaturi pentru sănătatea ta orală.</p>
             </div>
-            <Link href="/blog">
-              <a className="text-primary font-bold hover:underline flex items-center gap-2">
-                Vezi tot Blogul <ArrowRight className="w-4 h-4" />
-              </a>
+            <Link href="/blog" className="text-primary font-bold hover:underline flex items-center gap-2">
+              Vezi tot Blogul <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : blogPosts).slice(0, 3).map((post: any) => (
-              <Link key={post.id} href={`/blog/${post.id}`}>
-                <a className="group cursor-pointer">
-                  <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
-                     <img src={post.imageUrl || post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary uppercase">
-                       {post.category}
-                     </div>
+              <Link key={post.id} href={`/blog/${post.id}`} className="group cursor-pointer block">
+                <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
+                  <img src={post.imageUrl || post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary uppercase">
+                    {post.category}
                   </div>
-                  <div className="flex items-center gap-3 text-sm text-gray-400 mb-3">
-                    <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : post.date}</span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                    <span>{post.author}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
-                  <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
-                </a>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-gray-400 mb-3">
+                  <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : post.date}</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-300"></span>
+                  <span>{post.author}</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
+                <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
               </Link>
             ))}
           </div>
