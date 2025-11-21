@@ -1,7 +1,9 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { Link } from "wouter";
-import { Calendar, User, ArrowRight } from "lucide-react";
+import { Calendar, User, ArrowRight, Loader2 } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getBlogPosts } from "@/lib/api";
 import implantImage from "@assets/generated_images/dental_implants_guide_blog_post_thumbnail.png";
 import whiteningImage from "@assets/generated_images/teeth_whitening_tips_blog_post_thumbnail.png";
 import childImage from "@assets/generated_images/child_dental_care_blog_post_thumbnail.png";
@@ -96,6 +98,14 @@ export const blogPosts = [
 
 export default function Blog() {
   const { t } = useTranslation();
+  
+  const { data: apiPosts, isLoading } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: getBlogPosts,
+  });
+
+  // Use API data if available, otherwise fall back to static data
+  const posts = apiPosts && apiPosts.length > 0 ? apiPosts : blogPosts;
 
   return (
     <Layout>
@@ -110,13 +120,18 @@ export default function Blog() {
       </div>
 
       <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
+        {isLoading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {posts.map((post) => (
             <Link key={post.id} href={`/blog/${post.id}`}>
               <a className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                 <div className="h-60 overflow-hidden relative">
                   <img 
-                    src={post.image} 
+                    src={(post as any).imageUrl || (post as any).image} 
                     alt={post.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -128,7 +143,7 @@ export default function Blog() {
                   <div className="flex items-center gap-4 text-sm text-gray-400 mb-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
-                      {post.date}
+                      {(post as any).publishedAt ? new Date((post as any).publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : (post as any).date}
                     </div>
                     <div className="flex items-center gap-1">
                       <User className="w-4 h-4" />
@@ -147,8 +162,9 @@ export default function Blog() {
                 </div>
               </a>
             </Link>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </Layout>
   );

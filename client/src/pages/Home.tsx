@@ -30,6 +30,8 @@ import {
 } from "@/components/ui/dialog";
 import { Link } from "wouter";
 import { blogPosts } from "./Blog";
+import { useQuery } from "@tanstack/react-query";
+import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -51,6 +53,22 @@ export default function Home() {
   const { t } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
 
+  // Fetch data from API
+  const { data: apiBlogPosts } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: getBlogPosts,
+  });
+
+  const { data: apiTeamMembers } = useQuery({
+    queryKey: ["team-members"],
+    queryFn: getTeamMembers,
+  });
+
+  const { data: apiTestimonials } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: () => getTestimonials(true),
+  });
+
   const stats = [
     { value: "5000+", label: t("stats.patients"), icon: Users },
     { value: "15+", label: t("stats.years"), icon: Clock },
@@ -58,13 +76,8 @@ export default function Home() {
     { value: "12", label: t("stats.doctors"), icon: Microscope },
   ];
 
-  const testimonials = [
-    { name: "Maria Popescu", role: "Pacient Implantologie", text: "O experiență incredibilă. Mi-am recăpătat zâmbetul după ani de zile. Echipa este extrem de profesionistă." },
-    { name: "Ion Rusu", role: "Pacient Ortodonție", text: "Tehnologie de vârf și o atmosferă foarte primitoare. Recomand cu încredere CristAlex Dent." },
-    { name: "Elena Munteanu", role: "Estetică Dentară", text: "Fațetele dentare arată perfect natural. Mulțumesc doamnei doctor pentru răbdare și perfecționism." },
-  ];
 
-  const doctors = [
+  const staticDoctors = [
     { name: "Dr. Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
     { name: "Dr. Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
     { name: "Dr. Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
@@ -72,6 +85,21 @@ export default function Home() {
     { name: "Dr. Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
     { name: "Asist. Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
   ];
+
+  const staticTestimonials = [
+    { name: "Maria Popescu", role: "Pacient Implantologie", text: "O experiență incredibilă. Mi-am recăpătat zâmbetul după ani de zile. Echipa este extrem de profesionistă." },
+    { name: "Ion Rusu", role: "Pacient Ortodonție", text: "Tehnologie de vârf și o atmosferă foarte primitoare. Recomand cu încredere CristAlex Dent." },
+    { name: "Elena Munteanu", role: "Estetică Dentară", text: "Fațetele dentare arată perfect natural. Mulțumesc doamnei doctor pentru răbdare și perfecționism." },
+  ];
+
+  // Use API data if available, otherwise fall back to static data
+  const doctors = apiTeamMembers && apiTeamMembers.length > 0 
+    ? apiTeamMembers.map((m: any) => ({ name: m.name, role: m.role, img: m.imageUrl, bio: m.bio }))
+    : staticDoctors;
+    
+  const testimonialsData = apiTestimonials && apiTestimonials.length > 0
+    ? apiTestimonials
+    : staticTestimonials;
 
   return (
     <Layout>
@@ -377,7 +405,7 @@ export default function Home() {
           <div className="max-w-5xl mx-auto">
              <Carousel className="w-full">
                 <CarouselContent>
-                  {testimonials.map((item, index) => (
+                  {testimonialsData.map((item: any, index: number) => (
                     <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
                       <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col">
                         <div className="flex gap-1 mb-4">
@@ -420,17 +448,17 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {blogPosts.slice(0, 3).map((post) => (
+            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : blogPosts).slice(0, 3).map((post: any) => (
               <Link key={post.id} href={`/blog/${post.id}`}>
                 <a className="group cursor-pointer">
                   <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
-                     <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                     <img src={post.imageUrl || post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary uppercase">
                        {post.category}
                      </div>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-gray-400 mb-3">
-                    <span>{post.date}</span>
+                    <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : post.date}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-300"></span>
                     <span>{post.author}</span>
                   </div>
