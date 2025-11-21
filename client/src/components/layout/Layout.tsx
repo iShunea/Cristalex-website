@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
@@ -173,10 +173,33 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold mb-6 text-lg">Social</h4>
               <div className="flex gap-4">
-                {/* Social Placeholders */}
-                <div className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer" />
-                <div className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer" />
-                <div className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer" />
+                <a 
+                  href="https://facebook.com/cristalexdent" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  aria-label="Facebook"
+                >
+                  <Facebook className="w-5 h-5 text-white" />
+                </a>
+                <a 
+                  href="https://instagram.com/cristalexdent" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="w-5 h-5 text-white" />
+                </a>
+                <a 
+                  href="https://youtube.com/@cristalexdent" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  aria-label="YouTube"
+                >
+                  <Youtube className="w-5 h-5 text-white" />
+                </a>
               </div>
             </div>
           </div>

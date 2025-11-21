@@ -350,7 +350,10 @@ export default function Home() {
 
                     <div className="flex justify-end gap-3 mt-4">
                       <Button variant="outline" onClick={() => setSelectedService(null)}>Închide</Button>
-                      <Button className="bg-primary text-white">Programează {selectedService.title}</Button>
+                      <BookingModal 
+                        buttonText={`Programează ${selectedService.title}`}
+                        buttonClassName="bg-primary hover:bg-primary/90 text-white"
+                      />
                     </div>
                   </div>
                 </>
@@ -510,7 +513,7 @@ export default function Home() {
           </p>
           <BookingModal 
             buttonText={t("cta_banner.btn")}
-            buttonClassName="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-12 h-16 text-xl shadow-2xl rounded-full"
+            buttonClassName="bg-white text-primary hover:bg-gray-100 font-bold px-12 h-16 text-xl shadow-2xl rounded-full"
           />
         </div>
       </section>
