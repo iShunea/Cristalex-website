@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Calendar, X } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 interface BookingModalProps {
   trigger?: React.ReactNode;
@@ -34,20 +34,11 @@ export function BookingModal({ trigger, buttonText = "Programare Online", button
         </Button>
       )}
       
-      <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 gap-0">
-        <DialogHeader className="px-6 pt-6 pb-4 border-b border-gray-200 flex-shrink-0">
-          <div className="flex items-center justify-between">
-            <DialogTitle className="text-2xl font-bold text-slate-900">Programare Online - CristAlex Dent</DialogTitle>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="rounded-full p-2 hover:bg-gray-100 transition-colors"
-              aria-label="Închide"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
+      <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 gap-0 flex flex-col">
+        <DialogHeader className="px-6 py-4 border-b border-gray-200 flex-shrink-0">
+          <DialogTitle className="text-xl font-bold text-slate-900">Programare Online - CristAlex Dent</DialogTitle>
         </DialogHeader>
-        <div className="w-full flex-1 overflow-hidden">
+        <div className="w-full flex-1 min-h-0">
           <iframe
             src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
             title="Programare Online CristAlex Dent"
