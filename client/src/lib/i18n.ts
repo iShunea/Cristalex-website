@@ -15,7 +15,7 @@ const resources = {
       },
       hero: {
         title: "Excelență în Stomatologie Modernă",
-        subtitle: "Redescoperă încrederea zâmbetului tău la CristalEx Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
+        subtitle: "Redescoperă încrederea zâmbetului tău la CristAlex Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
         cta: "Programează o Consultație",
         emergency: "Urgențe: +373 22 000 000"
       },
@@ -26,7 +26,7 @@ const resources = {
         doctors: "Medici Specialiști"
       },
       features: {
-        title: "De ce să alegi CristalEx Dent?",
+        title: "De ce să alegi CristAlex Dent?",
         tech_title: "Tehnologie Digitală 3D",
         tech_desc: "Scanare intraorală și planificare digitală pentru precizie maximă și confort.",
         pain_title: "Tratamente Fără Durere",
@@ -67,7 +67,7 @@ const resources = {
         btn: "Vreau o Programare"
       },
       footer: {
-        desc: "CristalEx Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
+        desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
         links: "Link-uri Utile",
         program: "Program Clinica",
         contact: "Informații Contact"
@@ -87,7 +87,7 @@ const resources = {
       },
       hero: {
         title: "Совершенство в Современной Стоматологии",
-        subtitle: "Верните уверенность в своей улыбке в CristalEx Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
+        subtitle: "Верните уверенность в своей улыбке в CristAlex Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
         cta: "Записаться на Консультацию",
         emergency: "Срочно: +373 22 000 000"
       },
@@ -98,7 +98,7 @@ const resources = {
         doctors: "Врачей Специалистов"
       },
       features: {
-        title: "Почему выбирают CristalEx Dent?",
+        title: "Почему выбирают CristAlex Dent?",
         tech_title: "Цифровые 3D Технологии",
         tech_desc: "Интраоральное сканирование и цифровое планирование для максимальной точности.",
         pain_title: "Лечение Без Боли",
@@ -139,7 +139,7 @@ const resources = {
         btn: "Хочу Записаться"
       },
       footer: {
-        desc: "CristalEx Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
+        desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
         links: "Полезные Ссылки",
         program: "График Работы",
         contact: "Контактная Информация"

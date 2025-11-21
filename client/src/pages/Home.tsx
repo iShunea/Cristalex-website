@@ -38,6 +38,13 @@ import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 import endoImage from "@assets/generated_images/dental_microscope_treatment.png";
 
+import drScutelnic from "@assets/generated_images/portrait_of_dr._scutelnic_daniela.png";
+import drRobu from "@assets/generated_images/portrait_of_dr._ludmila_robu.png";
+import drPlesca from "@assets/generated_images/portrait_of_dr._denis_plesca.png";
+import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png";
+import drCraciun from "@assets/generated_images/portrait_of_dr._craciun_daniela.png";
+import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
+
 export default function Home() {
   const { t } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
@@ -51,8 +58,17 @@ export default function Home() {
 
   const testimonials = [
     { name: "Maria Popescu", role: "Pacient Implantologie", text: "O experiență incredibilă. Mi-am recăpătat zâmbetul după ani de zile. Echipa este extrem de profesionistă." },
-    { name: "Ion Rusu", role: "Pacient Ortodonție", text: "Tehnologie de vârf și o atmosferă foarte primitoare. Recomand cu încredere CristalEx Dent." },
+    { name: "Ion Rusu", role: "Pacient Ortodonție", text: "Tehnologie de vârf și o atmosferă foarte primitoare. Recomand cu încredere CristAlex Dent." },
     { name: "Elena Munteanu", role: "Estetică Dentară", text: "Fațetele dentare arată perfect natural. Mulțumesc doamnei doctor pentru răbdare și perfecționism." },
+  ];
+
+  const doctors = [
+    { name: "Dr. Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
+    { name: "Dr. Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
+    { name: "Dr. Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
+    { name: "Dr. Zănoagă Oleg", role: "Chirurg - Implantolog", img: drZanoaga, bio: "Doctor în științe medicale, conferențiar universitar, expert în implantologie avansată." },
+    { name: "Dr. Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
+    { name: "Asist. Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
   ];
 
   return (
@@ -77,7 +93,7 @@ export default function Home() {
             >
               <div className="flex items-center gap-2 mb-6">
                 <span className="h-px w-12 bg-secondary"></span>
-                <span className="text-secondary font-bold tracking-widest uppercase text-sm">CristalEx Dent Corporate</span>
+                <span className="text-secondary font-bold tracking-widest uppercase text-sm">CristAlex Dent Corporate</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
                 {t("hero.title")}
@@ -307,6 +323,46 @@ export default function Home() {
               )}
             </DialogContent>
           </Dialog>
+        </div>
+      </section>
+
+      {/* DOCTORS TEAM */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="section-title">{t("nav.team")}</h2>
+            <p className="section-subtitle">Echipa noastră de specialiști pregătiți să îți ofere cel mai bun tratament.</p>
+          </div>
+          
+          <div className="max-w-6xl mx-auto">
+             <Carousel className="w-full">
+                <CarouselContent>
+                  {doctors.map((doc, index) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
+                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
+                        <div className="h-[350px] overflow-hidden relative">
+                          <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
+                            <h3 className="text-xl font-bold">{doc.name}</h3>
+                            <p className="text-blue-200 text-sm font-medium">{doc.role}</p>
+                          </div>
+                        </div>
+                        <div className="p-6">
+                          <p className="text-gray-600 text-sm leading-relaxed mb-4">{doc.bio}</p>
+                          <div className="flex gap-2">
+                            <div className="h-1 w-12 bg-primary rounded-full"></div>
+                            <div className="h-1 w-4 bg-secondary rounded-full"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+             </Carousel>
+          </div>
         </div>
       </section>
 

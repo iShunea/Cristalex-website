@@ -62,7 +62,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 C
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-bold text-xl leading-none text-primary">CristalEx</span>
+                <span className="font-heading font-bold text-xl leading-none text-primary">CristAlex</span>
                 <span className="font-heading font-medium text-sm tracking-wider text-gray-500">DENT</span>
               </div>
             </a>
@@ -138,7 +138,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold">C</div>
-                <span className="font-heading font-bold text-lg">CristalEx Dent</span>
+                <span className="font-heading font-bold text-lg">CristAlex Dent</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Clinica stomatologică modernă dedicată sănătății și frumuseții zâmbetului tău. Tehnologie de ultimă generație și specialiști de top.
@@ -184,7 +184,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
-            © 2025 CristalEx Dent. All rights reserved.
+            © 2025 CristAlex Dent. All rights reserved.
           </div>
         </div>
       </footer>

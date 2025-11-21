@@ -21,7 +21,7 @@ export default function About() {
           <div>
             <h2 className="text-3xl font-bold mb-6 text-primary">Misiunea Noastră</h2>
             <p className="text-gray-600 text-lg mb-4 leading-relaxed">
-              La CristalEx Dent, misiunea noastră este să oferim servicii stomatologice de cea mai înaltă calitate într-un mediu confortabil și prietenos. Ne dedicăm sănătății pacienților noștri prin educație continuă și tehnologie de vârf.
+              La CristAlex Dent, misiunea noastră este să oferim servicii stomatologice de cea mai înaltă calitate într-un mediu confortabil și prietenos. Ne dedicăm sănătății pacienților noștri prin educație continuă și tehnologie de vârf.
             </p>
             <p className="text-gray-600 text-lg leading-relaxed">
               Fiecare pacient este tratat cu respect și atenție, având parte de un plan de tratament personalizat adaptat nevoilor și dorințelor sale.
