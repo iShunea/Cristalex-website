@@ -25,41 +25,41 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   
-  --font-sans: 'Onest', sans-serif;
-  --font-heading: 'Onest', sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
   
   --radius: 0.5rem;
   
   --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
-  --shadow-glow: 0 0 20px rgba(0, 145, 213, 0.3);
+  --shadow-glow: 0 0 20px rgba(182, 2, 2, 0.3);
 }
 
 :root {
-  /* More Corporate/Premium Palette */
+  /* CristAlex Dent Brandbook Colors */
   --background: 0 0% 100%;
   --foreground: 215 28% 17%;
 
   --card: 0 0% 100%;
   --card-foreground: 215 28% 17%;
  
-  /* Deeper, more authoritative Blue */
-  --primary: 210 100% 25%; /* Deep Royal Blue */
+  /* Corporate Red - Primary #b60202 */
+  --primary: 0 98% 36%; /* CristAlex Red #b60202 */
   --primary-foreground: 0 0% 100%;
  
-  /* Clean Medical Cyan/Teal for accents */
-  --secondary: 190 90% 45%; 
+  /* Secondary Red #df0101 */
+  --secondary: 0 99% 44%; /* Secondary Red #df0101 */
   --secondary-foreground: 0 0% 100%;
  
-  --muted: 210 20% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 58%; /* Gray #959595 from brandbook */
  
-  /* Gold/Bronze for "Premium" touches */
-  --accent: 35 90% 55%; 
+  /* Corporate Gray #959595 for accents */
+  --accent: 0 0% 58%; /* Gray #959595 */
   --accent-foreground: 0 0% 100%;
  
-  --border: 214 20% 90%;
-  --input: 214 20% 90%;
-  --ring: 210 100% 25%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 0 98% 36%;
 }
 
 @layer base {
