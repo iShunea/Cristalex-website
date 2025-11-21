@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Menu, X, Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@assets/logo CristAlex Dent_1763723661858.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { t, i18n } = useTranslation();
@@ -57,14 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/">
             <a className="flex items-center gap-2">
-              {/* Logo Placeholder */}
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                C
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-bold text-xl leading-none text-primary">CristAlex</span>
-                <span className="font-heading font-medium text-sm tracking-wider text-gray-500">DENT</span>
-              </div>
+              <img src={logo} alt="CristAlex Dent" className="h-12 w-auto" />
             </a>
           </Link>
 
@@ -137,8 +131,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <div className="w-8 h-8 bg-primary rounded flex items-center justify-center font-bold">C</div>
-                <span className="font-heading font-bold text-lg">CristAlex Dent</span>
+                <img src={logo} alt="CristAlex Dent" className="h-10 w-auto brightness-0 invert" />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 Clinica stomatologică modernă dedicată sănătății și frumuseții zâmbetului tău. Tehnologie de ultimă generație și specialiști de top.
