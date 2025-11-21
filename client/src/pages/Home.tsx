@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,7 @@ import { motion } from "framer-motion";
 import { 
   ShieldCheck, Users, Award, Clock, CheckCircle2, 
   Star, Microscope, Sparkles, PhoneCall, ArrowRight,
-  HelpCircle, ChevronDown
+  HelpCircle, ChevronDown, X
 } from "lucide-react";
 import {
   Accordion,
@@ -20,6 +21,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -32,6 +40,7 @@ import endoImage from "@assets/generated_images/dental_microscope_treatment.png"
 
 export default function Home() {
   const { t } = useTranslation();
+  const [selectedService, setSelectedService] = useState<any>(null);
 
   const stats = [
     { value: "5000+", label: t("stats.patients"), icon: Users },
@@ -216,12 +225,40 @@ export default function Home() {
 
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: t("services.implant"), desc: t("services.implant_desc"), img: implantImage },
-                { title: t("services.ortho"), desc: t("services.ortho_desc"), img: orthoImage },
-                { title: t("services.aesthetics"), desc: t("services.aesthetics_desc"), img: aestheticImage },
-                { title: t("services.endo"), desc: t("services.endo_desc"), img: endoImage }
+                { 
+                  title: t("services.implant"), 
+                  desc: t("services.implant_desc"), 
+                  img: implantImage,
+                  details: "Restaurarea dinților pierduți cu ajutorul implanturilor dentare de ultimă generație. Folosim tehnologii avansate pentru planificare digitală 3D, asigurând precizie maximă și timp de vindecare redus. Beneficiezi de implanturi premium Straumann sau Nobel Biocare, recunoscute mondial pentru durabilitate și integrare osoasă rapidă.",
+                  features: ["Planificare 3D", "Implanturi Premium", "Sedare Conștientă", "Garanție pe Viață"]
+                },
+                { 
+                  title: t("services.ortho"), 
+                  desc: t("services.ortho_desc"), 
+                  img: orthoImage,
+                  details: "Corectarea poziției dinților și a mușcăturii folosind aparate dentare moderne. Oferim atât soluții clasice (metalice/ceramice), cât și alignere invizibile (Invisalign) pentru un tratament discret și confortabil. Obține un zâmbet perfect aliniat indiferent de vârstă.",
+                  features: ["Invisalign", "Aparate Safir", "Digital Scanning", "Fără Durere"]
+                },
+                { 
+                  title: t("services.aesthetics"), 
+                  desc: t("services.aesthetics_desc"), 
+                  img: aestheticImage,
+                  details: "Transformă-ți zâmbetul cu fațete dentare ceramice E-MAX sau proceduri de albire profesională. Proiectăm noul tău zâmbet digital (DSD) înainte de a începe tratamentul, astfel încât să vezi rezultatul final încă de la prima vizită.",
+                  features: ["Digital Smile Design", "Fațete E-MAX", "Albire Zoom", "Minim Invaziv"]
+                },
+                { 
+                  title: t("services.endo"), 
+                  desc: t("services.endo_desc"), 
+                  img: endoImage,
+                  details: "Tratamente de canal realizate exclusiv la microscop pentru salvarea dinților naturali. Precizia magnificată de până la 25x permite curățarea perfectă a canalelor și sigilarea lor tridimensională, eliminând infecțiile și durerea pe termen lung.",
+                  features: ["Microscop Leica", "Izolare cu Digă", "Vindecare Rapidă", "Rată de Succes 98%"]
+                }
               ].map((s, i) => (
-                <div key={i} className="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer shadow-lg">
+                <div 
+                  key={i} 
+                  onClick={() => setSelectedService(s)}
+                  className="group relative h-[400px] rounded-2xl overflow-hidden cursor-pointer shadow-lg transform transition-all duration-300 hover:-translate-y-2"
+                >
                   <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                   <div className="absolute bottom-0 left-0 p-6 text-white transform transition-transform duration-300 translate-y-4 group-hover:translate-y-0">
@@ -234,6 +271,42 @@ export default function Home() {
                 </div>
               ))}
            </div>
+
+           <Dialog open={!!selectedService} onOpenChange={(open) => !open && setSelectedService(null)}>
+            <DialogContent className="sm:max-w-[600px] bg-white p-0 overflow-hidden gap-0 border-0">
+              {selectedService && (
+                <>
+                  <div className="relative h-48 w-full">
+                    <img src={selectedService.img} alt={selectedService.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white">{selectedService.title}</h2>
+                  </div>
+                  
+                  <div className="p-6">
+                    <DialogHeader className="mb-4 text-left">
+                      <DialogDescription className="text-lg text-gray-700 leading-relaxed">
+                        {selectedService.details}
+                      </DialogDescription>
+                    </DialogHeader>
+
+                    <div className="grid grid-cols-2 gap-3 mb-6">
+                      {selectedService.features?.map((feat: string, idx: number) => (
+                        <div key={idx} className="flex items-center gap-2 bg-blue-50 p-2 rounded-lg">
+                          <CheckCircle2 className="w-4 h-4 text-primary" />
+                          <span className="text-sm font-medium text-gray-700">{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex justify-end gap-3 mt-4">
+                      <Button variant="outline" onClick={() => setSelectedService(null)}>Închide</Button>
+                      <Button className="bg-primary text-white">Programează {selectedService.title}</Button>
+                    </div>
+                  </div>
+                </>
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
       </section>
 
