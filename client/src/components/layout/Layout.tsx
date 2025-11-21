@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Globe, Menu, X, Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { BookingModal } from "@/components/BookingModal";
 import logo from "@assets/logo CristAlex Dent_1763723661858.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -74,9 +75,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-md">
-              {t("nav.book")}
-            </Button>
+            <BookingModal 
+              buttonText={t("nav.book")}
+              buttonClassName="bg-accent hover:bg-accent/90 text-accent-foreground font-bold shadow-md h-11 px-6"
+            />
           </nav>
 
           {/* Mobile Toggle */}
@@ -114,9 +116,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <Globe className="w-5 h-5" />
                 {i18n.language === 'ro' ? 'Română' : 'Русский'}
               </button>
-              <Button size="lg" className="w-full mt-4 bg-primary">
-                {t("nav.book")}
-              </Button>
+              <BookingModal 
+                buttonText={t("nav.book")}
+                buttonClassName="w-full mt-4 bg-primary h-12 text-lg"
+              />
             </nav>
           </motion.div>
         )}

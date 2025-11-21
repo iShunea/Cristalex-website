@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { CheckCircle2, ArrowRight, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BookingModal } from "@/components/BookingModal";
 import implantImage from "@assets/generated_images/dental_implant_model.png";
 import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
@@ -82,9 +83,10 @@ export default function Services() {
                 </div>
 
                 <div className="flex gap-4">
-                  <Button className="bg-primary hover:bg-primary/90 text-white px-8">
-                    Programează Consult
-                  </Button>
+                  <BookingModal 
+                    buttonText="Programează Consult"
+                    buttonClassName="bg-primary hover:bg-primary/90 text-white px-8"
+                  />
                   <Button variant="outline" className="gap-2">
                     Detalii <ArrowRight className="w-4 h-4" />
                   </Button>

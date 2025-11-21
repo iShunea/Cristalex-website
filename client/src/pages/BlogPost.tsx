@@ -3,6 +3,7 @@ import { useRoute, Link } from "wouter";
 import { blogPosts } from "./Blog";
 import { Calendar, User, ArrowLeft, Share2, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BookingModal } from "@/components/BookingModal";
 import NotFound from "./not-found";
 
 export default function BlogPost() {
@@ -97,9 +98,10 @@ export default function BlogPost() {
                 <p className="text-blue-100 mb-6 text-sm">
                   Ai întrebări despre {post.category.toLowerCase()}? Specialiștii noștri sunt aici să te ajute.
                 </p>
-                <Button className="w-full bg-white text-primary hover:bg-blue-50 font-bold">
-                  Sună Acum
-                </Button>
+                <BookingModal 
+                  buttonText="Programează Online"
+                  buttonClassName="w-full bg-white text-primary hover:bg-blue-50 font-bold"
+                />
               </div>
             </div>
           </div>

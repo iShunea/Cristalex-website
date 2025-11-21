@@ -32,6 +32,7 @@ import { Link } from "wouter";
 import { blogPosts } from "./Blog";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
+import { BookingModal } from "@/components/BookingModal";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -132,12 +133,15 @@ export default function Home() {
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-white font-bold px-8 h-14 text-lg rounded-none">
-                  {t("hero.cta")}
-                </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 font-bold px-8 h-14 text-lg rounded-none">
-                  {t("nav.services")}
-                </Button>
+                <BookingModal 
+                  buttonText={t("hero.cta")}
+                  buttonClassName="bg-secondary hover:bg-secondary/90 text-white font-bold px-8 h-14 text-lg rounded-none"
+                />
+                <Link href="/services">
+                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 font-bold px-8 h-14 text-lg rounded-none">
+                    {t("nav.services")}
+                  </Button>
+                </Link>
               </div>
             </motion.div>
             
@@ -504,9 +508,10 @@ export default function Home() {
           <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
             {t("cta_banner.text")}
           </p>
-          <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-12 h-16 text-xl shadow-2xl rounded-full">
-            {t("cta_banner.btn")}
-          </Button>
+          <BookingModal 
+            buttonText={t("cta_banner.btn")}
+            buttonClassName="bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-12 h-16 text-xl shadow-2xl rounded-full"
+          />
         </div>
       </section>
     </Layout>
