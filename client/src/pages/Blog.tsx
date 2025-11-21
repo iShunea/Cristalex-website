@@ -102,7 +102,7 @@ export default function Blog() {
       <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 skew-x-12 transform origin-top-right"></div>
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-5xl font-bold mb-6">Blog & Noutăți</h1>
+          <h1 className="text-5xl font-bold mb-6 text-white">Blog & Noutăți</h1>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
             Informații utile, sfaturi de la experți și noutăți din lumea stomatologiei moderne.
           </p>

@@ -36,7 +36,7 @@ export default function BlogPost() {
                   {post.category}
                 </span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight text-white">
                 {post.title}
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-sm md:text-base text-white/80">
