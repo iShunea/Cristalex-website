@@ -251,7 +251,7 @@ export default function Home() {
               </div>
               
               <div className="absolute -top-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl">
-                <div className="text-4xl font-bold mb-2">16+</div>
+                <div className="text-4xl font-bold mb-2">{new Date().getFullYear() - 2008}+</div>
                 <div className="text-red-100 font-medium">Ani Experiență</div>
               </div>
             </div>

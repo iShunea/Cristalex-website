@@ -37,7 +37,7 @@ export default function About() {
                 <div className="text-gray-600 text-sm">Anul Fondării</div>
               </div>
               <div className="text-center p-6 bg-red-50 rounded-xl">
-                <div className="text-4xl font-bold text-primary mb-2">16+</div>
+                <div className="text-4xl font-bold text-primary mb-2">{new Date().getFullYear() - 2008}+</div>
                 <div className="text-gray-600 text-sm">Ani Experiență</div>
               </div>
             </div>
