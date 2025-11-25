@@ -201,6 +201,64 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ABOUT US SECTION */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <span className="h-px w-12 bg-primary"></span>
+                <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.title")}</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-900">{t("about.history_title")}</h2>
+              
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                {t("about.history_p1")}
+              </p>
+              
+              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                {t("about.history_p2")}
+              </p>
+
+              <div className="bg-red-50 p-8 rounded-xl mb-8">
+                <p className="text-gray-700 text-lg leading-relaxed font-medium">
+                  {t("about.mission_text")}
+                </p>
+              </div>
+
+              <p className="text-gray-600 text-lg leading-relaxed italic border-l-4 border-primary pl-6">
+                {t("about.promise_text")}
+              </p>
+
+              <div className="mt-8">
+                <Link href="/about">
+                  <Button className="bg-primary hover:bg-primary/90 text-white px-8 gap-2">
+                    Citește mai mult <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img src={doctorImage} alt="CristAlex Dent" className="w-full h-full object-cover" />
+              </div>
+              
+              {/* Stats Cards Overlay */}
+              <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl border border-gray-100">
+                <div className="text-4xl font-bold text-primary mb-2">2008</div>
+                <div className="text-gray-600 font-medium">Anul Fondării</div>
+              </div>
+              
+              <div className="absolute -top-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl">
+                <div className="text-4xl font-bold mb-2">16+</div>
+                <div className="text-red-100 font-medium">Ani Experiență</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* WHY CHOOSE US - Bento Grid Style */}
       <section className="py-24 bg-gray-50 brandbook-pattern">
         <div className="container mx-auto px-4">

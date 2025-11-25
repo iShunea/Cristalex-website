@@ -72,6 +72,17 @@ const resources = {
         text: "Nu lăsa problemele dentare să se agraveze. Programează-te acum.",
         btn: "Vreau o Programare"
       },
+      about: {
+        title: "Despre Noi",
+        subtitle: "Cristalex Dent – Zâmbetul tău, pasiunea noastră",
+        history_title: "Istoria Noastră",
+        history_p1: "Clinica stomatologică Cristalex Dent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
+        history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
+        mission_title: "Misiunea Noastră",
+        mission_text: "Fiind niște stomatologi dedicați, echipa Cristalex Dent lucrează cu profesionalism pentru a vă oferi formula perfectă: zâmbetul mult visat cu o sănătate dentară optimă.",
+        promise_text: "Aici vei beneficia de un tratament individual și personalizat, la prețuri atractive. Sănătatea dentară e mult mai accesibilă decât te așteptai.",
+        team_title: "Echipa Noastră"
+      },
       footer: {
         desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
         links: "Link-uri Utile",
@@ -149,6 +160,17 @@ const resources = {
         title: "Готовы к переменам?",
         text: "Не позволяйте стоматологическим проблемам усугубляться. Запишитесь сейчас.",
         btn: "Хочу Записаться"
+      },
+      about: {
+        title: "О Нас",
+        subtitle: "Cristalex Dent – Ваша улыбка, наша страсть",
+        history_title: "Наша История",
+        history_p1: "Стоматологическая клиника Cristalex Dent начала свою деятельность в 2008 году. Располагает двумя стоматологическими кабинетами, оснащенными новейшими технологиями, хирургическим кабинетом, кабинетом стерилизации и кабинетом радиовизиографии.",
+        history_p2: "За более чем 16 лет работы сформировалась команда врачей, ставших экспертами в области стоматологии.",
+        mission_title: "Наша Миссия",
+        mission_text: "Являясь преданными стоматологами, команда Cristalex Dent работает профессионально, чтобы предложить вам идеальную формулу: желанную улыбку с оптимальным здоровьем зубов.",
+        promise_text: "Здесь вы получите индивидуальное и персонализированное лечение по привлекательным ценам. Здоровье зубов намного доступнее, чем вы ожидали.",
+        team_title: "Наша Команда"
       },
       footer: {
         desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
