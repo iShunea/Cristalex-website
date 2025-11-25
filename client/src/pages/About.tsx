@@ -1,5 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -20,21 +21,21 @@ import drCraciun from "@assets/dr_craciun_daniela_real.jpg";
 import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
 
 export default function About() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { data: apiTeamMembers } = useQuery({
     queryKey: ["team-members"],
     queryFn: getTeamMembers,
   });
 
-  const staticDoctors = [
+  const staticDoctors = useMemo(() => [
     { name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
     { name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
     { name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
     { name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
     { name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
     { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
-  ];
+  ], [t, i18n.language]);
 
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
     ? apiTeamMembers.map((m: any) => ({ name: m.name, role: m.role, img: m.imageUrl, bio: m.bio }))
