@@ -105,7 +105,6 @@ export default function Services() {
                    <div className="bg-red-50 text-primary px-3 py-1 rounded text-sm font-bold tracking-wider uppercase">
                      {t("services.specialization")}
                    </div>
-                   <div className="text-gray-400 text-sm">{cat.price}</div>
                 </div>
                 
                 <h2 className="text-4xl font-bold mb-6 text-gray-900">{cat.title}</h2>
