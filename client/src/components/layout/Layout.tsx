@@ -1,8 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
-import { useState } from "react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle, Check } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
 import logo from "@assets/logo CristAlex Dent_1763723661858.png";
@@ -11,12 +11,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { t, i18n } = useTranslation();
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleLang = () => {
-    const langs = ["ro", "ru", "en"];
-    const currentIndex = langs.indexOf(i18n.language);
-    const nextIndex = (currentIndex + 1) % langs.length;
-    i18n.changeLanguage(langs[nextIndex]);
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const languages = [
+    { code: "ro", label: "Română", flag: "🇷🇴" },
+    { code: "ru", label: "Русский", flag: "🇷🇺" },
+    { code: "en", label: "English", flag: "🇬🇧" },
+  ];
+
+  const changeLang = (code: string) => {
+    i18n.changeLanguage(code);
+    setLangDropdownOpen(false);
   };
 
   const navItems = [
@@ -69,14 +86,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
-            <button 
-              onClick={toggleLang}
-              className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors font-medium text-gray-700 hover:text-primary"
-              title="Schimbă limba"
-            >
-              <Globe className="w-4 h-4" />
-              <span className="text-sm">{i18n.language === 'ro' ? 'RO' : i18n.language === 'ru' ? 'RU' : 'EN'}</span>
-            </button>
+            {/* Language Dropdown */}
+            <div className="relative" ref={langDropdownRef}>
+              <button 
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all font-medium text-gray-700 hover:text-primary border-2 border-transparent hover:border-primary/20"
+                title="Schimbă limba"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-bold">{i18n.language.toUpperCase()}</span>
+              </button>
+              
+              {/* Dropdown Menu */}
+              {langDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-40"
+                >
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => changeLang(lang.code)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
+                        i18n.language === lang.code
+                          ? "bg-primary/10 text-primary font-semibold"
+                          : "text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      <span>{lang.flag}</span>
+                      <span className="flex-1">{lang.label}</span>
+                      {i18n.language === lang.code && <Check className="w-4 h-4 text-primary" />}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
             <BookingModal 
               buttonText={t("nav.book")}
               buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold shadow-md h-11 px-6"

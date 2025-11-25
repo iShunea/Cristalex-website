@@ -209,7 +209,9 @@ export default function Home() {
                <h2 className="section-title text-left">{t("services.title")}</h2>
                <p className="text-gray-500 text-lg">{t("services.subtitle")}</p>
              </div>
-             <Button className="bg-primary text-white px-8">Vezi Toate Serviciile</Button>
+             <Link href="/services">
+               <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">Vezi Toate Serviciile</Button>
+             </Link>
            </div>
 
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -373,7 +375,7 @@ export default function Home() {
 
               <div className="mt-8">
                 <Link href="/about">
-                  <Button className="bg-primary hover:bg-primary/90 text-white px-8 gap-2">
+                  <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 gap-2 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">
                     Citește mai mult <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
