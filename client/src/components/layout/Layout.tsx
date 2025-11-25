@@ -13,7 +13,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleLang = () => {
-    i18n.changeLanguage(i18n.language === "ro" ? "ru" : "ro");
+    const langs = ["ro", "ru", "en"];
+    const currentIndex = langs.indexOf(i18n.language);
+    const nextIndex = (currentIndex + 1) % langs.length;
+    i18n.changeLanguage(langs[nextIndex]);
   };
 
   const navItems = [
@@ -114,7 +117,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <div className="h-px bg-gray-100 my-2" />
               <button onClick={toggleLang} className="flex items-center justify-center gap-2 text-lg font-medium">
                 <Globe className="w-5 h-5" />
-                {i18n.language === 'ro' ? 'Română' : 'Русский'}
+                {i18n.language === 'ro' ? 'Română' : i18n.language === 'ru' ? 'Русский' : 'English'}
               </button>
               <BookingModal 
                 buttonText={t("nav.book")}

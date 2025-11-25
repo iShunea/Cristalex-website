@@ -179,6 +179,93 @@ const resources = {
         contact: "Контактная Информация"
       }
     }
+  },
+  en: {
+    translation: {
+      nav: {
+        home: "Home",
+        about: "About Us",
+        services: "Services",
+        prices: "Prices",
+        team: "Team",
+        contact: "Contact",
+        blog: "Blog",
+        book: "Book Online"
+      },
+      hero: {
+        title: "Excellence in Modern Dentistry",
+        subtitle: "Rediscover the confidence in your smile at CristAlex Dent. Digital 3D technology, premium materials and a team dedicated to perfection.",
+        cta: "Schedule a Consultation",
+        emergency: "Emergency: +373 78388000"
+      },
+      contact: {
+        address: "Chișinău, Alba Iulia Street 23",
+        phone: "+373 78388000",
+        email: "cristalexdent23@gmail.com"
+      },
+      stats: {
+        patients: "Happy Patients",
+        years: "Years of Experience",
+        implants: "Implants Placed",
+        doctors: "Specialist Doctors"
+      },
+      features: {
+        title: "Why Choose CristAlex Dent?",
+        tech_title: "Digital 3D Technology",
+        tech_desc: "Intraoral scanning and digital planning for maximum precision and comfort.",
+        pain_title: "Painless Treatments",
+        pain_desc: "We use the latest sedation and anesthesia methods for your comfort.",
+        garantie_title: "Extended Warranty",
+        garantie_desc: "We offer warranty certificates for all prosthetic work and implants.",
+        steril_title: "Premium Sterilization",
+        steril_desc: "Strict sterilization protocols in accordance with European standards."
+      },
+      testimonials: {
+        title: "What Our Patients Say",
+        subtitle: "The opinions of those who have trusted us are our business card."
+      },
+      faq: {
+        title: "Frequently Asked Questions",
+        q1: "How much does a dental implant cost?",
+        a1: "The cost of an implant varies depending on the type and brand chosen. We invite you for a consultation to create a personalized treatment plan.",
+        q2: "Do you offer emergency services?",
+        a2: "Yes, we handle dental emergencies during working hours with priority.",
+        q3: "Can I pay in installments?",
+        a3: "We work with banking partners to offer flexible payment solutions in installments without interest."
+      },
+      services: {
+        title: "Our Service Spectrum",
+        subtitle: "We approach each case multidisciplinarily for optimal aesthetic and functional results.",
+        implant: "Advanced Implantology",
+        implant_desc: "Complete tooth restoration using premium implants (Straumann, Nobel).",
+        ortho: "Digital Orthodontics",
+        ortho_desc: "Invisible braces (Aligners) and traditional braces for all ages.",
+        aesthetics: "Dental Aesthetics",
+        aesthetics_desc: "E-MAX ceramic veneers and professional whitening with lamp."
+      },
+      cta_banner: {
+        title: "Ready for a change?",
+        text: "Don't let dental problems get worse. Schedule now.",
+        btn: "I Want an Appointment"
+      },
+      about: {
+        title: "About Us",
+        subtitle: "Cristalex Dent – Your smile, our passion",
+        history_title: "Our History",
+        history_p1: "The Cristalex Dent dental clinic started its activities in 2008. It has two dental offices equipped with state-of-the-art technologies, a surgical office, a sterilization office and a dental radiography office.",
+        history_p2: "Over more than 16 years of activity, a team of doctors has been consolidated who have become experts in the field of dental medicine.",
+        mission_title: "Our Mission",
+        mission_text: "As dedicated dentists, the Cristalex Dent team works professionally to offer you the perfect formula: the smile you've always dreamed of with optimal dental health.",
+        promise_text: "Here you will benefit from individual and personalized treatment at attractive prices. Dental health is much more accessible than you thought.",
+        team_title: "Our Team"
+      },
+      footer: {
+        desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
+        links: "Useful Links",
+        program: "Clinic Hours",
+        contact: "Contact Information"
+      }
+    }
   }
 };
 
