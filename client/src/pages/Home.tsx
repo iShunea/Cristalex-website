@@ -351,54 +351,41 @@ export default function Home() {
             <p className="section-subtitle">Standarde ridicate, tehnologie de ultimă oră și o abordare umană.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Large Feature */}
-            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-1">
-                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6">
-                  <Microscope className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{t("features.tech_title")}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{t("features.tech_desc")}</p>
-                <Button variant="link" className="p-0 text-primary font-bold">Află mai multe <ArrowRight className="w-4 h-4 ml-2" /></Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {/* Feature 1 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6">
+                <Microscope className="w-7 h-7 text-primary" />
               </div>
-              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src={techImage} className="absolute inset-0 w-full h-full object-cover" alt="Tech" />
-              </div>
+              <h3 className="text-xl font-bold mb-3">{t("features.tech_title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("features.tech_desc")}</p>
             </div>
 
-            {/* Small Feature 1 */}
-            <div className="bg-slate-900 text-white p-8 rounded-2xl shadow-sm flex flex-col justify-between">
-              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                <ShieldCheck className="w-6 h-6 text-secondary" />
+            {/* Feature 2 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center mb-6">
+                <Sparkles className="w-7 h-7 text-green-600" />
               </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-white">{t("features.garantie_title")}</h3>
-                <p className="text-gray-400 text-sm">{t("features.garantie_desc")}</p>
-              </div>
+              <h3 className="text-xl font-bold mb-3">{t("features.pain_title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("features.pain_desc")}</p>
             </div>
 
-            {/* Small Feature 2 */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-6">
-                <Sparkles className="w-6 h-6 text-green-600" />
+            {/* Feature 3 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+                <ShieldCheck className="w-7 h-7 text-blue-600" />
               </div>
-              <h3 className="text-xl font-bold mb-2">{t("features.pain_title")}</h3>
-              <p className="text-gray-600 text-sm">{t("features.pain_desc")}</p>
+              <h3 className="text-xl font-bold mb-3">{t("features.garantie_title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("features.garantie_desc")}</p>
             </div>
 
-            {/* Large Feature 2 */}
-            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row-reverse items-center gap-8">
-              <div className="flex-1">
-                <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{t("features.steril_title")}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{t("features.steril_desc")}</p>
+            {/* Feature 4 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
+              <div className="w-14 h-14 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-7 h-7 text-purple-600" />
               </div>
-              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src={sterileImage} className="absolute inset-0 w-full h-full object-cover" alt="Sterile" />
-              </div>
+              <h3 className="text-xl font-bold mb-3">{t("features.steril_title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("features.steril_desc")}</p>
             </div>
           </div>
         </div>
