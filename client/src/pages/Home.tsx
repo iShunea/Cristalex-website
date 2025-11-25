@@ -433,7 +433,7 @@ export default function Home() {
              <Carousel className="w-full">
                 <CarouselContent>
                   {doctors.map((doc, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4 pl-6">
                       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
                         <div className="h-[350px] overflow-hidden relative">
                           <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
