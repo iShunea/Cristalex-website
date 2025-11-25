@@ -2,9 +2,43 @@ import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getTeamMembers } from "@/lib/api";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
+import drRobu from "@assets/dr_ludmila_robu_real.jpg";
+import drPlesca from "@assets/generated_images/portrait_of_dr._denis_plesca.png";
+import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png";
+import drCraciun from "@assets/dr_craciun_daniela_real.jpg";
+import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
 
 export default function About() {
   const { t } = useTranslation();
+
+  const { data: apiTeamMembers } = useQuery({
+    queryKey: ["team-members"],
+    queryFn: getTeamMembers,
+  });
+
+  const staticDoctors = [
+    { name: "Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
+    { name: "Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
+    { name: "Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
+    { name: "Zănoagă Oleg", role: "Chirurg - Implantolog\nDoctor în științe medicale, conf. univ.", img: drZanoaga, bio: "Expert în implantologie avansată cu certificări internaționale și experiență de peste 15 ani." },
+    { name: "Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
+    { name: "Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
+  ];
+
+  const doctors = apiTeamMembers && apiTeamMembers.length > 0 
+    ? apiTeamMembers.map((m: any) => ({ name: m.name, role: m.role, img: m.imageUrl, bio: m.bio }))
+    : staticDoctors;
 
   return (
     <Layout>
@@ -95,6 +129,40 @@ export default function About() {
             </div>
             <h3 className="font-bold text-lg mb-2">Siguranță</h3>
             <p className="text-gray-600 text-sm">Protocoale stricte de sterilizare</p>
+          </div>
+        </div>
+
+        {/* Team Members Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-12">Echipa Noastră</h2>
+          <div className="max-w-6xl mx-auto">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {doctors.map((doc, index) => (
+                  <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4 pl-6">
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
+                      <div className="h-[350px] overflow-hidden relative">
+                        <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                        <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
+                          <h3 className="text-xl font-bold text-white">{doc.name}</h3>
+                          <p className="text-red-200 text-sm font-medium">{doc.role}</p>
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4">{doc.bio}</p>
+                        <div className="flex gap-2">
+                          <div className="h-1 w-12 bg-primary rounded-full"></div>
+                          <div className="h-1 w-4 bg-secondary rounded-full"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
           </div>
         </div>
       </div>
