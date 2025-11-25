@@ -1,6 +1,5 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
-import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 
@@ -22,8 +21,12 @@ export default function About() {
 
       {/* Historia Section */}
       <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
           <div className="order-2 lg:order-1">
+            <div className="flex items-center gap-2 mb-6">
+              <span className="h-px w-12 bg-primary"></span>
+              <span className="text-primary font-bold tracking-widest uppercase text-sm">Despre Noi</span>
+            </div>
             <h2 className="text-4xl font-bold mb-8 text-gray-900">{t("about.history_title")}</h2>
             <p className="text-gray-600 text-lg mb-6 leading-relaxed">
               {t("about.history_p1")}
@@ -45,7 +48,7 @@ export default function About() {
           </div>
           
           <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-2xl">
-             <img src={doctorImage} alt="CristAlex Dent Team" className="w-full h-full object-cover" />
+             <img src={teamPhoto} alt="Echipa CristAlex Dent" className="w-full h-full object-cover" />
           </div>
         </div>
 
@@ -92,24 +95,6 @@ export default function About() {
             </div>
             <h3 className="font-bold text-lg mb-2">Siguranță</h3>
             <p className="text-gray-600 text-sm">Protocoale stricte de sterilizare</p>
-          </div>
-        </div>
-
-        {/* Team Photo Section */}
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12">Echipa Noastră</h2>
-          <div className="max-w-5xl mx-auto">
-            <div className="rounded-2xl overflow-hidden shadow-2xl">
-              <img 
-                src={teamPhoto} 
-                alt="Echipa CristAlex Dent" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <p className="text-center text-gray-600 mt-8 text-lg leading-relaxed max-w-3xl mx-auto">
-              O echipă unită de profesioniști dedicați sănătății tale orale. 
-              Fiecare membru al echipei noastre aduce experiență, pasiune și grijă pentru fiecare pacient.
-            </p>
           </div>
         </div>
       </div>

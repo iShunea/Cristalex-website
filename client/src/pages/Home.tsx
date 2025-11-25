@@ -48,7 +48,7 @@ import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
 import drRobu from "@assets/dr_ludmila_robu_real.jpg";
 import drPlesca from "@assets/generated_images/portrait_of_dr._denis_plesca.png";
 import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png";
-import drCraciun from "@assets/generated_images/portrait_of_dr._craciun_daniela.png";
+import drCraciun from "@assets/dr_craciun_daniela_real.jpg";
 import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
 
 // Before/After case images
