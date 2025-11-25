@@ -69,21 +69,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <Link href="/">
-            <a className="flex items-center gap-2">
-              <img src={logo} alt="CristAlex Dent" className="h-12 w-auto" />
-            </a>
+          <Link href="/" className="flex items-center gap-2">
+            <img src={logo} alt="CristAlex Dent" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === item.href ? "text-primary font-bold" : "text-gray-600"
-                }`}>
-                  {item.label}
-                </a>
+              <Link key={item.href} href={item.href} className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === item.href ? "text-primary font-bold" : "text-gray-600"
+              }`}>
+                {item.label}
               </Link>
             ))}
             {/* Language Dropdown */}
@@ -150,13 +146,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
           >
             <nav className="flex flex-col gap-6 text-center">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <a 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-xl font-medium text-gray-800"
-                  >
-                    {item.label}
-                  </a>
+                <Link 
+                  key={item.href} 
+                  href={item.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-xl font-medium text-gray-800"
+                >
+                  {item.label}
                 </Link>
               ))}
               <div className="h-px bg-gray-100 my-2" />
@@ -260,13 +256,25 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Mobile Contact Bottom Bar - Visible only on mobile */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden pb-safe">
-        <div className="grid grid-cols-3 divide-x divide-gray-200">
+        <div className="grid grid-cols-4 divide-x divide-gray-200">
+          {/* Phone Call */}
+          <a
+            href="tel:+37378388000"
+            className="flex flex-col items-center justify-center py-3 px-2 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            aria-label="Sună acum"
+          >
+            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mb-1">
+              <Phone className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xs font-medium text-gray-700">Sună</span>
+          </a>
+
           {/* WhatsApp */}
           <a
             href="https://wa.me/37378388000"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            className="flex flex-col items-center justify-center py-3 px-2 hover:bg-gray-50 active:bg-gray-100 transition-colors"
             aria-label="Contact WhatsApp"
           >
             <div className="w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center mb-1">
@@ -278,9 +286,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {/* Viber */}
           <a
             href="viber://chat?number=%2B37378388000"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            className="flex flex-col items-center justify-center py-3 px-2 hover:bg-gray-50 active:bg-gray-100 transition-colors"
             aria-label="Contact Viber"
           >
             <div className="w-10 h-10 bg-[#7360F2] rounded-full flex items-center justify-center mb-1">
@@ -294,7 +300,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             href="https://t.me/+37378388000"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            className="flex flex-col items-center justify-center py-3 px-2 hover:bg-gray-50 active:bg-gray-100 transition-colors"
             aria-label="Contact Telegram"
           >
             <div className="w-10 h-10 bg-[#0088cc] rounded-full flex items-center justify-center mb-1">
