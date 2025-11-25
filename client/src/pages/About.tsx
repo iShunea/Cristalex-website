@@ -59,7 +59,7 @@ export default function About() {
           <div className="order-2 lg:order-1">
             <div className="flex items-center gap-2 mb-6">
               <span className="h-px w-12 bg-primary"></span>
-              <span className="text-primary font-bold tracking-widest uppercase text-sm">Despre Noi</span>
+              <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.about_us_label")}</span>
             </div>
             <h2 className="text-4xl font-bold mb-8 text-gray-900">{t("about.history_title")}</h2>
             <p className="text-gray-600 text-lg mb-6 leading-relaxed">
@@ -72,11 +72,11 @@ export default function About() {
             <div className="grid grid-cols-2 gap-6">
               <div className="text-center p-6 bg-red-50 rounded-xl">
                 <div className="text-4xl font-bold text-primary mb-2">2008</div>
-                <div className="text-gray-600 text-sm">Anul Fondării</div>
+                <div className="text-gray-600 text-sm">{t("about.founded_year")}</div>
               </div>
               <div className="text-center p-6 bg-red-50 rounded-xl">
                 <div className="text-4xl font-bold text-primary mb-2">{new Date().getFullYear() - 2008}+</div>
-                <div className="text-gray-600 text-sm">Ani Experiență</div>
+                <div className="text-gray-600 text-sm">{t("about.years_experience")}</div>
               </div>
             </div>
           </div>
@@ -103,38 +103,38 @@ export default function About() {
             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <Award className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Excelență</h3>
-            <p className="text-gray-600 text-sm">Standarde înalte în fiecare tratament</p>
+            <h3 className="font-bold text-lg mb-2">{t("about.excellence")}</h3>
+            <p className="text-gray-600 text-sm">{t("about.excellence_desc")}</p>
           </div>
           
           <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <Users className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Dedicare</h3>
-            <p className="text-gray-600 text-sm">Echipă de profesioniști dedicați</p>
+            <h3 className="font-bold text-lg mb-2">{t("about.dedication")}</h3>
+            <p className="text-gray-600 text-sm">{t("about.dedication_desc")}</p>
           </div>
           
           <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <Microscope className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Tehnologie</h3>
-            <p className="text-gray-600 text-sm">Echipamente de ultimă generație</p>
+            <h3 className="font-bold text-lg mb-2">{t("about.technology")}</h3>
+            <p className="text-gray-600 text-sm">{t("about.technology_desc")}</p>
           </div>
           
           <div className="text-center p-8 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
             <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <Shield className="w-8 h-8 text-primary" />
             </div>
-            <h3 className="font-bold text-lg mb-2">Siguranță</h3>
-            <p className="text-gray-600 text-sm">Protocoale stricte de sterilizare</p>
+            <h3 className="font-bold text-lg mb-2">{t("about.safety")}</h3>
+            <p className="text-gray-600 text-sm">{t("about.safety_desc")}</p>
           </div>
         </div>
 
         {/* Team Members Section */}
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12">Echipa Noastră</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t("about.team_title")}</h2>
           <div className="max-w-6xl mx-auto">
             <Carousel className="w-full">
               <CarouselContent>
