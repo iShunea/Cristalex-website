@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
@@ -125,7 +125,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow">
+      <main className="flex-grow pb-20 md:pb-0">
         {children}
       </main>
 
@@ -208,6 +208,53 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+
+      {/* Mobile Contact Bottom Bar - Visible only on mobile */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden pb-safe">
+        <div className="grid grid-cols-3 divide-x divide-gray-200">
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/37378388000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            aria-label="Contact WhatsApp"
+          >
+            <div className="w-10 h-10 bg-[#25D366] rounded-full flex items-center justify-center mb-1">
+              <MessageCircle className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xs font-medium text-gray-700">WhatsApp</span>
+          </a>
+
+          {/* Viber */}
+          <a
+            href="viber://chat?number=%2B37378388000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            aria-label="Contact Viber"
+          >
+            <div className="w-10 h-10 bg-[#7360F2] rounded-full flex items-center justify-center mb-1">
+              <Phone className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xs font-medium text-gray-700">Viber</span>
+          </a>
+
+          {/* Telegram */}
+          <a
+            href="https://t.me/+37378388000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center justify-center py-3 px-4 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            aria-label="Contact Telegram"
+          >
+            <div className="w-10 h-10 bg-[#0088cc] rounded-full flex items-center justify-center mb-1">
+              <MessageCircle className="w-5 h-5 text-white" />
+            </div>
+            <span className="text-xs font-medium text-gray-700">Telegram</span>
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
