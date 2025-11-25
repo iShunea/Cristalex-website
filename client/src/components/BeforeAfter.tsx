@@ -131,3 +131,4 @@ export function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubt
       </div>
     </section>
   );
+}

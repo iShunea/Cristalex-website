@@ -51,7 +51,17 @@ import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png
 import drCraciun from "@assets/generated_images/portrait_of_dr._craciun_daniela.png";
 import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
 
-// Before/After images will be imported after generation
+// Before/After case images
+import beforeWhitening from "@assets/generated_images/stained_yellowed_teeth_before_whitening.png";
+import afterWhitening from "@assets/generated_images/bright_white_teeth_after_whitening.png";
+import beforeBraces from "@assets/generated_images/crooked_misaligned_teeth_before_braces.png";
+import afterBraces from "@assets/generated_images/straight_teeth_after_orthodontic_treatment.png";
+import beforeRestoration from "@assets/generated_images/broken_chipped_tooth_before_restoration.png";
+import afterRestoration from "@assets/generated_images/restored_tooth_after_crown_placement.png";
+
+// Original implant case
+const beforeImplant = require('@assets/generated_images/damaged_teeth_before_implants.png').default || "/placeholder-before.jpg";
+const afterImplant = require('@assets/generated_images/restored_teeth_after_implants.png').default || "/placeholder-after.jpg";
 
 export default function Home() {
   const { t } = useTranslation();
