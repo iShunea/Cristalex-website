@@ -481,10 +481,9 @@ export default function Home() {
 
       {/* BEFORE/AFTER SECTION */}
       <BeforeAfter 
-        beforeImage={aestheticImage}
-        afterImage={endoImage}
-        title={t("beforeafter.title")}
-        subtitle={t("beforeafter.subtitle")}
+        cases={beforeAfterCases}
+        mainTitle={t("beforeafter.title")}
+        mainSubtitle={t("beforeafter.subtitle")}
       />
 
       {/* TESTIMONIALS */}
