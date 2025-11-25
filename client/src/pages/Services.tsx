@@ -13,27 +13,67 @@ export default function Services() {
   const categories = [
     {
       id: "implant",
-      title: t("services.implant"),
-      desc: "Soluții complete pentru edentații, de la un singur dinte la arcade complete.",
+      title: "Implantologie",
+      desc: "Restaurarea completă a danturii cu implanturi dentare de ultimă generație. Soluții pentru edentații parțiale sau complete.",
       price: "de la 350€",
       features: ["Implanturi Straumann/Nobel", "Chirurgie ghidată digital", "Garanție pe viață", "Sedare conștientă"],
       image: implantImage
     },
     {
-      id: "ortho",
-      title: t("services.ortho"),
-      desc: "Îndreptarea dinților pentru copii și adulți folosind tehnologii moderne.",
-      price: "de la 500€",
-      features: ["Alignere Invizibile (Invisalign)", "Aparate Safir/Ceramice", "Planificare Digitală", "Consultație gratuită"],
+      id: "therapy",
+      title: "Terapie",
+      desc: "Tratamente conservatoare și restaurări dentare cu materiale de cea mai înaltă calitate.",
+      price: "de la 100€",
+      features: ["Obturații estetice", "Tratamente composite", "Materiale premium", "Tehnică minimally invasive"],
       image: orthoImage
     },
     {
-      id: "aesthetic",
-      title: t("services.aesthetics"),
-      desc: "Transformarea zâmbetului prin proceduri minim invazive.",
+      id: "endo",
+      title: "Endodonție",
+      desc: "Tratamente de canal efectuate sub microscop pentru salvarea dinților cu probleme de nerv.",
       price: "de la 200€",
-      features: ["Fațete E-MAX", "Albire Zoom", "Coroane Zirconiu", "DSD - Digital Smile Design"],
+      features: ["Microscop operatorial", "Rotary Files", "Obturare cu guttapercă", "Exactitate 100%"],
       image: aestheticImage
+    },
+    {
+      id: "prophy",
+      title: "Profilaxie Dentară",
+      desc: "Curățare profesională și preventie pentru menținerea sănătății pe termen lung.",
+      price: "de la 50€",
+      features: ["Detartraj ultrasonic", "Polisaj profesional", "Aplicare fluor", "Consultație preventivă"],
+      image: implantImage
+    },
+    {
+      id: "prosth",
+      title: "Protetică Dentară",
+      desc: "Corone, punți și protezeche dentare cu design optimal și confort maxim.",
+      price: "de la 150€",
+      features: ["Coroane Zirconiu", "Punți dentare", "Protezeche totale/parțiale", "DSD - Digital Smile Design"],
+      image: orthoImage
+    },
+    {
+      id: "pedo",
+      title: "Stomatologie Pentru Copii",
+      desc: "Tratamente specializate pentru copii în mediu prietenos și sigur.",
+      price: "de la 80€",
+      features: ["Medici cu experiență pediatrică", "Abordare copil-centrică", "Anestezie sigură", "Educație stomatologică"],
+      image: aestheticImage
+    },
+    {
+      id: "extraction",
+      title: "Extracții Dentare",
+      desc: "Extracții simple și complexe efectuate cu maxim confort și recuperare rapidă.",
+      price: "de la 120€",
+      features: ["Sedare conștientă", "Anestezie locală eficace", "Postoperator ușor", "Medic chirurg specialist"],
+      image: implantImage
+    },
+    {
+      id: "sinus",
+      title: "Sinus Lifting",
+      desc: "Augmentare osului sinusului maxilar pentru implantare sigură în zona posterioară.",
+      price: "de la 800€",
+      features: ["Tehnică ghidată digital", "Materiale biocompatibile", "Recuperare 4-6 luni", "Risc minimal"],
+      image: orthoImage
     }
   ];
 

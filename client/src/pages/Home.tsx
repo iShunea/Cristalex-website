@@ -115,7 +115,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
         </div>
         
-        <div className="container mx-auto px-4 relative z-10 pt-20">
+        <div className="container mx-auto px-4 relative z-10 pt-6 md:pt-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
@@ -126,10 +126,10 @@ export default function Home() {
                 <span className="h-px w-12 bg-secondary"></span>
                 <span className="text-secondary font-bold tracking-widest uppercase text-sm">CristAlex Dent Corporate</span>
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
                 {t("hero.title")}
               </h1>
-              <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-xl border-l-4 border-secondary pl-6">
+              <p className="text-base md:text-xl text-gray-300 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-secondary pl-6">
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
