@@ -156,6 +156,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
               ))}
               <div className="h-px bg-gray-100 my-2" />
+              
+              {/* Mobile Language Selector */}
+              <div className="flex flex-col gap-2">
+                <div className="text-sm font-bold text-gray-600 px-4">Schimbă limba</div>
+                <div className="grid grid-cols-3 gap-2 px-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        changeLang(lang.code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`flex flex-col items-center gap-1 py-3 px-2 rounded-lg transition-all font-semibold ${
+                        i18n.language === lang.code
+                          ? "bg-primary text-white shadow-md"
+                          : "bg-gray-50 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span className="text-xs">{lang.label}</span>
+                      {i18n.language === lang.code && <Check className="w-4 h-4" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
               <BookingModal 
                 buttonText={t("nav.book")}
                 buttonClassName="w-full mt-4 bg-primary hover:bg-primary/90 active:bg-primary/80 h-12 text-lg font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
