@@ -27,12 +27,10 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (!isDragging.current || !containerRef.current) return;
-
     const container = containerRef.current;
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = (x / rect.width) * 100;
-
     setSliderPos(Math.max(0, Math.min(100, percentage)));
   };
 
@@ -46,12 +44,10 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
 
   const handleTouchMove = (e: TouchEvent) => {
     if (!isDragging.current || !containerRef.current) return;
-
     const container = containerRef.current;
     const rect = container.getBoundingClientRect();
     const x = e.touches[0].clientX - rect.left;
     const percentage = (x / rect.width) * 100;
-
     setSliderPos(Math.max(0, Math.min(100, percentage)));
   };
 
@@ -60,7 +56,6 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
     window.addEventListener('mouseup', handleMouseUp);
     window.addEventListener('touchmove', handleTouchMove);
     window.addEventListener('touchend', handleTouchEnd);
-
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
@@ -118,13 +113,11 @@ export function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubt
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-gray-900">{mainTitle}</h2>
           <p className="text-gray-500 text-lg">{mainSubtitle}</p>
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {cases.map((caseItem, idx) => (
             <SingleBeforeAfter key={idx} {...caseItem} />
           ))}
         </div>
-
         <div className="text-center mt-8 text-gray-500">
           <p className="text-sm">Glisează pentru a vedea transformarea</p>
         </div>

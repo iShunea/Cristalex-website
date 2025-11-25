@@ -59,13 +59,16 @@ import afterBraces from "@assets/generated_images/straight_teeth_after_orthodont
 import beforeRestoration from "@assets/generated_images/broken_chipped_tooth_before_restoration.png";
 import afterRestoration from "@assets/generated_images/restored_tooth_after_crown_placement.png";
 
-// Original implant case
-const beforeImplant = require('@assets/generated_images/damaged_teeth_before_implants.png').default || "/placeholder-before.jpg";
-const afterImplant = require('@assets/generated_images/restored_teeth_after_implants.png').default || "/placeholder-after.jpg";
-
 export default function Home() {
   const { t } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
+
+  // Before/After cases for slider gallery
+  const beforeAfterCases = [
+    { beforeImage: beforeWhitening, afterImage: afterWhitening, title: "Albire Dentară" },
+    { beforeImage: beforeBraces, afterImage: afterBraces, title: "Ortodonție" },
+    { beforeImage: beforeRestoration, afterImage: afterRestoration, title: "Restaurare Dentară" },
+  ];
 
   // Fetch data from API
   const { data: apiBlogPosts } = useQuery({
