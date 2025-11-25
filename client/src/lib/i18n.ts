@@ -251,7 +251,9 @@ const resources = {
         ortho: "Digital Orthodontics",
         ortho_desc: "Invisible braces (Aligners) and traditional braces for all ages.",
         aesthetics: "Dental Aesthetics",
-        aesthetics_desc: "E-MAX ceramic veneers and professional whitening with lamp."
+        aesthetics_desc: "E-MAX ceramic veneers and professional whitening with lamp.",
+        endo: "Microscopic Endodontics",
+        endo_desc: "Precise root canal treatments under magnification for tooth preservation."
       },
       cta_banner: {
         title: "Ready for a change?",
