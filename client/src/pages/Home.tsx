@@ -206,7 +206,7 @@ export default function Home() {
       {/* STATS BANNER */}
       <section className="bg-slate-900 py-12 text-white relative z-20 shadow-lg">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x divide-white/10">
             {stats.map((stat, i) => (
               <div key={i} className="p-4">
                 <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
