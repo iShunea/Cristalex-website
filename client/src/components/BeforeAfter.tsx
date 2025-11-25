@@ -65,14 +65,14 @@ export function BeforeAfter({ beforeImage, afterImage, title, subtitle }: Before
   }, []);
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="section-title">{title}</h2>
-          <p className="section-subtitle">{subtitle}</p>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-900">{title}</h2>
+          <p className="text-gray-500 text-base">{subtitle}</p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <div
             ref={containerRef}
             className="relative w-full overflow-hidden rounded-2xl shadow-2xl cursor-col-resize select-none"
@@ -127,8 +127,8 @@ export function BeforeAfter({ beforeImage, afterImage, title, subtitle }: Before
             </div>
           </div>
 
-          <div className="text-center mt-8 text-gray-600">
-            <p className="text-sm">Glisează pentru a vedea transformarea</p>
+          <div className="text-center mt-4 text-gray-500">
+            <p className="text-xs md:text-sm">Glisează pentru a vedea transformarea</p>
           </div>
         </div>
       </div>
