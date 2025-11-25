@@ -89,12 +89,12 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
           style={{ left: `${sliderPos}%`, transform: 'translateX(-50%)' }}
         >
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg border-2 border-primary">
-            <div className="flex gap-1">
+            <div className="flex items-center gap-0.5">
               <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10.707 3.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414L9 6.414V16a1 1 0 102 0V6.414l4.293 4.293a1 1 0 001.414-1.414l-6-6z" clipRule="evenodd" />
+                <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
               </svg>
               <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M9.293 16.707a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L11 13.586V4a1 1 0 10-2 0v9.586L4.707 9.293a1 1 0 00-1.414 1.414l6 6z" clipRule="evenodd" />
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
               </svg>
             </div>
           </div>
