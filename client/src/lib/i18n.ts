@@ -181,6 +181,10 @@ const resources = {
         saturday: "Sâm: 09:00 - 13:00",
         rights: "© 2025 CristAlex Dent. Toate drepturile rezervate.",
         call: "Sună",
+        implantology: "Implantologie",
+        orthodontics: "Ortodonție",
+        aesthetic: "Estetică Dentară",
+        surgery: "Chirurgie",
         developed_by: "Site elaborat de"
       }
     }
@@ -364,6 +368,10 @@ const resources = {
         saturday: "Сб: 09:00 - 13:00",
         rights: "© 2025 CristAlex Dent. Все права защищены.",
         call: "Звонить",
+        implantology: "Имплантология",
+        orthodontics: "Ортодонтия",
+        aesthetic: "Эстетическая Стоматология",
+        surgery: "Хирургия",
         developed_by: "Сайт разработан компанией"
       }
     }
@@ -547,6 +555,10 @@ const resources = {
         saturday: "Sat: 09:00 - 13:00",
         rights: "© 2025 CristAlex Dent. All rights reserved.",
         call: "Call",
+        implantology: "Implantology",
+        orthodontics: "Orthodontics",
+        aesthetic: "Aesthetic Dentistry",
+        surgery: "Surgery",
         developed_by: "Website developed by"
       }
     }

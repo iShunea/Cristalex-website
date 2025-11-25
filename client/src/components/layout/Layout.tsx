@@ -211,10 +211,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold mb-6 text-lg">{t("nav.services")}</h4>
               <ul className="space-y-3 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">Implantologie</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Ortodonție</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Estetică Dentară</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Chirurgie</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.implantology")}</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.orthodontics")}</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.aesthetic")}</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">{t("footer.surgery")}</a></li>
               </ul>
             </div>
 
