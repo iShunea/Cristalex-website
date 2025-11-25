@@ -217,6 +217,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BEFORE/AFTER SECTION - Early for visual proof */}
+      <BeforeAfter 
+        cases={beforeAfterCases}
+        mainTitle={t("beforeafter.title")}
+        mainSubtitle={t("beforeafter.subtitle")}
+      />
+
       {/* SERVICES CAROUSEL / PREVIEW */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
@@ -320,6 +327,82 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA BANNER INTERMEDIAR - Strategic Call-to-Action */}
+      <section className="py-16 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-10"></div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Programează-te ACUM și primești consultație GRATUITĂ!</h2>
+          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            Plan de tratament personalizat + Simulare 3D digitală a rezultatului final
+          </p>
+          <BookingModal 
+            buttonText="Vreau Consultație Gratuită"
+            buttonClassName="bg-white text-primary hover:bg-gray-100 active:bg-gray-200 font-bold px-10 h-14 text-lg shadow-2xl rounded-full transition-all hover:shadow-xl active:shadow-lg cursor-pointer"
+          />
+        </div>
+      </section>
+
+      {/* WHY CHOOSE US - Bento Grid Style */}
+      <section className="py-24 bg-gray-50 brandbook-pattern">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="section-title">{t("features.title")}</h2>
+            <p className="section-subtitle">Standarde ridicate, tehnologie de ultimă oră și o abordare umană.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Large Feature */}
+            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-1">
+                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6">
+                  <Microscope className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{t("features.tech_title")}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">{t("features.tech_desc")}</p>
+                <Button variant="link" className="p-0 text-primary font-bold">Află mai multe <ArrowRight className="w-4 h-4 ml-2" /></Button>
+              </div>
+              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
+                <img src={techImage} className="absolute inset-0 w-full h-full object-cover" alt="Tech" />
+              </div>
+            </div>
+
+            {/* Small Feature 1 */}
+            <div className="bg-slate-900 text-white p-8 rounded-2xl shadow-sm flex flex-col justify-between">
+              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                <ShieldCheck className="w-6 h-6 text-secondary" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2 text-white">{t("features.garantie_title")}</h3>
+                <p className="text-gray-400 text-sm">{t("features.garantie_desc")}</p>
+              </div>
+            </div>
+
+            {/* Small Feature 2 */}
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+              <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-6">
+                <Sparkles className="w-6 h-6 text-green-600" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{t("features.pain_title")}</h3>
+              <p className="text-gray-600 text-sm">{t("features.pain_desc")}</p>
+            </div>
+
+            {/* Large Feature 2 */}
+            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row-reverse items-center gap-8">
+              <div className="flex-1">
+                <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
+                  <CheckCircle2 className="w-6 h-6 text-purple-600" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4">{t("features.steril_title")}</h3>
+                <p className="text-gray-600 leading-relaxed mb-6">{t("features.steril_desc")}</p>
+              </div>
+              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
+                <img src={sterileImage} className="absolute inset-0 w-full h-full object-cover" alt="Sterile" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* DOCTORS TEAM */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
@@ -348,6 +431,42 @@ export default function Home() {
                             <div className="h-1 w-12 bg-primary rounded-full"></div>
                             <div className="h-1 w-4 bg-secondary rounded-full"></div>
                           </div>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+             </Carousel>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-24 bg-slate-50">
+        <div className="container mx-auto px-4">
+          <h2 className="section-title block">{t("testimonials.title")}</h2>
+          <p className="section-subtitle">{t("testimonials.subtitle")}</p>
+          
+          <div className="max-w-5xl mx-auto">
+             <Carousel className="w-full">
+                <CarouselContent>
+                  {testimonialsData.map((item: any, index: number) => (
+                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
+                      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col">
+                        <div className="flex gap-1 mb-4">
+                          {[1,2,3,4,5].map(star => <Star key={star} className="w-4 h-4 fill-accent text-accent" />)}
+                        </div>
+                        <p className="text-gray-600 italic mb-6 flex-grow">"{item.text}"</p>
+                        <div className="flex items-center gap-3 mt-auto">
+                           <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+                             {item.name.charAt(0)}
+                           </div>
+                           <div>
+                             <h4 className="font-bold text-sm">{item.name}</h4>
+                             <p className="text-xs text-gray-400">{item.role}</p>
+                           </div>
                         </div>
                       </div>
                     </CarouselItem>
@@ -414,110 +533,6 @@ export default function Home() {
                 <div className="text-red-100 font-medium">Ani Experiență</div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY CHOOSE US - Bento Grid Style */}
-      <section className="py-24 bg-gray-50 brandbook-pattern">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="section-title">{t("features.title")}</h2>
-            <p className="section-subtitle">Standarde ridicate, tehnologie de ultimă oră și o abordare umană.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {/* Large Feature */}
-            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-8">
-              <div className="flex-1">
-                <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center mb-6">
-                  <Microscope className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{t("features.tech_title")}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{t("features.tech_desc")}</p>
-                <Button variant="link" className="p-0 text-primary font-bold">Află mai multe <ArrowRight className="w-4 h-4 ml-2" /></Button>
-              </div>
-              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src={techImage} className="absolute inset-0 w-full h-full object-cover" alt="Tech" />
-              </div>
-            </div>
-
-            {/* Small Feature 1 */}
-            <div className="bg-slate-900 text-white p-8 rounded-2xl shadow-sm flex flex-col justify-between">
-              <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                <ShieldCheck className="w-6 h-6 text-secondary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-white">{t("features.garantie_title")}</h3>
-                <p className="text-gray-400 text-sm">{t("features.garantie_desc")}</p>
-              </div>
-            </div>
-
-            {/* Small Feature 2 */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-              <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-6">
-                <Sparkles className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">{t("features.pain_title")}</h3>
-              <p className="text-gray-600 text-sm">{t("features.pain_desc")}</p>
-            </div>
-
-            {/* Large Feature 2 */}
-            <div className="md:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col md:flex-row-reverse items-center gap-8">
-              <div className="flex-1">
-                <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
-                  <CheckCircle2 className="w-6 h-6 text-purple-600" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{t("features.steril_title")}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{t("features.steril_desc")}</p>
-              </div>
-              <div className="flex-1 h-full min-h-[200px] bg-gray-100 rounded-xl overflow-hidden relative">
-                <img src={sterileImage} className="absolute inset-0 w-full h-full object-cover" alt="Sterile" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* BEFORE/AFTER SECTION */}
-      <BeforeAfter 
-        cases={beforeAfterCases}
-        mainTitle={t("beforeafter.title")}
-        mainSubtitle={t("beforeafter.subtitle")}
-      />
-
-      {/* TESTIMONIALS */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <h2 className="section-title block">{t("testimonials.title")}</h2>
-          <p className="section-subtitle">{t("testimonials.subtitle")}</p>
-          
-          <div className="max-w-5xl mx-auto">
-             <Carousel className="w-full">
-                <CarouselContent>
-                  {testimonialsData.map((item: any, index: number) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
-                      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col">
-                        <div className="flex gap-1 mb-4">
-                          {[1,2,3,4,5].map(star => <Star key={star} className="w-4 h-4 fill-accent text-accent" />)}
-                        </div>
-                        <p className="text-gray-600 italic mb-6 flex-grow">"{item.text}"</p>
-                        <div className="flex items-center gap-3 mt-auto">
-                           <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
-                             {item.name.charAt(0)}
-                           </div>
-                           <div>
-                             <h4 className="font-bold text-sm">{item.name}</h4>
-                             <p className="text-xs text-gray-400">{item.role}</p>
-                           </div>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-             </Carousel>
           </div>
         </div>
       </section>
