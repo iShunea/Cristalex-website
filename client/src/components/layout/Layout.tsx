@@ -46,15 +46,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <span>Lun-Vin: 09:00 - 18:00</span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={toggleLang}
-              className="flex items-center gap-1 hover:text-secondary transition-colors font-medium"
-            >
-              <Globe className="w-4 h-4" />
-              {i18n.language.toUpperCase()}
-            </button>
-          </div>
         </div>
       </div>
 
@@ -78,6 +69,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </a>
               </Link>
             ))}
+            <button 
+              onClick={toggleLang}
+              className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors font-medium text-gray-700 hover:text-primary"
+              title="Schimbă limba"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="text-sm">{i18n.language === 'ro' ? 'RO' : i18n.language === 'ru' ? 'RU' : 'EN'}</span>
+            </button>
             <BookingModal 
               buttonText={t("nav.book")}
               buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold shadow-md h-11 px-6"
@@ -115,10 +114,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </Link>
               ))}
               <div className="h-px bg-gray-100 my-2" />
-              <button onClick={toggleLang} className="flex items-center justify-center gap-2 text-lg font-medium">
-                <Globe className="w-5 h-5" />
-                {i18n.language === 'ro' ? 'Română' : i18n.language === 'ru' ? 'Русский' : 'English'}
-              </button>
               <BookingModal 
                 buttonText={t("nav.book")}
                 buttonClassName="w-full mt-4 bg-primary h-12 text-lg"
