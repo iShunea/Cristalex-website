@@ -144,8 +144,10 @@ const resources = {
         team_title: "Echipa Noastră"
       },
       beforeafter: {
-        title: "Pană/După",
-        subtitle: "Câteva din lucrările noastre..."
+        title: "Înainte/După",
+        subtitle: "Câteva din lucrările noastre...",
+        before: "Înainte",
+        after: "După"
       },
       footer: {
         desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
@@ -299,7 +301,9 @@ const resources = {
       },
       beforeafter: {
         title: "До/После",
-        subtitle: "Несколько из наших работ..."
+        subtitle: "Несколько из наших работ...",
+        before: "До",
+        after: "После"
       },
       footer: {
         desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
@@ -453,7 +457,9 @@ const resources = {
       },
       beforeafter: {
         title: "Before/After",
-        subtitle: "Some of our work..."
+        subtitle: "Some of our work...",
+        before: "Before",
+        after: "After"
       },
       footer: {
         desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",

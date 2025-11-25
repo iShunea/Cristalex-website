@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CaseProps {
   beforeImage: string;
@@ -13,6 +14,7 @@ interface BeforeAfterProps {
 }
 
 function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
+  const { t } = useTranslation();
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
@@ -97,8 +99,8 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-1 rounded-lg font-bold text-sm">Înainte</div>
-        <div className="absolute bottom-3 right-3 bg-black/50 text-white px-3 py-1 rounded-lg font-bold text-sm">După</div>
+        <div className="absolute bottom-3 left-3 bg-black/50 text-white px-3 py-1 rounded-lg font-bold text-sm">{t('beforeafter.before')}</div>
+        <div className="absolute bottom-3 right-3 bg-black/50 text-white px-3 py-1 rounded-lg font-bold text-sm">{t('beforeafter.after')}</div>
       </div>
       <h3 className="text-center mt-4 font-semibold text-gray-800">{title}</h3>
     </div>
@@ -113,13 +115,10 @@ export function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubt
           <h2 className="text-4xl md:text-5xl font-bold mb-3 text-gray-900">{mainTitle}</h2>
           <p className="text-gray-500 text-lg">{mainSubtitle}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {cases.map((caseItem, idx) => (
             <SingleBeforeAfter key={idx} {...caseItem} />
           ))}
-        </div>
-        <div className="text-center mt-8 text-gray-500">
-          <p className="text-sm">Glisează pentru a vedea transformarea</p>
         </div>
       </div>
     </section>
