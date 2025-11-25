@@ -83,6 +83,10 @@ const resources = {
         promise_text: "Aici vei beneficia de un tratament individual și personalizat, la prețuri atractive. Sănătatea dentară e mult mai accesibilă decât te așteptai.",
         team_title: "Echipa Noastră"
       },
+      beforeafter: {
+        title: "Pană/După",
+        subtitle: "Câteva din lucrările noastre..."
+      },
       footer: {
         desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
         links: "Link-uri Utile",
@@ -173,6 +177,10 @@ const resources = {
         promise_text: "Здесь вы получите индивидуальное и персонализированное лечение по привлекательным ценам. Здоровье зубов намного доступнее, чем вы ожидали.",
         team_title: "Наша Команда"
       },
+      beforeafter: {
+        title: "До/После",
+        subtitle: "Несколько из наших работ..."
+      },
       footer: {
         desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
         links: "Полезные Ссылки",
@@ -260,6 +268,10 @@ const resources = {
         mission_text: "As dedicated dentists, the Cristalex Dent team works professionally to offer you the perfect formula: the smile you've always dreamed of with optimal dental health.",
         promise_text: "Here you will benefit from individual and personalized treatment at attractive prices. Dental health is much more accessible than you thought.",
         team_title: "Our Team"
+      },
+      beforeafter: {
+        title: "Before/After",
+        subtitle: "Some of our work..."
       },
       footer: {
         desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
