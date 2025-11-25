@@ -293,7 +293,7 @@ export default function Home() {
                       <Button variant="outline" onClick={() => setSelectedService(null)}>Închide</Button>
                       <BookingModal 
                         buttonText={`Programează ${selectedService.title}`}
-                        buttonClassName="bg-primary hover:bg-primary/90 text-white"
+                        buttonClassName="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
                       />
                     </div>
                   </div>

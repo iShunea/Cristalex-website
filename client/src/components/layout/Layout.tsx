@@ -90,11 +90,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="relative" ref={langDropdownRef}>
               <button 
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 transition-all font-medium text-gray-700 hover:text-primary border-2 border-transparent hover:border-primary/20"
+                className="flex items-center gap-1 px-4 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 active:bg-gray-200 transition-all font-bold text-gray-700 hover:text-primary border-2 border-gray-200 hover:border-primary/40 active:border-primary/60 hover:shadow-md active:shadow-sm cursor-pointer"
                 title="Schimbă limba"
               >
                 <Globe className="w-4 h-4" />
-                <span className="text-sm font-bold">{i18n.language.toUpperCase()}</span>
+                <span className="text-sm">{i18n.language.toUpperCase()}</span>
               </button>
               
               {/* Dropdown Menu */}
@@ -109,10 +109,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     <button
                       key={lang.code}
                       onClick={() => changeLang(lang.code)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
+                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all cursor-pointer ${
                         i18n.language === lang.code
-                          ? "bg-primary/10 text-primary font-semibold"
-                          : "text-gray-700 hover:bg-gray-50"
+                          ? "bg-primary/15 text-primary font-bold border-l-4 border-primary"
+                          : "text-gray-700 hover:bg-gray-50 active:bg-gray-100 hover:translate-x-1"
                       }`}
                     >
                       <span>{lang.flag}</span>
@@ -125,7 +125,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             <BookingModal 
               buttonText={t("nav.book")}
-              buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold shadow-md h-11 px-6"
+              buttonClassName="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white font-bold shadow-md h-11 px-6 rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
             />
           </nav>
 
@@ -162,7 +162,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <div className="h-px bg-gray-100 my-2" />
               <BookingModal 
                 buttonText={t("nav.book")}
-                buttonClassName="w-full mt-4 bg-primary h-12 text-lg"
+                buttonClassName="w-full mt-4 bg-primary hover:bg-primary/90 active:bg-primary/80 h-12 text-lg font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
               />
             </nav>
           </motion.div>
