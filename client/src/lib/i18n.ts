@@ -156,6 +156,7 @@ const resources = {
         blog_title: "Articole Recente",
         blog_subtitle: "Noutăți și sfaturi pentru sănătatea ta orală.",
         blog_see_all: "Vezi tot Blogul",
+        founded_year: "Anul Fondării",
         history_p1: "Clinica stomatologică Cristalex Dent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
         history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
         mission_title: "Misiunea Noastră",
@@ -171,9 +172,15 @@ const resources = {
       },
       footer: {
         desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
+        description: "Clinica stomatologică modernă dedicată sănătății și frumuseții zâmbetului tău. Tehnologie de ultimă generație și specialiști de top.",
         links: "Link-uri Utile",
         program: "Program Clinica",
         contact: "Informații Contact",
+        social: "Social",
+        schedule: "Lun - Vin: 09:00 - 18:00",
+        saturday: "Sâm: 09:00 - 13:00",
+        rights: "© 2025 CristAlex Dent. Toate drepturile rezervate.",
+        call: "Sună",
         developed_by: "Site elaborat de"
       }
     }
@@ -332,6 +339,7 @@ const resources = {
         blog_title: "Последние Статьи",
         blog_subtitle: "Новости и советы для здоровья полости рта.",
         blog_see_all: "Смотреть Весь Блог",
+        founded_year: "Год Основания",
         history_p1: "Стоматологическая клиника Cristalex Dent начала свою деятельность в 2008 году. Располагает двумя стоматологическими кабинетами, оснащенными новейшими технологиями, хирургическим кабинетом, кабинетом стерилизации и кабинетом радиовизиографии.",
         history_p2: "За более чем 16 лет работы сформировалась команда врачей, ставших экспертами в области стоматологии.",
         mission_title: "Наша Миссия",
@@ -347,9 +355,15 @@ const resources = {
       },
       footer: {
         desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
+        description: "Современная стоматологическая клиника, посвященная здоровью и красоте вашей улыбки. Новейшие технологии и ведущие специалисты.",
         links: "Полезные Ссылки",
         program: "График Работы",
         contact: "Контактная Информация",
+        social: "Социальные Сети",
+        schedule: "Пн - Пт: 09:00 - 18:00",
+        saturday: "Сб: 09:00 - 13:00",
+        rights: "© 2025 CristAlex Dent. Все права защищены.",
+        call: "Звонить",
         developed_by: "Сайт разработан компанией"
       }
     }
@@ -508,6 +522,7 @@ const resources = {
         blog_title: "Recent Articles",
         blog_subtitle: "News and tips for your oral health.",
         blog_see_all: "See All Blog",
+        founded_year: "Founded Year",
         history_p1: "The Cristalex Dent dental clinic started its activities in 2008. It has two dental offices equipped with state-of-the-art technologies, a surgical office, a sterilization office and a dental radiography office.",
         history_p2: "Over more than 16 years of activity, a team of doctors has been consolidated who have become experts in the field of dental medicine.",
         mission_title: "Our Mission",
@@ -523,9 +538,15 @@ const resources = {
       },
       footer: {
         desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
+        description: "Modern dental clinic dedicated to the health and beauty of your smile. State-of-the-art technology and top specialists.",
         links: "Useful Links",
         program: "Clinic Hours",
         contact: "Contact Information",
+        social: "Social Media",
+        schedule: "Mon - Fri: 09:00 - 18:00",
+        saturday: "Sat: 09:00 - 13:00",
+        rights: "© 2025 CristAlex Dent. All rights reserved.",
+        call: "Call",
         developed_by: "Website developed by"
       }
     }

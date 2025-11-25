@@ -204,7 +204,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <img src={logo} alt="CristAlex Dent" className="h-10 w-auto brightness-0 invert" />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Clinica stomatologică modernă dedicată sănătății și frumuseții zâmbetului tău. Tehnologie de ultimă generație și specialiști de top.
+                {t("footer.description")}
               </p>
             </div>
             
@@ -219,7 +219,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 text-lg">Contact</h4>
+              <h4 className="font-bold mb-6 text-lg">{t("footer.contact")}</h4>
               <ul className="space-y-4 text-gray-400 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary shrink-0" />
@@ -231,13 +231,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
-                  <span>Lun - Vin: 09:00 - 18:00<br/>Sâm: 09:00 - 13:00</span>
+                  <span>{t("footer.schedule")}<br/>{t("footer.saturday")}</span>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 text-lg">Social</h4>
+              <h4 className="font-bold mb-6 text-lg">{t("footer.social")}</h4>
               <div className="flex gap-4">
                 <a 
                   href="https://facebook.com/cristalexdent" 
@@ -271,7 +271,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8">
             <div className="text-center text-gray-500 text-sm mb-4">
-              © 2025 CristAlex Dent. All rights reserved.
+              {t("footer.rights")}
             </div>
             <div className="text-center text-gray-600 text-sm">
               {t("footer.developed_by")} <a href="https://ishunea.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">iShunea Tech Solutions</a>
@@ -292,7 +292,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mb-1">
               <Phone className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xs font-medium text-gray-700">Sună</span>
+            <span className="text-xs font-medium text-gray-700">{t("footer.call")}</span>
           </a>
 
           {/* WhatsApp */}

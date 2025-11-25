@@ -519,12 +519,12 @@ export default function Home() {
               {/* Stats Cards Overlay */}
               <div className="absolute -bottom-8 -left-8 bg-white p-6 rounded-xl shadow-xl border border-gray-100">
                 <div className="text-4xl font-bold text-primary mb-2">2008</div>
-                <div className="text-gray-600 font-medium">Anul Fondării</div>
+                <div className="text-gray-600 font-medium">{t("about.founded_year")}</div>
               </div>
               
               <div className="absolute -top-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl">
                 <div className="text-4xl font-bold mb-2">{new Date().getFullYear() - 2008}+</div>
-                <div className="text-red-100 font-medium">Ani Experiență</div>
+                <div className="text-red-100 font-medium">{t("about.years_experience")}</div>
               </div>
             </div>
           </div>
@@ -536,11 +536,11 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 className="section-title block text-left">Articole Recente</h2>
-              <p className="text-gray-500 text-lg">Noutăți și sfaturi pentru sănătatea ta orală.</p>
+              <h2 className="section-title block text-left">{t("about.blog_title")}</h2>
+              <p className="text-gray-500 text-lg">{t("about.blog_subtitle")}</p>
             </div>
             <Link href="/blog" className="text-primary font-bold hover:underline flex items-center gap-2">
-              Vezi tot Blogul <ArrowRight className="w-4 h-4" />
+              {t("about.blog_see_all")} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
