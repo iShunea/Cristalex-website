@@ -13,66 +13,66 @@ export default function Services() {
   const categories = [
     {
       id: "implant",
-      title: "Implantologie",
-      desc: "Restaurarea completă a danturii cu implanturi dentare de ultimă generație. Soluții pentru edentații parțiale sau complete.",
-      price: "de la 350€",
-      features: ["Implanturi Straumann/Nobel", "Chirurgie ghidată digital", "Garanție pe viață", "Sedare conștientă"],
+      title: t("services.implant"),
+      desc: t("services.implant_desc"),
+      price: t("services.implant_price"),
+      features: [t("services.implant_feat1"), t("services.implant_feat2"), t("services.implant_feat3"), t("services.implant_feat4")],
       image: implantImage
     },
     {
       id: "therapy",
-      title: "Terapie",
-      desc: "Tratamente conservatoare și restaurări dentare cu materiale de cea mai înaltă calitate.",
-      price: "de la 100€",
-      features: ["Obturații estetice", "Tratamente composite", "Materiale premium", "Tehnică minimally invasive"],
+      title: t("services.therapy"),
+      desc: t("services.therapy_desc"),
+      price: t("services.therapy_price"),
+      features: [t("services.therapy_feat1"), t("services.therapy_feat2"), t("services.therapy_feat3"), t("services.therapy_feat4")],
       image: orthoImage
     },
     {
       id: "endo",
-      title: "Endodonție",
-      desc: "Tratamente de canal efectuate sub microscop pentru salvarea dinților cu probleme de nerv.",
-      price: "de la 200€",
-      features: ["Microscop operatorial", "Rotary Files", "Obturare cu guttapercă", "Exactitate 100%"],
+      title: t("services.endo"),
+      desc: t("services.endo_desc"),
+      price: t("services.endo_price"),
+      features: [t("services.endo_feat1"), t("services.endo_feat2"), t("services.endo_feat3"), t("services.endo_feat4")],
       image: aestheticImage
     },
     {
       id: "prophy",
-      title: "Profilaxie Dentară",
-      desc: "Curățare profesională și preventie pentru menținerea sănătății pe termen lung.",
-      price: "de la 50€",
-      features: ["Detartraj ultrasonic", "Polisaj profesional", "Aplicare fluor", "Consultație preventivă"],
+      title: t("services.prophy"),
+      desc: t("services.prophy_desc"),
+      price: t("services.prophy_price"),
+      features: [t("services.prophy_feat1"), t("services.prophy_feat2"), t("services.prophy_feat3"), t("services.prophy_feat4")],
       image: implantImage
     },
     {
       id: "prosth",
-      title: "Protetică Dentară",
-      desc: "Corone, punți și protezeche dentare cu design optimal și confort maxim.",
-      price: "de la 150€",
-      features: ["Coroane Zirconiu", "Punți dentare", "Protezeche totale/parțiale", "DSD - Digital Smile Design"],
+      title: t("services.prosth"),
+      desc: t("services.prosth_desc"),
+      price: t("services.prosth_price"),
+      features: [t("services.prosth_feat1"), t("services.prosth_feat2"), t("services.prosth_feat3"), t("services.prosth_feat4")],
       image: orthoImage
     },
     {
       id: "pedo",
-      title: "Stomatologie Pentru Copii",
-      desc: "Tratamente specializate pentru copii în mediu prietenos și sigur.",
-      price: "de la 80€",
-      features: ["Medici cu experiență pediatrică", "Abordare copil-centrică", "Anestezie sigură", "Educație stomatologică"],
+      title: t("services.pedo"),
+      desc: t("services.pedo_desc"),
+      price: t("services.pedo_price"),
+      features: [t("services.pedo_feat1"), t("services.pedo_feat2"), t("services.pedo_feat3"), t("services.pedo_feat4")],
       image: aestheticImage
     },
     {
       id: "extraction",
-      title: "Extracții Dentare",
-      desc: "Extracții simple și complexe efectuate cu maxim confort și recuperare rapidă.",
-      price: "de la 120€",
-      features: ["Sedare conștientă", "Anestezie locală eficace", "Postoperator ușor", "Medic chirurg specialist"],
+      title: t("services.extraction"),
+      desc: t("services.extraction_desc"),
+      price: t("services.extraction_price"),
+      features: [t("services.extraction_feat1"), t("services.extraction_feat2"), t("services.extraction_feat3"), t("services.extraction_feat4")],
       image: implantImage
     },
     {
       id: "sinus",
-      title: "Sinus Lifting",
-      desc: "Augmentare osului sinusului maxilar pentru implantare sigură în zona posterioară.",
-      price: "de la 800€",
-      features: ["Tehnică ghidată digital", "Materiale biocompatibile", "Recuperare 4-6 luni", "Risc minimal"],
+      title: t("services.sinus"),
+      desc: t("services.sinus_desc"),
+      price: t("services.sinus_price"),
+      features: [t("services.sinus_feat1"), t("services.sinus_feat2"), t("services.sinus_feat3"), t("services.sinus_feat4")],
       image: orthoImage
     }
   ];
@@ -84,7 +84,7 @@ export default function Services() {
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-5xl font-bold mb-6 text-white">{t("services.title")}</h1>
           <p className="text-xl text-red-100 max-w-2xl">
-            Tehnologie de ultimă oră și medici specialiști pentru fiecare ramură a stomatologiei.
+            {t("services.subtitle")}
           </p>
         </div>
       </div>
@@ -103,7 +103,7 @@ export default function Services() {
               <div className="lg:w-1/2">
                 <div className="flex items-center gap-3 mb-4">
                    <div className="bg-red-50 text-primary px-3 py-1 rounded text-sm font-bold tracking-wider uppercase">
-                     Specializare
+                     {t("services.specialization")}
                    </div>
                    <div className="text-gray-400 text-sm">{cat.price}</div>
                 </div>
@@ -124,11 +124,11 @@ export default function Services() {
 
                 <div className="flex gap-4">
                   <BookingModal 
-                    buttonText="Programează Consult"
+                    buttonText={t("services.book_consult")}
                     buttonClassName="bg-primary hover:bg-primary/90 text-white px-8"
                   />
                   <Button variant="outline" className="gap-2">
-                    Detalii <ArrowRight className="w-4 h-4" />
+                    {t("services.details")} <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>
               </div>
@@ -138,16 +138,16 @@ export default function Services() {
 
         {/* Process Steps */}
         <div className="mt-32 bg-gray-50 rounded-3xl p-12 text-center">
-           <h2 className="text-3xl font-bold mb-12">Cum decurge tratamentul?</h2>
+           <h2 className="text-3xl font-bold mb-12">{t("services.process_title")}</h2>
            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
              {/* Connector Line */}
              <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
 
              {[
-               { step: "01", title: "Consultație", desc: "Evaluare completă și radiografii" },
-               { step: "02", title: "Planificare", desc: "Discutarea opțiunilor și costurilor" },
-               { step: "03", title: "Tratament", desc: "Execuție precisă și fără durere" },
-               { step: "04", title: "Întreținere", desc: "Controale periodice și garanție" }
+               { step: "01", title: t("services.process_step1"), desc: t("services.process_step1_desc") },
+               { step: "02", title: t("services.process_step2"), desc: t("services.process_step2_desc") },
+               { step: "03", title: t("services.process_step3"), desc: t("services.process_step3_desc") },
+               { step: "04", title: t("services.process_step4"), desc: t("services.process_step4_desc") }
              ].map((item, i) => (
                <div key={i} className="bg-white p-6 rounded-xl shadow-sm relative">
                  <div className="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4 shadow-lg border-4 border-white">
