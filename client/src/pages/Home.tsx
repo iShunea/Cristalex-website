@@ -44,8 +44,8 @@ import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 import endoImage from "@assets/generated_images/dental_microscope_treatment.png";
 
-import drScutelnic from "@assets/generated_images/portrait_of_dr._scutelnic_daniela.png";
-import drRobu from "@assets/generated_images/portrait_of_dr._ludmila_robu.png";
+import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
+import drRobu from "@assets/dr_ludmila_robu_real.jpg";
 import drPlesca from "@assets/generated_images/portrait_of_dr._denis_plesca.png";
 import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png";
 import drCraciun from "@assets/generated_images/portrait_of_dr._craciun_daniela.png";

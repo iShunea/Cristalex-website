@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
+import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 
 export default function About() {
@@ -94,25 +95,22 @@ export default function About() {
           </div>
         </div>
 
-        <h2 className="text-3xl font-bold text-center mb-12">Echipa Noastră</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
-              <div className="h-64 bg-gray-200 relative overflow-hidden">
-                 {/* Placeholder for other doctors */}
-                 <div className="absolute inset-0 flex items-center justify-center text-gray-400 bg-gray-100">
-                    Foto Doctor {i}
-                 </div>
-              </div>
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-1">Dr. Nume Prenume</h3>
-                <p className="text-primary text-sm font-medium mb-4">Medic Stomatolog Generalist</p>
-                <p className="text-gray-500 text-sm">
-                  Specialist cu peste 10 ani de experiență în stomatologia estetică și restaurativă.
-                </p>
-              </div>
+        {/* Team Photo Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-12">Echipa Noastră</h2>
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src={teamPhoto} 
+                alt="Echipa CristAlex Dent" 
+                className="w-full h-full object-cover"
+              />
             </div>
-          ))}
+            <p className="text-center text-gray-600 mt-8 text-lg leading-relaxed max-w-3xl mx-auto">
+              O echipă unită de profesioniști dedicați sănătății tale orale. 
+              Fiecare membru al echipei noastre aduce experiență, pasiune și grijă pentru fiecare pacient.
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
