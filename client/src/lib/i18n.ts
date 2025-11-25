@@ -87,7 +87,8 @@ const resources = {
         desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
         links: "Link-uri Utile",
         program: "Program Clinica",
-        contact: "Informații Contact"
+        contact: "Informații Contact",
+        developed_by: "Site elaborat de"
       }
     }
   },
@@ -176,7 +177,8 @@ const resources = {
         desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
         links: "Полезные Ссылки",
         program: "График Работы",
-        contact: "Контактная Информация"
+        contact: "Контактная Информация",
+        developed_by: "Сайт разработан компанией"
       }
     }
   },
@@ -263,7 +265,8 @@ const resources = {
         desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
         links: "Useful Links",
         program: "Clinic Hours",
-        contact: "Contact Information"
+        contact: "Contact Information",
+        developed_by: "Website developed by"
       }
     }
   }
