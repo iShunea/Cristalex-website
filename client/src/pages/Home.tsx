@@ -79,12 +79,12 @@ export default function Home() {
 
 
   const staticDoctors = [
-    { name: "Dr. Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
-    { name: "Dr. Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
-    { name: "Dr. Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
-    { name: "Dr. Zănoagă Oleg", role: "Chirurg - Implantolog", img: drZanoaga, bio: "Doctor în științe medicale, conferențiar universitar, expert în implantologie avansată." },
-    { name: "Dr. Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
-    { name: "Asist. Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
+    { name: "Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
+    { name: "Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
+    { name: "Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
+    { name: "Zănoagă Oleg", role: "Chirurg - Implantolog\nDoctor în științe medicale, conf. univ.", img: drZanoaga, bio: "Expert în implantologie avansată cu certificări internaționale și experiență de peste 15 ani." },
+    { name: "Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
+    { name: "Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
   ];
 
   const staticTestimonials = [
