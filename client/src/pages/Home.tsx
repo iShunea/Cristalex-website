@@ -105,9 +105,9 @@ export default function Home() {
   ];
 
   const staticTestimonials = [
-    { name: "Maria Popescu", role: "Pacient Implantologie", text: "O experiență incredibilă. Mi-am recăpătat zâmbetul după ani de zile. Echipa este extrem de profesionistă." },
-    { name: "Ion Rusu", role: "Pacient Ortodonție", text: "Tehnologie de vârf și o atmosferă foarte primitoare. Recomand cu încredere CristAlex Dent." },
-    { name: "Elena Munteanu", role: "Estetică Dentară", text: "Fațetele dentare arată perfect natural. Mulțumesc doamnei doctor pentru răbdare și perfecționism." },
+    { name: "Dorian Picalau", role: "Pacient", text: "Deja am cel puțin 10 zile de când mi-au fost tratați dinții de doamna Daniela. Nu pot să vă redau ce înseamnă satisfacția de a avea o dantura sănătoasă, de a avea plăcerea de a mânca, bea, în lipsa de stress. Mulțumesc mult Doamnei Daniela, Domnului Alexandru, Doamnei Ludmila, pentru bucuria de trai cu o dantura sănătoasă. După parerea mea cea mai bună clinică din Moldova, cu cei mai profesioniști și extraordinari specialiști." },
+    { name: "Robert Begu", role: "Pacient", text: "Servicii foarte bune la Cristalex Dent, recomand cu încredere!" },
+    { name: "Valeria Ivanov", role: "Pacient", text: "Mulțumesc din suflet echipei Cristalexdent pentru grija și profesionalismul de care au dat dovadă! Am făcut tratament și extracție, totul a decurs fără durere și cu multă atenție. Mi-a plăcut foarte mult atitudinea medicilor, în special Scutelnic Daniela și Zanoaga Oleg. M-am simțit în siguranță și bine îngrijită. Recomand cu încredere!" },
   ];
 
   // Use API data if available, otherwise fall back to static data
