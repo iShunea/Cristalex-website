@@ -44,7 +44,8 @@ const resources = {
       },
       testimonials: {
         title: "Ce spun pacienții noștri",
-        subtitle: "Părerile celor care ne-au trecut pragul sunt cartea noastră de vizită."
+        subtitle: "Părerile celor care ne-au trecut pragul sunt cartea noastră de vizită.",
+        swipe_hint: "← Glisează pentru a vedea mai multe recenzii →"
       },
       faq: {
         title: "Întrebări Frecvente",
@@ -204,7 +205,8 @@ const resources = {
       },
       testimonials: {
         title: "Отзывы наших пациентов",
-        subtitle: "Мнения тех, кто доверил нам свою улыбку - наша визитная карточка."
+        subtitle: "Мнения тех, кто доверил нам свою улыбку - наша визитная карточка.",
+        swipe_hint: "← Пролистайте, чтобы увидеть больше отзывов →"
       },
       faq: {
         title: "Частые Вопросы",
@@ -364,7 +366,8 @@ const resources = {
       },
       testimonials: {
         title: "What Our Patients Say",
-        subtitle: "The opinions of those who have trusted us are our business card."
+        subtitle: "The opinions of those who have trusted us are our business card.",
+        swipe_hint: "← Swipe to see more reviews →"
       },
       faq: {
         title: "Frequently Asked Questions",

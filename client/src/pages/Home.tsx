@@ -437,32 +437,38 @@ export default function Home() {
           <h2 className="section-title block">{t("testimonials.title")}</h2>
           <p className="section-subtitle">{t("testimonials.subtitle")}</p>
           
-          <div className="max-w-5xl mx-auto">
-             <Carousel className="w-full">
-                <CarouselContent>
+          <div className="max-w-6xl mx-auto relative">
+             <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
+                <CarouselContent className="-ml-4">
                   {testimonialsData.map((item: any, index: number) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-6">
-                      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col">
+                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                      <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 h-full flex flex-col hover:shadow-lg transition-shadow">
                         <div className="flex gap-1 mb-4">
-                          {[1,2,3,4,5].map(star => <Star key={star} className="w-4 h-4 fill-accent text-accent" />)}
+                          {[1,2,3,4,5].map(star => <Star key={star} className="w-5 h-5 fill-accent text-accent" />)}
                         </div>
-                        <p className="text-gray-600 italic mb-6 flex-grow">"{item.text}"</p>
-                        <div className="flex items-center gap-3 mt-auto">
-                           <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500">
+                        <p className="text-gray-700 italic mb-6 flex-grow leading-relaxed">"{item.text}"</p>
+                        <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-100">
+                           <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center font-bold text-primary text-lg">
                              {item.name.charAt(0)}
                            </div>
                            <div>
-                             <h4 className="font-bold text-sm">{item.name}</h4>
-                             <p className="text-xs text-gray-400">{item.role}</p>
+                             <h4 className="font-bold text-sm text-gray-900">{item.name}</h4>
+                             <p className="text-xs text-gray-500">{item.role}</p>
                            </div>
                         </div>
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="hidden md:flex -left-12 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
+                <CarouselNext className="hidden md:flex -right-12 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
              </Carousel>
+             
+             <div className="flex justify-center gap-2 mt-8 md:hidden">
+               <div className="text-xs text-gray-500 bg-white px-4 py-2 rounded-full border border-gray-200">
+                 {t("testimonials.swipe_hint")}
+               </div>
+             </div>
           </div>
         </div>
       </section>
