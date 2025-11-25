@@ -18,7 +18,11 @@ const resources = {
         title: "Excelență în Stomatologie Modernă",
         subtitle: "Redescoperă încrederea zâmbetului tău la CristAlex Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
         cta: "Programează o Consultație",
-        emergency: "Urgențe: +373 78388000"
+        emergency: "Urgențe: +373 78388000",
+        available_247: "Disponibili pentru tine 24/7",
+        free_consultation: "Consultație Gratuită",
+        digital_plan: "Plan de tratament digital",
+        parking: "Parcare asigurată"
       },
       contact: {
         address: "Chișinău, str. Alba Iulia 23",
@@ -59,6 +63,8 @@ const resources = {
       services: {
         title: "Spectrul Nostru de Servicii",
         subtitle: "Tehnologie de ultimă oră și medici specialiști pentru fiecare ramură a stomatologiei.",
+        subtitle_features: "Standarde ridicate, tehnologie de ultimă oră și o abordare umană.",
+        see_all: "Vezi Toate Serviciile",
         specialization: "Specializare",
         book_consult: "Programează Consult",
         details: "Detalii",
@@ -135,12 +141,21 @@ const resources = {
       cta_banner: {
         title: "Ești pregătit pentru o schimbare?",
         text: "Nu lăsa problemele dentare să se agraveze. Programează-te acum.",
-        btn: "Vreau o Programare"
+        btn: "Vreau o Programare",
+        free_title: "Programează-te ACUM și primești consultație GRATUITĂ!",
+        free_subtitle: "Plan de tratament personalizat + Simulare 3D digitală a rezultatului final",
+        free_btn: "Vreau Consultație Gratuită"
       },
       about: {
         title: "Despre Noi",
         subtitle: "Cristalex Dent – Zâmbetul tău, pasiunea noastră",
         history_title: "Istoria Noastră",
+        team_subtitle: "Echipa noastră de specialiști pregătiți să îți ofere cel mai bun tratament.",
+        years_experience: "Ani Experiență",
+        read_more: "Citește mai mult",
+        blog_title: "Articole Recente",
+        blog_subtitle: "Noutăți și sfaturi pentru sănătatea ta orală.",
+        blog_see_all: "Vezi tot Blogul",
         history_p1: "Clinica stomatologică Cristalex Dent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
         history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
         mission_title: "Misiunea Noastră",
@@ -179,7 +194,11 @@ const resources = {
         title: "Совершенство в Современной Стоматологии",
         subtitle: "Верните уверенность в своей улыбке в CristAlex Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
         cta: "Записаться на Консультацию",
-        emergency: "Срочно: +373 78388000"
+        emergency: "Срочно: +373 78388000",
+        available_247: "Доступны для вас 24/7",
+        free_consultation: "Бесплатная Консультация",
+        digital_plan: "Цифровой план лечения",
+        parking: "Гарантированная парковка"
       },
       contact: {
         address: "Кишинев, ул. Альба Юлия 23",
@@ -220,6 +239,8 @@ const resources = {
       services: {
         title: "Наш Спектр Услуг",
         subtitle: "Новейшие технологии и врачи-специалисты для каждой отрасли стоматологии.",
+        subtitle_features: "Высокие стандарты, передовые технологии и человеческий подход.",
+        see_all: "Посмотреть Все Услуги",
         specialization: "Специализация",
         book_consult: "Записаться на Консультацию",
         details: "Подробнее",
@@ -296,12 +317,21 @@ const resources = {
       cta_banner: {
         title: "Готовы к переменам?",
         text: "Не позволяйте стоматологическим проблемам усугубляться. Запишитесь сейчас.",
-        btn: "Хочу Записаться"
+        btn: "Хочу Записаться",
+        free_title: "Запишитесь СЕЙЧАС и получите БЕСПЛАТНУЮ консультацию!",
+        free_subtitle: "Персонализированный план лечения + Цифровая 3D симуляция конечного результата",
+        free_btn: "Хочу Бесплатную Консультацию"
       },
       about: {
         title: "О Нас",
         subtitle: "Cristalex Dent – Ваша улыбка, наша страсть",
         history_title: "Наша История",
+        team_subtitle: "Наша команда специалистов готова предложить вам лучшее лечение.",
+        years_experience: "Лет Опыта",
+        read_more: "Читать далее",
+        blog_title: "Последние Статьи",
+        blog_subtitle: "Новости и советы для здоровья полости рта.",
+        blog_see_all: "Смотреть Весь Блог",
         history_p1: "Стоматологическая клиника Cristalex Dent начала свою деятельность в 2008 году. Располагает двумя стоматологическими кабинетами, оснащенными новейшими технологиями, хирургическим кабинетом, кабинетом стерилизации и кабинетом радиовизиографии.",
         history_p2: "За более чем 16 лет работы сформировалась команда врачей, ставших экспертами в области стоматологии.",
         mission_title: "Наша Миссия",
@@ -340,7 +370,11 @@ const resources = {
         title: "Excellence in Modern Dentistry",
         subtitle: "Rediscover the confidence in your smile at CristAlex Dent. Digital 3D technology, premium materials and a team dedicated to perfection.",
         cta: "Schedule a Consultation",
-        emergency: "Emergency: +373 78388000"
+        emergency: "Emergency: +373 78388000",
+        available_247: "Available for you 24/7",
+        free_consultation: "Free Consultation",
+        digital_plan: "Digital treatment plan",
+        parking: "Guaranteed parking"
       },
       contact: {
         address: "Chișinău, Alba Iulia Street 23",
@@ -381,6 +415,8 @@ const resources = {
       services: {
         title: "Our Service Spectrum",
         subtitle: "State-of-the-art technology and specialist doctors for every branch of dentistry.",
+        subtitle_features: "High standards, state-of-the-art technology and a human approach.",
+        see_all: "See All Services",
         specialization: "Specialization",
         book_consult: "Book Consultation",
         details: "Details",
@@ -457,12 +493,21 @@ const resources = {
       cta_banner: {
         title: "Ready for a change?",
         text: "Don't let dental problems get worse. Schedule now.",
-        btn: "I Want an Appointment"
+        btn: "I Want an Appointment",
+        free_title: "Book NOW and receive a FREE consultation!",
+        free_subtitle: "Personalized treatment plan + Digital 3D simulation of the final result",
+        free_btn: "I Want a Free Consultation"
       },
       about: {
         title: "About Us",
         subtitle: "Cristalex Dent – Your smile, our passion",
         history_title: "Our History",
+        team_subtitle: "Our team of specialists ready to offer you the best treatment.",
+        years_experience: "Years Experience",
+        read_more: "Read more",
+        blog_title: "Recent Articles",
+        blog_subtitle: "News and tips for your oral health.",
+        blog_see_all: "See All Blog",
         history_p1: "The Cristalex Dent dental clinic started its activities in 2008. It has two dental offices equipped with state-of-the-art technologies, a surgical office, a sterilization office and a dental radiography office.",
         history_p2: "Over more than 16 years of activity, a team of doctors has been consolidated who have become experts in the field of dental medicine.",
         mission_title: "Our Mission",

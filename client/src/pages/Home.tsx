@@ -176,22 +176,22 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-slate-900">{t("hero.emergency")}</h3>
-                    <p className="text-sm text-gray-500">Disponibili pentru tine 24/7</p>
+                    <p className="text-sm text-gray-500">{t("hero.available_247")}</p>
                   </div>
                 </div>
                 <hr className="border-gray-100 mb-6" />
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 font-medium">Consultatie Gratuită</span>
+                    <span className="text-gray-700 font-medium">{t("hero.free_consultation")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 font-medium">Plan de tratament digital</span>
+                    <span className="text-gray-700 font-medium">{t("hero.digital_plan")}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
-                    <span className="text-gray-700 font-medium">Parcare asigurată</span>
+                    <span className="text-gray-700 font-medium">{t("hero.parking")}</span>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ export default function Home() {
                <p className="text-gray-500 text-lg">{t("services.subtitle")}</p>
              </div>
              <Link href="/services">
-               <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">Vezi Toate Serviciile</Button>
+               <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">{t("services.see_all")}</Button>
              </Link>
            </div>
 
@@ -332,12 +332,12 @@ export default function Home() {
       <section className="py-16 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-10"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Programează-te ACUM și primești consultație GRATUITĂ!</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("cta_banner.free_title")}</h2>
           <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            Plan de tratament personalizat + Simulare 3D digitală a rezultatului final
+            {t("cta_banner.free_subtitle")}
           </p>
           <BookingModal 
-            buttonText="Vreau Consultație Gratuită"
+            buttonText={t("cta_banner.free_btn")}
             buttonClassName="bg-white text-primary hover:bg-gray-100 active:bg-gray-200 font-bold px-10 h-14 text-lg shadow-2xl rounded-full transition-all hover:shadow-xl active:shadow-lg cursor-pointer"
           />
         </div>
@@ -348,7 +348,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="section-title">{t("features.title")}</h2>
-            <p className="section-subtitle">Standarde ridicate, tehnologie de ultimă oră și o abordare umană.</p>
+            <p className="section-subtitle">{t("services.subtitle_features")}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
@@ -396,7 +396,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="section-title">{t("nav.team")}</h2>
-            <p className="section-subtitle">Echipa noastră de specialiști pregătiți să îți ofere cel mai bun tratament.</p>
+            <p className="section-subtitle">{t("about.team_subtitle")}</p>
           </div>
           
           <div className="max-w-6xl mx-auto">
@@ -505,7 +505,7 @@ export default function Home() {
               <div className="mt-8">
                 <Link href="/about">
                   <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 gap-2 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">
-                    Citește mai mult <ArrowRight className="w-4 h-4" />
+                    {t("about.read_more")} <ArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
