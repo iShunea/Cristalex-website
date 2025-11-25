@@ -37,6 +37,7 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
+import teamPhoto from "@assets/team_cristalexdent.jpg";
 import techImage from "@assets/generated_images/dental_digital_technology_scanner.png";
 import sterileImage from "@assets/generated_images/dental_sterilization_equipment.png";
 import implantImage from "@assets/generated_images/dental_implant_model.png";
@@ -519,7 +520,7 @@ export default function Home() {
 
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img src={doctorImage} alt="CristAlex Dent" className="w-full h-full object-cover" />
+                <img src={teamPhoto} alt="Echipa CristAlex Dent" className="w-full h-full object-cover" />
               </div>
               
               {/* Stats Cards Overlay */}
