@@ -74,11 +74,11 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <img src={afterImage} alt="After" className="w-full h-auto block" draggable={false} />
+        <img src={afterImage} alt={t("beforeafter.after")} className="w-full h-auto block" draggable={false} />
         <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${sliderPos}%` }}>
           <img
             src={beforeImage}
-            alt="Before"
+            alt={t("beforeafter.before")}
             className="w-full h-full object-cover"
             style={{ width: `${(100 / sliderPos) * 100}%` }}
             draggable={false}

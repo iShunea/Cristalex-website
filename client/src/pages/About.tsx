@@ -28,12 +28,12 @@ export default function About() {
   });
 
   const staticDoctors = [
-    { name: "Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
-    { name: "Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
-    { name: "Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
-    { name: "Zănoagă Oleg", role: "Chirurg - Implantolog\nDoctor în științe medicale, conf. univ.", img: drZanoaga, bio: "Expert în implantologie avansată cu certificări internaționale și experiență de peste 15 ani." },
-    { name: "Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
-    { name: "Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
+    { name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
+    { name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
+    { name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
+    { name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
+    { name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
+    { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
   ];
 
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
@@ -82,7 +82,7 @@ export default function About() {
           </div>
           
           <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-2xl">
-             <img src={teamPhoto} alt="Echipa CristAlex Dent" className="w-full h-full object-cover" />
+             <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" />
           </div>
         </div>
 

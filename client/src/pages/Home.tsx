@@ -29,7 +29,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Link } from "wouter";
-import { blogPosts } from "./Blog";
+import { useBlogPosts } from "./Blog";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
@@ -63,12 +63,13 @@ import afterRestoration from "@assets/generated_images/restored_tooth_after_crow
 export default function Home() {
   const { t } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
+  const localizedBlogPosts = useBlogPosts();
 
   // Before/After cases for slider gallery
   const beforeAfterCases = [
-    { beforeImage: beforeWhitening, afterImage: afterWhitening, title: "Albire Dentară" },
-    { beforeImage: beforeBraces, afterImage: afterBraces, title: "Ortodonție" },
-    { beforeImage: beforeRestoration, afterImage: afterRestoration, title: "Restaurare Dentară" },
+    { beforeImage: beforeWhitening, afterImage: afterWhitening, title: t("before_after_cases.whitening") },
+    { beforeImage: beforeBraces, afterImage: afterBraces, title: t("before_after_cases.braces") },
+    { beforeImage: beforeRestoration, afterImage: afterRestoration, title: t("before_after_cases.restoration") },
   ];
 
   // Fetch data from API
@@ -96,18 +97,18 @@ export default function Home() {
 
 
   const staticDoctors = [
-    { name: "Scutelnic Daniela", role: "Stomatolog Generalist", img: drScutelnic, bio: "Medic dedicat cu pasiune pentru detaliu și sănătatea orală completă." },
-    { name: "Ludmila Robu", role: "Stomatolog Terapeut", img: drRobu, bio: "Specialist în terapie conservatoare și restaurări estetice." },
-    { name: "Denis Pleșca", role: "Stomatolog Ortoped", img: drPlesca, bio: "Expert în reabilitări orale complexe și protetică dentară." },
-    { name: "Zănoagă Oleg", role: "Chirurg - Implantolog\nDoctor în științe medicale, conf. univ.", img: drZanoaga, bio: "Expert în implantologie avansată cu certificări internaționale și experiență de peste 15 ani." },
-    { name: "Crăciun Daniela", role: "Stomatolog Ortodont", img: drCraciun, bio: "Specialist în ortodonție pentru copii și adulți, pasionată de zâmbete perfect aliniate." },
-    { name: "Barbarasa Ludmila", role: "Asistent Medical", img: asstBarbarasa, bio: "Mâna dreaptă a medicilor, asigurând confortul și siguranța pacienților." }
+    { name: t("about.doctors.doctor1_name"), role: t("about.doctors.doctor1_role"), img: drScutelnic, bio: t("about.doctors.doctor1_bio") },
+    { name: t("about.doctors.doctor2_name"), role: t("about.doctors.doctor2_role"), img: drRobu, bio: t("about.doctors.doctor2_bio") },
+    { name: t("about.doctors.doctor3_name"), role: t("about.doctors.doctor3_role"), img: drPlesca, bio: t("about.doctors.doctor3_bio") },
+    { name: t("about.doctors.doctor4_name"), role: t("about.doctors.doctor4_role"), img: drZanoaga, bio: t("about.doctors.doctor4_bio") },
+    { name: t("about.doctors.doctor5_name"), role: t("about.doctors.doctor5_role"), img: drCraciun, bio: t("about.doctors.doctor5_bio") },
+    { name: t("about.doctors.doctor6_name"), role: t("about.doctors.doctor6_role"), img: asstBarbarasa, bio: t("about.doctors.doctor6_bio") }
   ];
 
   const staticTestimonials = [
-    { name: "Dorian Picalau", role: "Pacient", text: "Deja am cel puțin 10 zile de când mi-au fost tratați dinții de doamna Daniela. Nu pot să vă redau ce înseamnă satisfacția de a avea o dantura sănătoasă, de a avea plăcerea de a mânca, bea, în lipsa de stress. Mulțumesc mult Doamnei Daniela, Domnului Alexandru, Doamnei Ludmila, pentru bucuria de trai cu o dantura sănătoasă. După parerea mea cea mai bună clinică din Moldova, cu cei mai profesioniști și extraordinari specialiști." },
-    { name: "Robert Begu", role: "Pacient", text: "Servicii foarte bune la Cristalex Dent, recomand cu încredere!" },
-    { name: "Valeria Ivanov", role: "Pacient", text: "Mulțumesc din suflet echipei Cristalexdent pentru grija și profesionalismul de care au dat dovadă! Am făcut tratament și extracție, totul a decurs fără durere și cu multă atenție. Mi-a plăcut foarte mult atitudinea medicilor, în special Scutelnic Daniela și Zanoaga Oleg. M-am simțit în siguranță și bine îngrijită. Recomand cu încredere!" },
+    { name: t("testimonials.test1_name"), role: t("testimonials.test1_role"), text: t("testimonials.test1_text") },
+    { name: t("testimonials.test2_name"), role: t("testimonials.test2_role"), text: t("testimonials.test2_text") },
+    { name: t("testimonials.test3_name"), role: t("testimonials.test3_role"), text: t("testimonials.test3_text") },
   ];
 
   // Use API data if available, otherwise fall back to static data
@@ -126,7 +127,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
-            alt="Dental Clinic Interior" 
+            alt={t("images.hero_interior_alt")} 
             className="w-full h-full object-cover opacity-30 scale-105 animate-pulse-slow"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
@@ -244,29 +245,29 @@ export default function Home() {
                   title: t("services.implant"), 
                   desc: t("services.implant_desc"), 
                   img: implantImage,
-                  details: "Restaurarea dinților pierduți cu ajutorul implanturilor dentare de ultimă generație. Folosim tehnologii avansate pentru planificare digitală 3D, asigurând precizie maximă și timp de vindecare redus. Beneficiezi de implanturi premium Straumann sau Nobel Biocare, recunoscute mondial pentru durabilitate și integrare osoasă rapidă.",
-                  features: ["Planificare 3D", "Implanturi Premium", "Sedare Conștientă", "Garanție pe Viață"]
+                  details: t("services.implant_details"),
+                  features: t("services.implant_features", { returnObjects: true }) as string[]
                 },
                 { 
                   title: t("services.ortho"), 
                   desc: t("services.ortho_desc"), 
                   img: orthoImage,
-                  details: "Corectarea poziției dinților și a mușcăturii folosind aparate dentare moderne. Oferim atât soluții clasice (metalice/ceramice), cât și alignere invizibile (Invisalign) pentru un tratament discret și confortabil. Obține un zâmbet perfect aliniat indiferent de vârstă.",
-                  features: ["Invisalign", "Aparate Safir", "Digital Scanning", "Fără Durere"]
+                  details: t("services.ortho_details"),
+                  features: t("services.ortho_features", { returnObjects: true }) as string[]
                 },
                 { 
                   title: t("services.aesthetics"), 
                   desc: t("services.aesthetics_desc"), 
                   img: aestheticImage,
-                  details: "Transformă-ți zâmbetul cu fațete dentare ceramice E-MAX sau proceduri de albire profesională. Proiectăm noul tău zâmbet digital (DSD) înainte de a începe tratamentul, astfel încât să vezi rezultatul final încă de la prima vizită.",
-                  features: ["Digital Smile Design", "Fațete E-MAX", "Albire Zoom", "Minim Invaziv"]
+                  details: t("services.aesthetics_details"),
+                  features: t("services.aesthetics_features", { returnObjects: true }) as string[]
                 },
                 { 
                   title: t("services.endo"), 
                   desc: t("services.endo_desc"), 
                   img: endoImage,
-                  details: "Tratamente de canal realizate exclusiv la microscop pentru salvarea dinților naturali. Precizia magnificată de până la 25x permite curățarea perfectă a canalelor și sigilarea lor tridimensională, eliminând infecțiile și durerea pe termen lung.",
-                  features: ["Microscop Leica", "Izolare cu Digă", "Vindecare Rapidă", "Rată de Succes 98%"]
+                  details: t("services.endo_details"),
+                  features: t("services.endo_features", { returnObjects: true }) as string[]
                 }
               ].map((s, i) => (
                 <div 
@@ -513,7 +514,7 @@ export default function Home() {
 
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
-                <img src={teamPhoto} alt="Echipa CristAlex Dent" className="w-full h-full object-cover" />
+                <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" />
               </div>
               
               {/* Stats Cards Overlay */}
@@ -545,7 +546,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : blogPosts).slice(0, 3).map((post: any) => (
+            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : localizedBlogPosts).slice(0, 3).map((post: any) => (
               <Link key={post.id} href={`/blog/${post.id}`} className="group cursor-pointer block">
                 <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
                   <img src={post.imageUrl || post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />

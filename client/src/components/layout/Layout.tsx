@@ -52,15 +52,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4" />
-              <span>+373 78388000</span>
+              <span>{t("contact.phone")}</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              <span>str. Alba Iulia 23, Chișinău</span>
+              <span>{t("contact.address")}</span>
             </div>
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>Lun-Vin: 09:00 - 18:00</span>
+              <span>{t("top_bar.schedule")}</span>
             </div>
           </div>
         </div>
@@ -70,7 +70,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <img src={logo} alt="CristAlex Dent" className="h-12 w-auto" />
+            <img src={logo} alt={t("images.logo_alt")} className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
@@ -87,7 +87,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <button 
                 onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                 className="flex items-center gap-1 px-4 py-2 rounded-lg bg-gray-50 hover:bg-gray-100 active:bg-gray-200 transition-all font-bold text-gray-700 hover:text-primary border-2 border-gray-200 hover:border-primary/40 active:border-primary/60 hover:shadow-md active:shadow-sm cursor-pointer"
-                title="Schimbă limba"
+                title={t("top_bar.change_language")}
               >
                 <Globe className="w-4 h-4" />
                 <span className="text-sm">{i18n.language.toUpperCase()}</span>
@@ -201,7 +201,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <img src={logo} alt="CristAlex Dent" className="h-10 w-auto brightness-0 invert" />
+                <img src={logo} alt={t("images.logo_alt")} className="h-10 w-auto brightness-0 invert" />
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
                 {t("footer.description")}

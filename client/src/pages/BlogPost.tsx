@@ -1,13 +1,16 @@
 import { Layout } from "@/components/layout/Layout";
 import { useRoute, Link } from "wouter";
-import { blogPosts } from "./Blog";
+import { useBlogPosts } from "./Blog";
 import { Calendar, User, ArrowLeft, Share2, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
 import NotFound from "./not-found";
+import { useTranslation } from "react-i18next";
 
 export default function BlogPost() {
+  const { t } = useTranslation();
   const [, params] = useRoute("/blog/:id");
+  const blogPosts = useBlogPosts();
   const post = blogPosts.find(p => p.id === Number(params?.id));
 
   if (!post) return <NotFound />;
@@ -28,7 +31,7 @@ export default function BlogPost() {
             <div className="container mx-auto max-w-4xl">
               <Link href="/blog" className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Înapoi la Blog
+                {t("blog_post.back_to_blog")}
               </Link>
               <div className="flex flex-wrap gap-4 mb-6">
                 <span className="bg-primary px-3 py-1 rounded-full text-sm font-bold">
@@ -49,7 +52,7 @@ export default function BlogPost() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Clock className="w-5 h-5" />
-                  <span>5 min citire</span>
+                  <span>5 {t("blog_post.reading_time")}</span>
                 </div>
               </div>
             </div>
@@ -67,11 +70,11 @@ export default function BlogPost() {
               
               <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
                 <div className="text-gray-500 font-medium">
-                  Ți-a plăcut articolul?
+                  {t("blog_post.liked_article")}
                 </div>
                 <Button variant="outline" className="gap-2">
                   <Share2 className="w-4 h-4" />
-                  Distribuie
+                  {t("blog_post.share")}
                 </Button>
               </div>
             </div>
@@ -79,12 +82,18 @@ export default function BlogPost() {
             {/* Sidebar */}
             <div className="lg:w-80 space-y-8">
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 sticky top-24">
-                <h3 className="text-xl font-bold mb-4">Categorii</h3>
+                <h3 className="text-xl font-bold mb-4">{t("blog_post.categories_title")}</h3>
                 <ul className="space-y-2">
-                  {["Implantologie", "Estetică", "Ortodonție", "Profilaxie", "Pedodonție"].map(cat => (
-                    <li key={cat}>
+                  {[
+                    { key: "implantology", label: t("blog_post.category_implantology") },
+                    { key: "aesthetics", label: t("blog_post.category_aesthetics") },
+                    { key: "orthodontics", label: t("blog_post.category_orthodontics") },
+                    { key: "prevention", label: t("blog_post.category_prevention") },
+                    { key: "pediatric", label: t("blog_post.category_pediatric") }
+                  ].map(cat => (
+                    <li key={cat.key}>
                       <a href="#" className="block p-2 rounded hover:bg-white hover:shadow-sm transition-all text-gray-600 hover:text-primary">
-                        {cat}
+                        {cat.label}
                       </a>
                     </li>
                   ))}
@@ -92,12 +101,12 @@ export default function BlogPost() {
               </div>
 
               <div className="bg-primary text-white p-6 rounded-xl sticky top-[300px]">
-                <h3 className="text-xl font-bold mb-4">Programează-te</h3>
+                <h3 className="text-xl font-bold mb-4">{t("blog_post.booking_title")}</h3>
                 <p className="text-red-100 mb-6 text-sm">
-                  Ai întrebări despre {post.category.toLowerCase()}? Specialiștii noștri sunt aici să te ajute.
+                  {t("blog_post.booking_text", { category: post.category.toLowerCase() })}
                 </p>
                 <BookingModal 
-                  buttonText="Programează Online"
+                  buttonText={t("blog_post.booking_button")}
                   buttonClassName="w-full bg-white text-primary hover:bg-red-50 font-bold"
                 />
               </div>
