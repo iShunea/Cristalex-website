@@ -26,11 +26,9 @@ export default function BlogPost() {
           
           <div className="absolute bottom-0 left-0 w-full p-8 md:p-16 text-white">
             <div className="container mx-auto max-w-4xl">
-              <Link href="/blog">
-                <a className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors">
-                  <ArrowLeft className="w-4 h-4 mr-2" />
-                  Înapoi la Blog
-                </a>
+              <Link href="/blog" className="inline-flex items-center text-white/80 hover:text-white mb-6 transition-colors">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Înapoi la Blog
               </Link>
               <div className="flex flex-wrap gap-4 mb-6">
                 <span className="bg-primary px-3 py-1 rounded-full text-sm font-bold">
