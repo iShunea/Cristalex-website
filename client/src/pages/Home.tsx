@@ -33,6 +33,7 @@ import { blogPosts } from "./Blog";
 import { useQuery } from "@tanstack/react-query";
 import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
+import { BeforeAfter } from "@/components/BeforeAfter";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -49,6 +50,8 @@ import drPlesca from "@assets/generated_images/portrait_of_dr._denis_plesca.png"
 import drZanoaga from "@assets/generated_images/portrait_of_dr._zanoaga_oleg.png";
 import drCraciun from "@assets/generated_images/portrait_of_dr._craciun_daniela.png";
 import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa_ludmila.png";
+
+// Before/After images will be imported after generation
 
 export default function Home() {
   const { t } = useTranslation();
@@ -462,6 +465,14 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* BEFORE/AFTER SECTION */}
+      <BeforeAfter 
+        beforeImage={aestheticImage}
+        afterImage={endoImage}
+        title={t("beforeafter.title")}
+        subtitle={t("beforeafter.subtitle")}
+      />
 
       {/* TESTIMONIALS */}
       <section className="py-24 bg-slate-50">
