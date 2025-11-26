@@ -6,9 +6,22 @@ CristAlex Dent is a modern dental clinic website built as a full-stack web appli
 
 The application serves as a marketing and information platform for potential patients, allowing them to learn about services, read educational content, view team credentials, and book appointments through an integrated third-party booking system.
 
+## Recent Changes
+
+**November 26, 2024 - Fresh Medical Design Overhaul:**
+- **Color Scheme Pivot:** Transitioned from saturated red brandbook (#b60202, #df0101) to fresh, light medical aesthetic with turquoise/soft blue palette (Primary #48C9B0, Secondary #36B39A, Accent #6EC1E4)
+- **Hero Section:** Updated to bright, welcoming design with white/light gradients, increased image opacity (50%), and turquoise accent colors
+- **Footer Redesign:** Changed from dark gray-900 to light gradient background (from-primary/5 via-white to-accent/5) with modern social icons
+- **Layout Reorganization:** Moved Before/After section below Services for better flow; added inline booking form after Before/After for higher conversion
+- **Typography Adjustments:** Reduced title font sizes (text-4xl → text-3xl) for better proportions
+- **Background Gradients:** Applied soft turquoise/blue gradients to key sections (Features, Inline Booking) for cohesive fresh aesthetic
+- **Button Uniformity:** All buttons now use turquoise primary color with modern rounded corners and shadows
+- **Stats Banner:** Updated to turquoise gradient (from-primary via-secondary to-accent) replacing dark slate background
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Design preference: Fresh, light, medical aesthetic with turquoise/soft blue color palette (avoiding saturated reds)
 
 ## System Architecture
 
