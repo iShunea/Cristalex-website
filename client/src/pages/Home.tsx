@@ -122,15 +122,15 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* HERO SECTION - More Corporate & Impactful */}
-      <section className="relative min-h-[90vh] flex items-center bg-slate-900 overflow-hidden brandbook-overlay">
+      {/* HERO SECTION - Fresh & Bright Medical Theme */}
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary/10 via-white to-accent/5 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
             alt={t("images.hero_interior_alt")} 
-            className="w-full h-full object-cover opacity-30 scale-105 animate-pulse-slow"
+            className="w-full h-full object-cover opacity-50 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-primary/10" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 pt-6 md:pt-20">
@@ -141,22 +141,22 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="flex items-center gap-2 mb-6">
-                <span className="h-px w-12 bg-secondary"></span>
-                <span className="text-secondary font-bold tracking-widest uppercase text-sm">CristAlex Dent Corporate</span>
+                <span className="h-px w-12 bg-primary"></span>
+                <span className="text-primary font-bold tracking-widest uppercase text-sm">CristAlex Dent Professional</span>
               </div>
-              <h1 className="text-4xl md:text-7xl font-bold text-white mb-4 md:mb-6 leading-tight">
+              <h1 className="text-4xl md:text-7xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
                 {t("hero.title")}
               </h1>
-              <p className="text-base md:text-xl text-gray-300 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-secondary pl-6">
+              <p className="text-base md:text-xl text-slate-700 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-primary pl-6">
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <BookingModal 
                   buttonText={t("hero.cta")}
-                  buttonClassName="bg-secondary hover:bg-secondary/90 text-white font-bold px-8 h-14 text-lg rounded-none"
+                  buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold px-8 h-14 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
                 />
                 <Link href="/services">
-                  <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-slate-900 font-bold px-8 h-14 text-lg rounded-none">
+                  <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 h-14 text-lg rounded-lg shadow-md">
                     {t("nav.services")}
                   </Button>
                 </Link>
@@ -172,7 +172,7 @@ export default function Home() {
             >
               <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md ml-auto relative z-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-red-50 p-3 rounded-full">
+                  <div className="bg-primary/10 p-3 rounded-full">
                     <PhoneCall className="w-6 h-6 text-primary" />
                   </div>
                   <div>
@@ -204,27 +204,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS BANNER */}
-      <section className="bg-slate-900 py-12 text-white relative z-20 shadow-lg">
+      {/* STATS BANNER - Fresh Light Theme */}
+      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-12 text-white relative z-20 shadow-lg">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x divide-white/10">
             {stats.map((stat, i) => (
               <div key={i} className="p-4">
-                <stat.icon className="w-8 h-8 mx-auto mb-3 text-primary" />
+                <stat.icon className="w-8 h-8 mx-auto mb-3 text-white" />
                 <div className="text-4xl font-bold mb-1">{stat.value}</div>
-                <div className="text-sm text-gray-300 uppercase tracking-wider">{stat.label}</div>
+                <div className="text-sm text-white/90 uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
-
-      {/* BEFORE/AFTER SECTION - Early for visual proof */}
-      <BeforeAfter 
-        cases={beforeAfterCases}
-        mainTitle={t("beforeafter.title")}
-        mainSubtitle={t("beforeafter.subtitle")}
-      />
 
       {/* SERVICES CAROUSEL / PREVIEW */}
       <section className="py-24 bg-white">
@@ -307,7 +300,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-2 gap-3 mb-6">
                       {selectedService.features?.map((feat: string, idx: number) => (
-                        <div key={idx} className="flex items-center gap-2 bg-red-50 p-2 rounded-lg">
+                        <div key={idx} className="flex items-center gap-2 bg-primary/10 p-2 rounded-lg">
                           <CheckCircle2 className="w-4 h-4 text-primary" />
                           <span className="text-sm font-medium text-gray-700">{feat}</span>
                         </div>
@@ -328,6 +321,13 @@ export default function Home() {
           </Dialog>
         </div>
       </section>
+
+      {/* BEFORE/AFTER SECTION - After Services for Visual Proof */}
+      <BeforeAfter 
+        cases={beforeAfterCases}
+        mainTitle={t("beforeafter.title")}
+        mainSubtitle={t("beforeafter.subtitle")}
+      />
 
       {/* CTA BANNER INTERMEDIAR - Strategic Call-to-Action */}
       <section className="py-16 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
@@ -355,7 +355,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {/* Feature 1 */}
             <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                 <Microscope className="w-7 h-7 text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3">{t("features.tech_title")}</h3>
@@ -408,10 +408,10 @@ export default function Home() {
                       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
                         <div className="h-[350px] overflow-hidden relative">
                           <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" style={{filter: 'brightness(1.2)'}} />
                           <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
                             <h3 className="text-xl font-bold text-white">{doc.name}</h3>
-                            <p className="text-red-200 text-sm font-medium">{doc.role}</p>
+                            <p className="text-primary-foreground text-sm font-medium">{doc.role}</p>
                           </div>
                         </div>
                         <div className="p-6">
