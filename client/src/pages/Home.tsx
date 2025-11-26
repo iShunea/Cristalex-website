@@ -327,26 +327,6 @@ export default function Home() {
         mainSubtitle={t("beforeafter.subtitle")}
       />
 
-      {/* INLINE BOOKING SECTION - Direct Embed for High Conversion */}
-      <section className="py-24 bg-gradient-to-br from-primary/5 to-accent/5">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{t("nav.book")}</h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              {t("hero.subtitle")}
-            </p>
-          </div>
-          <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            <iframe
-              src="https://my.businessdent.md/institutions/1718966/"
-              className="w-full h-[850px] border-0"
-              title="Online Booking"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* CTA BANNER INTERMEDIAR - Strategic Call-to-Action */}
       <section className="py-16 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-10"></div>
