@@ -493,7 +493,7 @@ export default function Home() {
                 {t("about.history_p2")}
               </p>
 
-              <div className="bg-red-50 p-8 rounded-xl mb-8">
+              <div className="bg-primary/10 p-8 rounded-xl mb-8">
                 <p className="text-gray-700 text-lg leading-relaxed font-medium">
                   {t("about.mission_text")}
                 </p>
@@ -525,7 +525,7 @@ export default function Home() {
               
               <div className="absolute -top-8 -right-8 bg-primary text-white p-6 rounded-xl shadow-xl">
                 <div className="text-4xl font-bold mb-2">{new Date().getFullYear() - 2008}+</div>
-                <div className="text-red-100 font-medium">{t("about.years_experience")}</div>
+                <div className="text-white/90 font-medium">{t("about.years_experience")}</div>
               </div>
             </div>
           </div>

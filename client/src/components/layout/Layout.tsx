@@ -195,32 +195,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      {/* Footer - Fresh Light Theme */}
+      <footer className="bg-gradient-to-br from-primary/5 via-white to-accent/5 border-t border-gray-100 py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <img src={logo} alt={t("images.logo_alt")} className="h-10 w-auto brightness-0 invert" />
+                <img src={logo} alt={t("images.logo_alt")} className="h-10 w-auto" />
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 {t("footer.description")}
               </p>
             </div>
             
             <div>
-              <h4 className="font-bold mb-6 text-lg">{t("nav.services")}</h4>
-              <ul className="space-y-3 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white transition-colors">{t("footer.implantology")}</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">{t("footer.orthodontics")}</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">{t("footer.aesthetic")}</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">{t("footer.surgery")}</a></li>
+              <h4 className="font-bold mb-6 text-lg text-slate-900">{t("nav.services")}</h4>
+              <ul className="space-y-3 text-gray-600 text-sm">
+                <li><a href="#" className="hover:text-primary transition-colors">{t("footer.implantology")}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t("footer.orthodontics")}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t("footer.aesthetic")}</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">{t("footer.surgery")}</a></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 text-lg">{t("footer.contact")}</h4>
-              <ul className="space-y-4 text-gray-400 text-sm">
+              <h4 className="font-bold mb-6 text-lg text-slate-900">{t("footer.contact")}</h4>
+              <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary shrink-0" />
                   <span>str. Alba Iulia 23,<br/>Chișinău, Moldova</span>
@@ -237,39 +237,39 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div>
-              <h4 className="font-bold mb-6 text-lg">{t("footer.social")}</h4>
+              <h4 className="font-bold mb-6 text-lg text-slate-900">{t("footer.social")}</h4>
               <div className="flex gap-4">
                 <a 
                   href="https://facebook.com/cristalexdent" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
                   aria-label="Facebook"
                 >
-                  <Facebook className="w-5 h-5 text-white" />
+                  <Facebook className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
                 <a 
                   href="https://instagram.com/cristalexdent" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
                   aria-label="Instagram"
                 >
-                  <Instagram className="w-5 h-5 text-white" />
+                  <Instagram className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
                 <a 
                   href="https://youtube.com/@cristalexdent" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center"
+                  className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
                   aria-label="YouTube"
                 >
-                  <Youtube className="w-5 h-5 text-white" />
+                  <Youtube className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="border-t border-gray-200 mt-12 pt-8">
             <div className="text-center text-gray-500 text-sm mb-4">
               {t("footer.rights")}
             </div>
