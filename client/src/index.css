@@ -31,35 +31,35 @@
   --radius: 0.5rem;
   
   --shadow-soft: 0 10px 40px -10px rgba(0,0,0,0.08);
-  --shadow-glow: 0 0 20px rgba(182, 2, 2, 0.3);
+  --shadow-glow: 0 0 20px rgba(72, 201, 176, 0.3);
 }
 
 :root {
-  /* CristAlex Dent Brandbook Colors */
+  /* CristAlex Dent Brandbook Colors - Fresh Medical Theme */
   --background: 0 0% 100%;
   --foreground: 215 28% 17%;
 
   --card: 0 0% 100%;
   --card-foreground: 215 28% 17%;
  
-  /* Corporate Red - Primary #b60202 */
-  --primary: 0 98% 36%; /* CristAlex Red #b60202 */
+  /* Turquoise Fresh - Primary #48C9B0 (HSL: 168 61% 54%) */
+  --primary: 168 61% 54%; /* Medical Fresh Turquoise */
   --primary-foreground: 0 0% 100%;
  
-  /* Secondary Red #df0101 */
-  --secondary: 0 99% 44%; /* Secondary Red #df0101 */
+  /* Deeper Turquoise - Secondary #36B39A (HSL: 168 52% 46%) */
+  --secondary: 168 52% 46%; /* Rich Turquoise */
   --secondary-foreground: 0 0% 100%;
  
   --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 58%; /* Gray #959595 from brandbook */
+  --muted-foreground: 0 0% 45%; /* Darker gray for better readability */
  
-  /* Corporate Gray #959595 for accents */
-  --accent: 0 0% 58%; /* Gray #959595 */
+  /* Soft Blue Accent #6EC1E4 for variety */
+  --accent: 196 70% 65%; /* Soft Blue */
   --accent-foreground: 0 0% 100%;
  
   --border: 0 0% 90%;
   --input: 0 0% 90%;
-  --ring: 0 98% 36%;
+  --ring: 168 61% 54%;
 }
 
 @layer base {
@@ -105,12 +105,12 @@
 
 .brandbook-pattern {
   background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(182, 2, 2, 0.03) 35px, rgba(182, 2, 2, 0.03) 70px),
-    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(223, 1, 1, 0.02) 35px, rgba(223, 1, 1, 0.02) 70px);
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(72, 201, 176, 0.03) 35px, rgba(72, 201, 176, 0.03) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(110, 193, 228, 0.02) 35px, rgba(110, 193, 228, 0.02) 70px);
 }
 
 .brandbook-gradient {
-  background: linear-gradient(135deg, #b60202 0%, #df0101 50%, #b60202 100%);
+  background: linear-gradient(135deg, #48C9B0 0%, #36B39A 50%, #6EC1E4 100%);
 }
 
 .brandbook-overlay {
@@ -124,6 +124,6 @@
   right: 0;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent 0%, rgba(182, 2, 2, 0.05) 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(72, 201, 176, 0.08) 100%);
   pointer-events: none;
 }
