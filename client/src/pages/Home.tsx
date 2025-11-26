@@ -222,11 +222,9 @@ export default function Home() {
       {/* SERVICES CAROUSEL / PREVIEW */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-             <div className="max-w-2xl">
-               <h2 className="section-title text-left">{t("services.title")}</h2>
-               <p className="text-gray-500 text-lg">{t("services.subtitle")}</p>
-             </div>
+           <div className="text-center mb-16">
+             <h2 className="section-title">{t("services.title")}</h2>
+             <p className="text-gray-500 text-lg mb-6">{t("services.subtitle")}</p>
              <Link href="/services">
                <Button className="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white px-8 font-bold transition-all hover:shadow-lg active:shadow-md cursor-pointer">{t("services.see_all")}</Button>
              </Link>
