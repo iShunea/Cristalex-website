@@ -336,10 +336,10 @@ export default function Home() {
               {t("hero.subtitle")}
             </p>
           </div>
-          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+          <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
             <iframe
               src="https://my.businessdent.md/institutions/1718966/"
-              className="w-full h-[600px] border-0"
+              className="w-full h-[850px] border-0"
               title="Online Booking"
               sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
             />
