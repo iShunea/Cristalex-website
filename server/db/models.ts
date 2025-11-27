@@ -91,3 +91,34 @@ const ServiceSchema = new Schema<IService>({
 });
 
 export const Service = mongoose.model<IService>("Service", ServiceSchema);
+
+// Social Media Post Interface & Schema
+export interface ISocialMediaPost extends Document {
+  platform: string;
+  videoUrl: string;
+  titleRo: string;
+  titleRu: string;
+  titleEn: string;
+  descriptionRo?: string;
+  descriptionRu?: string;
+  descriptionEn?: string;
+  displayOrder: number;
+  isActive: boolean;
+  createdAt: Date;
+}
+
+const SocialMediaPostSchema = new Schema<ISocialMediaPost>({
+  platform: { type: String, required: true },
+  videoUrl: { type: String, required: true },
+  titleRo: { type: String, required: true },
+  titleRu: { type: String, required: true },
+  titleEn: { type: String, required: true },
+  descriptionRo: { type: String },
+  descriptionRu: { type: String },
+  descriptionEn: { type: String },
+  displayOrder: { type: Number, default: 0 },
+  isActive: { type: Boolean, default: true },
+  createdAt: { type: Date, default: Date.now },
+});
+
+export const SocialMediaPost = mongoose.model<ISocialMediaPost>("SocialMediaPost", SocialMediaPostSchema);

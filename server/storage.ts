@@ -8,7 +8,9 @@ import {
   type Testimonial,
   type InsertTestimonial,
   type Service,
-  type InsertService
+  type InsertService,
+  type SocialMediaPost,
+  type InsertSocialMediaPost
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -48,6 +50,14 @@ export interface IStorage {
   createService(service: InsertService): Promise<Service>;
   updateService(id: number, service: Partial<InsertService>): Promise<Service | undefined>;
   deleteService(id: number): Promise<boolean>;
+  
+  // Social Media Posts
+  getAllSocialMediaPosts(): Promise<SocialMediaPost[]>;
+  getActiveSocialMediaPosts(): Promise<SocialMediaPost[]>;
+  getSocialMediaPost(id: number): Promise<SocialMediaPost | undefined>;
+  createSocialMediaPost(post: InsertSocialMediaPost): Promise<SocialMediaPost>;
+  updateSocialMediaPost(id: number, post: Partial<InsertSocialMediaPost>): Promise<SocialMediaPost | undefined>;
+  deleteSocialMediaPost(id: number): Promise<boolean>;
 }
 
 import * as Models from "./db/models";
@@ -212,6 +222,111 @@ export class MongoStorage implements IStorage {
     if (!await this.ensureConnection()) return false;
     const result = await Models.Service.findByIdAndDelete(id);
     return !!result;
+  }
+
+  // Social Media Posts
+  async getAllSocialMediaPosts(): Promise<SocialMediaPost[]> {
+    if (!await this.ensureConnection()) {
+      return this.getStaticSocialMediaPosts();
+    }
+    const posts = await Models.SocialMediaPost.find().sort({ displayOrder: 1 }).lean();
+    return posts.length > 0 ? (posts as any) : this.getStaticSocialMediaPosts();
+  }
+
+  async getActiveSocialMediaPosts(): Promise<SocialMediaPost[]> {
+    if (!await this.ensureConnection()) {
+      return this.getStaticSocialMediaPosts();
+    }
+    const posts = await Models.SocialMediaPost.find({ isActive: true }).sort({ displayOrder: 1 }).lean();
+    return posts.length > 0 ? (posts as any) : this.getStaticSocialMediaPosts();
+  }
+
+  private getStaticSocialMediaPosts(): SocialMediaPost[] {
+    return [
+      {
+        id: 1,
+        platform: "instagram",
+        videoUrl: "https://www.instagram.com/p/PLACEHOLDER1/",
+        titleRo: "Transformare Completă - Zâmbet Hollywood",
+        titleRu: "Полное Преображение - Голливудская Улыбка",
+        titleEn: "Complete Transformation - Hollywood Smile",
+        descriptionRo: "Urmărește transformarea completă realizată de echipa CristAlex Dent",
+        descriptionRu: "Посмотрите полное преображение от команды CristAlex Dent",
+        descriptionEn: "Watch the complete transformation by CristAlex Dent team",
+        displayOrder: 1,
+        isActive: true,
+        createdAt: new Date("2024-11-01")
+      },
+      {
+        id: 2,
+        platform: "tiktok",
+        videoUrl: "https://www.tiktok.com/@placeholder/video/PLACEHOLDER2",
+        titleRo: "Recenzia Mariei - 5000+ Pacienți Mulțumiți",
+        titleRu: "Отзыв Марии - 5000+ Довольных Пациентов",
+        titleEn: "Maria's Review - 5000+ Happy Patients",
+        descriptionRo: "Ce spun pacienții noștri despre tratamentele dentare",
+        descriptionRu: "Что говорят наши пациенты о стоматологических процедурах",
+        descriptionEn: "What our patients say about dental treatments",
+        displayOrder: 2,
+        isActive: true,
+        createdAt: new Date("2024-11-10")
+      },
+      {
+        id: 3,
+        platform: "instagram",
+        videoUrl: "https://www.instagram.com/p/PLACEHOLDER3/",
+        titleRo: "Albire Profesională - Rezultate în 1 Ședință",
+        titleRu: "Профессиональное Отбеливание - Результаты за 1 Сеанс",
+        titleEn: "Professional Whitening - Results in 1 Session",
+        descriptionRo: "Tehnologie modernă de albire dentară la CristAlex Dent",
+        descriptionRu: "Современная технология отбеливания зубов в CristAlex Dent",
+        descriptionEn: "Modern teeth whitening technology at CristAlex Dent",
+        displayOrder: 3,
+        isActive: true,
+        createdAt: new Date("2024-11-15")
+      }
+    ];
+  }
+
+  async getSocialMediaPost(id: number): Promise<SocialMediaPost | undefined> {
+    if (!await this.ensureConnection()) {
+      const staticPosts = this.getStaticSocialMediaPosts();
+      return staticPosts.find(p => p.id === id);
+    }
+    try {
+      const post = await Models.SocialMediaPost.findById(id).lean();
+      return post as any;
+    } catch (error) {
+      const staticPosts = this.getStaticSocialMediaPosts();
+      return staticPosts.find(p => p.id === id);
+    }
+  }
+
+  async createSocialMediaPost(post: InsertSocialMediaPost): Promise<SocialMediaPost> {
+    if (!await this.ensureConnection()) throw new Error("MongoDB not connected");
+    const newPost = new Models.SocialMediaPost(post);
+    await newPost.save();
+    return newPost.toObject() as any;
+  }
+
+  async updateSocialMediaPost(id: number, post: Partial<InsertSocialMediaPost>): Promise<SocialMediaPost | undefined> {
+    if (!await this.ensureConnection()) return undefined;
+    try {
+      const updated = await Models.SocialMediaPost.findByIdAndUpdate(id, post, { new: true }).lean();
+      return updated as any;
+    } catch (error) {
+      return undefined;
+    }
+  }
+
+  async deleteSocialMediaPost(id: number): Promise<boolean> {
+    if (!await this.ensureConnection()) return false;
+    try {
+      const result = await Models.SocialMediaPost.findByIdAndDelete(id);
+      return !!result;
+    } catch (error) {
+      return false;
+    }
   }
 }
 

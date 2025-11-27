@@ -5,7 +5,8 @@ import {
   insertBlogPostSchema, 
   insertTeamMemberSchema, 
   insertTestimonialSchema, 
-  insertServiceSchema 
+  insertServiceSchema,
+  insertSocialMediaPostSchema
 } from "@shared/schema";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -287,6 +288,74 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error deleting service:", error);
       res.status(500).json({ error: "Failed to delete service" });
+    }
+  });
+
+  // ============================================
+  // SOCIAL MEDIA POSTS API
+  // ============================================
+  
+  app.get("/api/social-media-posts", async (req, res) => {
+    try {
+      const posts = await storage.getActiveSocialMediaPosts();
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching social media posts:", error);
+      res.status(500).json({ error: "Failed to fetch social media posts" });
+    }
+  });
+
+  app.get("/api/social-media-posts/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.getSocialMediaPost(id);
+      if (!post) {
+        return res.status(404).json({ error: "Social media post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching social media post:", error);
+      res.status(500).json({ error: "Failed to fetch social media post" });
+    }
+  });
+
+  app.post("/api/social-media-posts", async (req, res) => {
+    try {
+      const validated = insertSocialMediaPostSchema.parse(req.body);
+      const newPost = await storage.createSocialMediaPost(validated);
+      res.status(201).json(newPost);
+    } catch (error) {
+      console.error("Error creating social media post:", error);
+      res.status(400).json({ error: "Invalid social media post data" });
+    }
+  });
+
+  app.put("/api/social-media-posts/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const validated = insertSocialMediaPostSchema.partial().parse(req.body);
+      const updated = await storage.updateSocialMediaPost(id, validated);
+      if (!updated) {
+        return res.status(404).json({ error: "Social media post not found" });
+      }
+      res.json(updated);
+    } catch (error) {
+      console.error("Error updating social media post:", error);
+      res.status(400).json({ error: "Invalid social media post data" });
+    }
+  });
+
+  app.delete("/api/social-media-posts/:id", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const deleted = await storage.deleteSocialMediaPost(id);
+      if (!deleted) {
+        return res.status(404).json({ error: "Social media post not found" });
+      }
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting social media post:", error);
+      res.status(500).json({ error: "Failed to delete social media post" });
     }
   });
 

@@ -34,6 +34,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
 import { BeforeAfter } from "@/components/BeforeAfter";
+import { SocialReviews } from "@/components/SocialReviews";
 
 import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
@@ -482,6 +483,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SOCIAL MEDIA REVIEWS */}
+      <SocialReviews />
 
       {/* ABOUT US SECTION */}
       <section className="py-24 bg-white">

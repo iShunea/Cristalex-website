@@ -69,6 +69,13 @@ const resources = {
         test3_role: "Pacient",
         test3_text: "Mulțumesc din suflet echipei Cristalexdent pentru grija și profesionalismul de care au dat dovadă! Am făcut tratament și extracție, totul a decurs fără durere și cu multă atenție. Mi-a plăcut foarte mult atitudinea medicilor, în special Scutelnic Daniela și Zanoaga Oleg. M-am simțit în siguranță și bine îngrijită. Recomand cu încredere!"
       },
+      social_reviews: {
+        title: "Urmărește Transformările Pacienților Noștri",
+        subtitle: "Zâmbete înainte și după tratament, direct de pe Instagram și TikTok",
+        watch: "Urmărește pe",
+        loading: "Se încarcă...",
+        swipe_hint: "← Glisează pentru a vedea mai multe video-uri →"
+      },
       faq: {
         title: "Întrebări Frecvente",
         q1: "Cât costă un implant dentar?",
@@ -384,6 +391,13 @@ const resources = {
         test3_role: "Пациент",
         test3_text: "Огромное спасибо команде Cristalexdent за заботу и профессионализм! Прошла лечение и удаление, все прошло безболезненно и с большим вниманием. Очень понравилось отношение врачей, особенно Скутельник Даниелы и Зэноагэ Олега. Чувствовала себя в безопасности и под хорошим присмотром. Рекомендую с уверенностью!"
       },
+      social_reviews: {
+        title: "Смотрите Преображения Наших Пациентов",
+        subtitle: "Улыбки до и после лечения, прямо с Instagram и TikTok",
+        watch: "Смотрите на",
+        loading: "Загрузка...",
+        swipe_hint: "← Пролистайте, чтобы увидеть больше видео →"
+      },
       faq: {
         title: "Частые Вопросы",
         q1: "Сколько стоит зубной имплант?",
@@ -698,6 +712,13 @@ const resources = {
         test3_name: "Valeria Ivanov",
         test3_role: "Patient",
         test3_text: "Thank you from the bottom of my heart to the Cristalexdent team for the care and professionalism they showed! I had treatment and extraction, everything went painlessly and with great attention. I really liked the attitude of the doctors, especially Scutelnic Daniela and Zanoaga Oleg. I felt safe and well cared for. I confidently recommend!"
+      },
+      social_reviews: {
+        title: "Watch Our Patients' Transformations",
+        subtitle: "Before and after smiles, straight from Instagram and TikTok",
+        watch: "Watch on",
+        loading: "Loading...",
+        swipe_hint: "← Swipe to see more videos →"
       },
       faq: {
         title: "Frequently Asked Questions",

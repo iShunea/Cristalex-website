@@ -92,3 +92,26 @@ export const insertServiceSchema = createInsertSchema(services).omit({
 });
 export type InsertService = z.infer<typeof insertServiceSchema>;
 export type Service = typeof services.$inferSelect;
+
+// Social Media Posts Table
+export const socialMediaPosts = pgTable("social_media_posts", {
+  id: serial("id").primaryKey(),
+  platform: text("platform").notNull(),
+  videoUrl: text("video_url").notNull(),
+  titleRo: text("title_ro").notNull(),
+  titleRu: text("title_ru").notNull(),
+  titleEn: text("title_en").notNull(),
+  descriptionRo: text("description_ro"),
+  descriptionRu: text("description_ru"),
+  descriptionEn: text("description_en"),
+  displayOrder: integer("display_order").notNull().default(0),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
+export const insertSocialMediaPostSchema = createInsertSchema(socialMediaPosts).omit({
+  id: true,
+  createdAt: true,
+});
+export type InsertSocialMediaPost = z.infer<typeof insertSocialMediaPostSchema>;
+export type SocialMediaPost = typeof socialMediaPosts.$inferSelect;
