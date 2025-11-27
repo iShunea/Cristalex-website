@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { BookingModal } from "@/components/BookingModal";
 
 import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
 import drRobu from "@assets/dr_ludmila_robu_real.jpg";
@@ -167,6 +168,22 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* CTA Section - Booking */}
+      <section className="py-16 bg-gradient-to-r from-primary via-secondary to-accent brandbook-pattern">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            {t("cta_banner.free_title")}
+          </h2>
+          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+            {t("cta_banner.free_subtitle")}
+          </p>
+          <BookingModal 
+            buttonText={t("cta_banner.free_btn")}
+            buttonClassName="bg-white text-primary hover:bg-gray-100 active:bg-gray-200 font-bold px-10 h-14 text-lg shadow-2xl rounded-full transition-all hover:shadow-xl active:shadow-lg cursor-pointer"
+          />
+        </div>
+      </section>
     </Layout>
   );
 }
