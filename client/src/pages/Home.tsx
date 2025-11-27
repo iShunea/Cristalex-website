@@ -123,7 +123,7 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary/10 via-white to-accent/5 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary/10 via-white to-accent/5 overflow-hidden pb-16">
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
