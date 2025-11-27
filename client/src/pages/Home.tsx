@@ -341,11 +341,13 @@ export default function Home() {
           {/* Booking Widget - Always Open */}
           <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
             <iframe
-              src="https://my.businessdent.md/widgets/booking?inst_id=1718966"
+              src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
               className="w-full h-[800px] border-0"
               title="Programare Online - CristAlex Dent"
-              sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+              sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
               loading="lazy"
+              referrerPolicy="no-referrer"
+              data-testid="iframe-booking-inline"
             />
           </div>
         </div>
