@@ -205,7 +205,7 @@ export default function Home() {
       </section>
 
       {/* STATS BANNER - Fresh Light Theme */}
-      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-12 text-white relative z-20 shadow-lg">
+      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-12 text-white relative z-20 shadow-lg mt-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x divide-white/10">
             {stats.map((stat, i) => (
