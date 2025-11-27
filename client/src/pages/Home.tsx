@@ -150,7 +150,7 @@ export default function Home() {
               <p className="text-base md:text-xl text-slate-700 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-primary pl-6">
                 {t("hero.subtitle")}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-6">
                 <BookingModal 
                   buttonText={t("hero.cta")}
                   buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold px-8 h-14 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
