@@ -330,15 +330,24 @@ export default function Home() {
       {/* CTA BANNER INTERMEDIAR - Strategic Call-to-Action */}
       <section className="py-16 bg-gradient-to-r from-primary to-secondary relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-10"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("cta_banner.free_title")}</h2>
-          <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-            {t("cta_banner.free_subtitle")}
-          </p>
-          <BookingModal 
-            buttonText={t("cta_banner.free_btn")}
-            buttonClassName="bg-white text-primary hover:bg-gray-100 active:bg-gray-200 font-bold px-10 h-14 text-lg shadow-2xl rounded-full transition-all hover:shadow-xl active:shadow-lg cursor-pointer"
-          />
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t("cta_banner.free_title")}</h2>
+            <p className="text-white/90 text-lg max-w-2xl mx-auto">
+              {t("cta_banner.free_subtitle")}
+            </p>
+          </div>
+          
+          {/* Booking Widget - Always Open */}
+          <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <iframe
+              src="https://my.businessdent.md/widgets/booking?inst_id=1718966"
+              className="w-full h-[800px] border-0"
+              title="Programare Online - CristAlex Dent"
+              sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
 
