@@ -67,7 +67,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <img src={logo} alt={t("images.logo_alt")} className="h-12 w-auto" />
@@ -191,7 +191,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow pb-20 md:pb-0">
+      <main className="flex-grow pb-20 md:pb-0 pt-20">
         {children}
       </main>
 
