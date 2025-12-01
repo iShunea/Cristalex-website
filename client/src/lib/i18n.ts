@@ -320,8 +320,8 @@ const resources = {
         orthodontics: "Ortodonție",
         aesthetic: "Estetică Dentară",
         surgery: "Chirurgie",
-        developed_by: "Site elaborat de",
-        booking_system: "Sistem de rezervări asigurat de"
+        developed_by: "Website dezvoltat de",
+        and: "și"
       }
     }
   },
@@ -643,8 +643,8 @@ const resources = {
         orthodontics: "Ортодонтия",
         aesthetic: "Эстетическая Стоматология",
         surgery: "Хирургия",
-        developed_by: "Сайт разработан компанией",
-        booking_system: "Система бронирования обеспечена"
+        developed_by: "Веб-сайт разработан",
+        and: "и"
       }
     }
   },
@@ -967,7 +967,7 @@ const resources = {
         aesthetic: "Aesthetic Dentistry",
         surgery: "Surgery",
         developed_by: "Website developed by",
-        booking_system: "Booking system powered by"
+        and: "and"
       }
     }
   }
