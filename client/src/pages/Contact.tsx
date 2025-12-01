@@ -17,6 +17,20 @@ export default function Contact() {
         </div>
       </div>
 
+      {/* Map Section */}
+      <div className="w-full h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2721.8936256546166!2d28.365234!3d47.22463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1c1e1c1e1c1c1%3A0x1c1c1c1c1c1c1c1c!2sstr.%20Alba%20Iulia%2023%2C%20Chi%C8%99in%C4%83u%2C%20Moldova!5e0!3m2!1sen!2smd!4v1234567890"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen={true}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="CristAlex Dent Location"
+        ></iframe>
+      </div>
+
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Info */}
@@ -30,7 +44,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-gray-900">{t("contact_page.address")}</h4>
                   <p className="text-gray-600">{t("contact.address")}</p>
-                  <a href="#" className="text-primary text-sm font-medium hover:underline mt-1 inline-block">{t("contact_page.view_map")}</a>
+                  <a href="https://www.google.com/maps/search/str.+Alba+Iulia+23,+Chi%C8%99in%C4%83u,+Moldova" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline mt-1 inline-block">{t("contact_page.view_map")}</a>
                 </div>
               </div>
 
