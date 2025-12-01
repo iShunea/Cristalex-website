@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, Youtube, MessageCircle, Check } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, Video } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
@@ -240,31 +240,34 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <h4 className="font-bold mb-6 text-lg text-slate-900">{t("footer.social")}</h4>
               <div className="flex gap-4">
                 <a 
-                  href="https://facebook.com/cristalexdent" 
+                  href="https://www.facebook.com/cristalexdent" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
                   aria-label="Facebook"
+                  data-testid="link-facebook"
                 >
                   <Facebook className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
                 <a 
-                  href="https://instagram.com/cristalexdent" 
+                  href="https://www.instagram.com/cristalexdent/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
                   aria-label="Instagram"
+                  data-testid="link-instagram"
                 >
                   <Instagram className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
                 <a 
-                  href="https://youtube.com/@cristalexdent" 
+                  href="https://www.tiktok.com/@cristalexdent" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-10 h-10 bg-primary/10 rounded-full hover:bg-primary transition-colors cursor-pointer flex items-center justify-center group"
-                  aria-label="YouTube"
+                  aria-label="TikTok"
+                  data-testid="link-tiktok"
                 >
-                  <Youtube className="w-5 h-5 text-primary group-hover:text-white" />
+                  <Video className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
               </div>
             </div>
