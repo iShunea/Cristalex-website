@@ -276,8 +276,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="text-center text-gray-500 text-sm mb-4">
               {t("footer.rights")}
             </div>
-            <div className="text-center text-gray-600 text-sm">
-              {t("footer.developed_by")} <a href="https://ishunea.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">iShunea Tech Solutions</a>
+            <div className="text-center text-gray-600 text-sm space-y-2">
+              <div>
+                {t("footer.developed_by")} <a href="https://ishunea.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">iShunea Tech Solutions</a>
+              </div>
+              <div>
+                {t("footer.booking_system")} <a href="https://easyreserv.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">Easyreserv.io</a>
+              </div>
             </div>
           </div>
         </div>
