@@ -93,14 +93,14 @@ export default function Services() {
         <div className="space-y-24">
           {categories.map((cat, idx) => (
             <div key={idx} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}>
-              <div className="lg:w-1/2">
+              <div className="lg:w-2/5">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                   <img src={cat.image} alt={cat.title} className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
                 </div>
               </div>
               
-              <div className="lg:w-1/2">
+              <div className="lg:w-3/5">
                 <div className="flex items-center gap-3 mb-4">
                    <div className="bg-red-50 text-primary px-3 py-1 rounded text-sm font-bold tracking-wider uppercase">
                      {t("services.specialization")}
