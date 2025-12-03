@@ -98,12 +98,12 @@ export default function Home() {
 
 
   const staticDoctors = [
-    { name: t("about.doctors.doctor1_name"), role: t("about.doctors.doctor1_role"), img: drScutelnic, bio: t("about.doctors.doctor1_bio") },
-    { name: t("about.doctors.doctor2_name"), role: t("about.doctors.doctor2_role"), img: drRobu, bio: t("about.doctors.doctor2_bio") },
-    { name: t("about.doctors.doctor3_name"), role: t("about.doctors.doctor3_role"), img: drPlesca, bio: t("about.doctors.doctor3_bio") },
-    { name: t("about.doctors.doctor4_name"), role: t("about.doctors.doctor4_role"), img: drZanoaga, bio: t("about.doctors.doctor4_bio") },
-    { name: t("about.doctors.doctor5_name"), role: t("about.doctors.doctor5_role"), img: drCraciun, bio: t("about.doctors.doctor5_bio") },
-    { name: t("about.doctors.doctor6_name"), role: t("about.doctors.doctor6_role"), img: asstBarbarasa, bio: t("about.doctors.doctor6_bio") }
+    { name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
+    { name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
+    { name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
+    { name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
+    { name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
+    { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
   ];
 
   const staticTestimonials = [
