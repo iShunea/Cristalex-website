@@ -42,19 +42,19 @@
   --card: 0 0% 100%;
   --card-foreground: 215 28% 17%;
  
-  /* Turquoise Fresh - Primary #48C9B0 (HSL: 168 61% 54%) */
-  --primary: 168 61% 54%; /* Medical Fresh Turquoise */
+  /* Brand Burgundy - Primary #b7062b (HSL: 348 88% 37%) */
+  --primary: 348 88% 37%; /* Brand Burgundy */
   --primary-foreground: 0 0% 100%;
  
-  /* Deeper Turquoise - Secondary #36B39A (HSL: 168 52% 46%) */
-  --secondary: 168 52% 46%; /* Rich Turquoise */
+  /* Darker Burgundy - Secondary #8b0420 (HSL: 348 88% 28%) */
+  --secondary: 348 88% 28%; /* Dark Burgundy */
   --secondary-foreground: 0 0% 100%;
  
   --muted: 0 0% 96%;
   --muted-foreground: 0 0% 45%; /* Darker gray for better readability */
  
-  /* Soft Blue Accent #6EC1E4 for variety */
-  --accent: 196 70% 65%; /* Soft Blue */
+  /* Light Burgundy Accent for variety */
+  --accent: 348 88% 50%; /* Light Burgundy */
   --accent-foreground: 0 0% 100%;
  
   --border: 0 0% 90%;
@@ -105,12 +105,12 @@
 
 .brandbook-pattern {
   background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(72, 201, 176, 0.03) 35px, rgba(72, 201, 176, 0.03) 70px),
-    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(110, 193, 228, 0.02) 35px, rgba(110, 193, 228, 0.02) 70px);
+    repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(183, 6, 43, 0.03) 35px, rgba(183, 6, 43, 0.03) 70px),
+    repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(183, 6, 43, 0.02) 35px, rgba(183, 6, 43, 0.02) 70px);
 }
 
 .brandbook-gradient {
-  background: linear-gradient(135deg, #48C9B0 0%, #36B39A 50%, #6EC1E4 100%);
+  background: linear-gradient(135deg, #b7062b 0%, #8b0420 50%, #c41549 100%);
 }
 
 .brandbook-overlay {
