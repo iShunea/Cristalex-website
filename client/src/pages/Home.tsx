@@ -124,14 +124,14 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-primary/10 via-white to-accent/5 overflow-hidden pb-16">
+      <section className="relative min-h-[90vh] flex items-center bg-gradient-to-br from-red-50/20 via-white to-red-50/10 overflow-hidden pb-16">
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImage} 
             alt={t("images.hero_interior_alt")} 
             className="w-full h-full object-cover opacity-50 scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-primary/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-red-50/10" />
         </div>
         
         <div className="container mx-auto px-4 relative z-10 pt-6 md:pt-20">
@@ -142,22 +142,22 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="flex items-center gap-2 mb-6">
-                <span className="h-px w-12 bg-primary"></span>
-                <span className="text-primary font-bold tracking-widest uppercase text-sm">CristAlex Dent Professional</span>
+                <span className="h-px w-12 bg-red-600"></span>
+                <span className="text-red-600 font-bold tracking-widest uppercase text-sm">CristAlex Dent Professional</span>
               </div>
               <h1 className="text-4xl md:text-7xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
                 {t("hero.title")}
               </h1>
-              <p className="text-base md:text-xl text-slate-700 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-primary pl-6">
+              <p className="text-base md:text-xl text-slate-700 mb-6 md:mb-10 leading-relaxed max-w-xl border-l-4 border-red-600 pl-6">
                 {t("hero.subtitle")}
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
                 <BookingModal 
                   buttonText={t("hero.cta")}
-                  buttonClassName="bg-primary hover:bg-primary/90 text-white font-bold px-8 h-14 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
+                  buttonClassName="bg-red-600 hover:bg-red-700 text-white font-bold px-8 h-14 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all"
                 />
                 <Link href="/services">
-                  <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-white font-bold px-8 h-14 text-lg rounded-lg shadow-md">
+                  <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-600 hover:text-white font-bold px-8 h-14 text-lg rounded-lg shadow-md">
                     {t("nav.services")}
                   </Button>
                 </Link>
@@ -173,8 +173,8 @@ export default function Home() {
             >
               <div className="bg-white p-8 rounded-lg shadow-2xl max-w-md ml-auto relative z-10">
                 <div className="flex items-start gap-4 mb-6">
-                  <div className="bg-primary/10 p-3 rounded-full">
-                    <PhoneCall className="w-6 h-6 text-primary" />
+                  <div className="bg-red-50 p-3 rounded-full">
+                    <PhoneCall className="w-6 h-6 text-red-600" />
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-slate-900">{t("hero.emergency")}</h3>
@@ -198,15 +198,15 @@ export default function Home() {
                 </div>
               </div>
               {/* Decorative Pattern */}
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-secondary/20 rounded-full blur-2xl"></div>
-              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl"></div>
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-orange-200/20 rounded-full blur-2xl"></div>
+              <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-red-200/20 rounded-full blur-2xl"></div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* STATS BANNER - Fresh Light Theme */}
-      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-12 text-white relative z-20 shadow-lg -mt-8">
+      <section className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 py-12 text-white relative z-20 shadow-lg -mt-8">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center md:divide-x divide-white/10">
             {stats.map((stat, i) => (
@@ -610,16 +610,16 @@ export default function Home() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-20 bg-primary relative overflow-hidden brandbook-gradient">
+      <section className="py-20 bg-red-600 relative overflow-hidden" style={{background: 'linear-gradient(135deg, #dc2626 0%, #991b1b 100%)'}}>
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">{t("cta_banner.title")}</h2>
-          <p className="text-red-100 text-lg mb-10 max-w-2xl mx-auto">
+          <p className="text-white/90 text-lg mb-10 max-w-2xl mx-auto">
             {t("cta_banner.text")}
           </p>
           <BookingModal 
             buttonText={t("cta_banner.btn")}
-            buttonClassName="bg-white text-primary hover:bg-gray-100 font-bold px-12 h-16 text-xl shadow-2xl rounded-full"
+            buttonClassName="bg-white text-red-600 hover:bg-gray-100 font-bold px-12 h-16 text-xl shadow-2xl rounded-full"
           />
         </div>
       </section>
