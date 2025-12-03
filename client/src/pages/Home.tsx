@@ -418,10 +418,10 @@ export default function Home() {
                       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
                         <div className="h-[350px] overflow-hidden relative">
                           <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" style={{filter: 'brightness(1.2)'}} />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent opacity-100 group-hover:opacity-80 transition-opacity" />
                           <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
-                            <h3 className="text-xl font-bold text-white">{doc.name}</h3>
-                            <p className="text-primary-foreground text-sm font-medium">{doc.role}</p>
+                            <h3 className="text-xl font-bold text-white drop-shadow-lg">{doc.name}</h3>
+                            <p className="text-white text-sm font-medium drop-shadow-lg">{doc.role}</p>
                           </div>
                         </div>
                         <div className="p-6">
