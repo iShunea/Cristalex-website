@@ -50,14 +50,14 @@ function buildStructuredContent(post: any, lang: string): string {
   const conclusion = getFieldByLang(post, 'conclusion', lang);
 
   let html = '';
-  if (intro) html += `<p>${intro}</p>`;
-  if (h1Title) html += `<h2>${h1Title}</h2>`;
-  if (h1Text) html += `<p>${h1Text}</p>`;
-  if (h2Title) html += `<h2>${h2Title}</h2>`;
-  if (h2Text) html += `<p>${h2Text}</p>`;
-  if (h3Title) html += `<h2>${h3Title}</h2>`;
-  if (h3Text) html += `<p>${h3Text}</p>`;
-  if (conclusion) html += `<p><strong>${conclusion}</strong></p>`;
+  if (intro) html += `<p style="margin-bottom: 1.5rem;">${intro}</p>`;
+  if (h1Title) html += `<h2 style="margin-top: 2rem; margin-bottom: 1rem;">${h1Title}</h2>`;
+  if (h1Text) html += `<p style="margin-bottom: 1.5rem;">${h1Text}</p>`;
+  if (h2Title) html += `<h2 style="margin-top: 2rem; margin-bottom: 1rem;">${h2Title}</h2>`;
+  if (h2Text) html += `<p style="margin-bottom: 1.5rem;">${h2Text}</p>`;
+  if (h3Title) html += `<h2 style="margin-top: 2rem; margin-bottom: 1rem;">${h3Title}</h2>`;
+  if (h3Text) html += `<p style="margin-bottom: 1.5rem;">${h3Text}</p>`;
+  if (conclusion) html += `<p style="margin-top: 2rem; margin-bottom: 1.5rem;"><strong>${conclusion}</strong></p>`;
   
   return html;
 }
