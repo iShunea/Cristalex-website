@@ -110,15 +110,30 @@ export default function Services() {
     return service.features || [];
   };
 
+  // Helper to get service field with language suffix
+  const getServiceField = (service: any, fieldBase: string) => {
+    const lang = i18n.language;
+    const suffix = lang === 'ro' ? 'Ro' : lang === 'ru' ? 'Ru' : 'En';
+    // Try language-specific field first (e.g., titleRo)
+    if (service[`${fieldBase}${suffix}`]) return service[`${fieldBase}${suffix}`];
+    // Fallback to other languages
+    if (service[`${fieldBase}En`]) return service[`${fieldBase}En`];
+    if (service[`${fieldBase}Ro`]) return service[`${fieldBase}Ro`];
+    // Fallback to base field or Key field
+    if (service[fieldBase]) return service[fieldBase];
+    if (service[`${fieldBase}Key`]) return service[`${fieldBase}Key`];
+    return '';
+  };
+
   // Use API data if available, otherwise fall back to static data
   const categories = externalServices && externalServices.length > 0
-    ? externalServices.map((service, idx) => ({
+    ? externalServices.map((service: any, idx) => ({
         id: service._id,
-        title: getTranslatedField(service, 'name' as any, i18n.language, service.name || ''),
-        desc: getTranslatedField(service, 'description' as any, i18n.language, service.description || ''),
+        title: getServiceField(service, 'title') || getTranslatedField(service, 'name' as any, i18n.language, service.name || service.titleKey || ''),
+        desc: getServiceField(service, 'desc') || getTranslatedField(service, 'description' as any, i18n.language, service.description || service.descKey || ''),
         price: service.price || '',
         features: getTranslatedFeatures(service),
-        image: service.image || categoryImages[service.category || ''] || (idx % 3 === 0 ? implantImage : idx % 3 === 1 ? orthoImage : aestheticImage)
+        image: service.imageUrl || service.image || categoryImages[service.category || ''] || (idx % 3 === 0 ? implantImage : idx % 3 === 1 ? orthoImage : aestheticImage)
       }))
     : staticCategories;
 

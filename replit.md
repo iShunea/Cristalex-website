@@ -8,12 +8,14 @@ The application serves as a marketing and information platform for potential pat
 
 ## Recent Changes
 
-**December 9, 2024 - Blog Page API Integration Fix:**
+**December 9, 2024 - Blog & Services API Integration Fix:**
 - Fixed Blog.tsx to properly display title and excerpt from external API
 - Added transformation to map `blogTitleRo/En/Ru` fields to `title` property
 - Added transformation to map `blogIntroRo/En/Ru` fields to `excerpt` property
 - Added `label` to `category` mapping for proper category badge display
 - Added default author fallback
+- Updated Services.tsx to handle `titleKey`/`descKey` and language-specific fields from API
+- Services now fetches from external `/api/services` endpoint
 
 **November 26, 2024 - Fresh Medical Design Overhaul:**
 - **Color Scheme Pivot:** Transitioned from saturated red brandbook (#b60202, #df0101) to fresh, light medical aesthetic with turquoise/soft blue palette (Primary #48C9B0, Secondary #36B39A, Accent #6EC1E4)
