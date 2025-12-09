@@ -1,17 +1,51 @@
 import { Layout } from "@/components/layout/Layout";
 import { useRoute, Link } from "wouter";
 import { useBlogPosts } from "./Blog";
-import { Calendar, User, ArrowLeft, Share2, Clock } from "lucide-react";
+import { Calendar, User, ArrowLeft, Share2, Clock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
 import NotFound from "./not-found";
 import { useTranslation } from "react-i18next";
+import { useQuery } from "@tanstack/react-query";
+import { getExternalBlogPosts, ExternalBlogPost, getTranslatedField } from "@/lib/api";
 
 export default function BlogPost() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [, params] = useRoute("/blog/:id");
   const blogPosts = useBlogPosts();
-  const post = blogPosts.find(p => p.id === Number(params?.id));
+  
+  const { data: apiPosts, isLoading } = useQuery({
+    queryKey: ["blog-posts"],
+    queryFn: getExternalBlogPosts,
+  });
+
+  // Try to find in local posts first (numeric ID)
+  const localPost = blogPosts.find(p => p.id === Number(params?.id));
+  
+  // Try to find in API posts (string _id)
+  const apiPost = apiPosts?.find(p => p._id === params?.id);
+  
+  // Normalize API post to match local post format
+  const post = localPost || (apiPost ? {
+    id: apiPost._id,
+    title: getTranslatedField(apiPost, 'title' as any, i18n.language, apiPost.title || ''),
+    excerpt: getTranslatedField(apiPost, 'excerpt' as any, i18n.language, apiPost.excerpt || ''),
+    content: getTranslatedField(apiPost, 'content' as any, i18n.language, apiPost.content || ''),
+    author: apiPost.author || 'CristAlex Dent',
+    category: apiPost.category || 'General',
+    date: apiPost.publishedAt ? new Date(apiPost.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : '',
+    image: apiPost.image || '',
+  } : null);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="flex justify-center items-center min-h-screen">
+          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+        </div>
+      </Layout>
+    );
+  }
 
   if (!post) return <NotFound />;
 
