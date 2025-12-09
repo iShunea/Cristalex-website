@@ -354,8 +354,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US - Fresh Gradient Background */}
-      <section className="py-24 bg-gradient-to-br from-primary/10 via-white to-accent/10 brandbook-pattern">
+      {/* WHY CHOOSE US */}
+      <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="section-title">{t("features.title")}</h2>
