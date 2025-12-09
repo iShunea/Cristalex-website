@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { Instagram, Music } from "lucide-react";
 import {
   Carousel,
@@ -10,6 +11,16 @@ import {
 } from "@/components/ui/carousel";
 import { getExternalSocialMediaPosts, ExternalSocialMediaPost, getTranslatedField } from "@/lib/api";
 
+function extractTikTokVideoId(url: string): string | null {
+  const match = url.match(/video\/(\d+)/);
+  return match ? match[1] : null;
+}
+
+function extractInstagramPostId(url: string): string | null {
+  const match = url.match(/\/(p|reel|reels)\/([A-Za-z0-9_-]+)/);
+  return match ? match[2] : null;
+}
+
 export function SocialReviews() {
   const { t, i18n } = useTranslation();
   
@@ -19,6 +30,38 @@ export function SocialReviews() {
   });
 
   const posts = apiPosts || [];
+
+  useEffect(() => {
+    if (posts.length === 0) return;
+
+    const hasTikTok = posts.some(p => p.platform === "tiktok");
+    const hasInstagram = posts.some(p => p.platform === "instagram");
+
+    if (hasTikTok && !document.querySelector('script[src*="tiktok.com/embed"]')) {
+      const script = document.createElement("script");
+      script.src = "https://www.tiktok.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    if (hasInstagram && !document.querySelector('script[src*="instagram.com/embed"]')) {
+      const script = document.createElement("script");
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    const timer = setTimeout(() => {
+      if ((window as any).tiktokEmbed?.lib?.render) {
+        (window as any).tiktokEmbed.lib.render();
+      }
+      if ((window as any).instgrm?.Embeds?.process) {
+        (window as any).instgrm.Embeds.process();
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [posts]);
 
   if (isLoading) {
     return (
@@ -69,39 +112,39 @@ export function SocialReviews() {
                       </div>
                     </div>
 
-                    {/* Video/Thumbnail */}
-                    <div className="aspect-[9/16] relative group">
-                      {((post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail) ? (
-                        <img src={(post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail} alt={post.title || ''} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center ${
-                          post.platform === "instagram" 
-                            ? "bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400" 
-                            : "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
-                        }`}>
-                          <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-6">
-                            {post.platform === "instagram" ? (
-                              <Instagram className="w-10 h-10 text-white" />
-                            ) : (
-                              <Music className="w-10 h-10 text-white" />
-                            )}
+                    {/* Video Embed */}
+                    <div className="aspect-[9/16] relative bg-black flex items-center justify-center overflow-hidden">
+                      {post.platform === "tiktok" && (post as any).videoUrl ? (
+                        <blockquote 
+                          className="tiktok-embed w-full h-full" 
+                          cite={(post as any).videoUrl}
+                          data-video-id={extractTikTokVideoId((post as any).videoUrl) || ""}
+                          style={{ maxWidth: "100%", minWidth: "100%" }}
+                        >
+                          <section className="flex items-center justify-center h-full">
+                            <div className="text-white text-center p-4">
+                              <Music className="w-12 h-12 mx-auto mb-2 animate-pulse" />
+                              <p className="text-sm">Se încarcă...</p>
+                            </div>
+                          </section>
+                        </blockquote>
+                      ) : post.platform === "instagram" && (post as any).videoUrl ? (
+                        <blockquote 
+                          className="instagram-media w-full h-full" 
+                          data-instgrm-permalink={(post as any).videoUrl}
+                          data-instgrm-version="14"
+                          style={{ maxWidth: "100%", minWidth: "100%", margin: 0 }}
+                        >
+                          <div className="flex items-center justify-center h-full">
+                            <div className="text-white text-center p-4">
+                              <Instagram className="w-12 h-12 mx-auto mb-2 animate-pulse" />
+                              <p className="text-sm">Se încarcă...</p>
+                            </div>
                           </div>
-                          <p className="text-white/90 text-sm font-medium leading-relaxed max-w-[200px] line-clamp-4">
-                            {getTranslatedField(post, 'description' as any, i18n.language, (post as any).descriptionRo || '')}
-                          </p>
-                        </div>
-                      )}
-                      {((post as any).videoUrl || post.url) && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity">
-                          <a
-                            href={(post as any).videoUrl || post.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-white text-gray-900 px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:scale-105"
-                            data-testid={`link-video-${post._id}`}
-                          >
-                            {t("social_reviews.watch")} →
-                          </a>
+                        </blockquote>
+                      ) : (
+                        <div className="flex items-center justify-center h-full text-white">
+                          <p>Video indisponibil</p>
                         </div>
                       )}
                     </div>
