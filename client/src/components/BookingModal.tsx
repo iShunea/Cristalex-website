@@ -36,12 +36,12 @@ export function BookingModal({ trigger, buttonText = "Programare Online", button
       
       <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 gap-0 flex flex-col">
         <DialogHeader className="px-6 py-4 border-b border-gray-200 flex-shrink-0">
-          <DialogTitle className="text-xl font-bold text-slate-900">Programare Online - CristAlex Dent</DialogTitle>
+          <DialogTitle className="text-xl font-bold text-slate-900">Programare Online - Cristalexdent</DialogTitle>
         </DialogHeader>
         <div className="w-full flex-1 min-h-0">
           <iframe
             src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
-            title="Programare Online CristAlex Dent"
+            title="Programare Online Cristalexdent"
             className="w-full h-full border-0"
             sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
             loading="lazy"

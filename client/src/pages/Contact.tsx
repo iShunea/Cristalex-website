@@ -27,7 +27,7 @@ export default function Contact() {
           allowFullScreen={true}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="CristAlex Dent Location"
+          title="Cristalexdent Location"
         ></iframe>
       </div>
 

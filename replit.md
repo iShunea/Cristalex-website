@@ -1,8 +1,8 @@
-# CristAlex Dent - Dental Clinic Website
+# Cristalexdent - Dental Clinic Website
 
 ## Overview
 
-CristAlex Dent is a modern dental clinic website built as a full-stack web application. The project provides a complete online presence for a dental practice, featuring service information, team profiles, blog posts, testimonials, and online booking integration. It's designed to be deployed on serverless platforms like Vercel while maintaining flexibility for traditional hosting.
+Cristalexdent is a modern dental clinic website built as a full-stack web application. The project provides a complete online presence for a dental practice, featuring service information, team profiles, blog posts, testimonials, and online booking integration. It's designed to be deployed on serverless platforms like Vercel while maintaining flexibility for traditional hosting.
 
 The application serves as a marketing and information platform for potential patients, allowing them to learn about services, read educational content, view team credentials, and book appointments through an integrated third-party booking system.
 

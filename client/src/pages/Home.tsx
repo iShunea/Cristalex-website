@@ -143,7 +143,7 @@ export default function Home() {
             >
               <div className="flex items-center gap-2 mb-6">
                 <span className="h-px w-12 bg-primary"></span>
-                <span className="text-primary font-bold tracking-widest uppercase text-sm">CristAlex Dent Professional</span>
+                <span className="text-primary font-bold tracking-widest uppercase text-sm">Cristalexdent Professional</span>
               </div>
               <h1 className="text-4xl md:text-7xl font-bold text-slate-900 mb-4 md:mb-6 leading-tight">
                 {t("hero.title")}
@@ -344,7 +344,7 @@ export default function Home() {
             <iframe
               src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
               className="w-full h-[800px] border-0"
-              title="Programare Online - CristAlex Dent"
+              title="Programare Online - Cristalexdent"
               sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
               loading="lazy"
               referrerPolicy="no-referrer"

@@ -19,13 +19,13 @@ const resources = {
         change_language: "Schimbă limba"
       },
       images: {
-        logo_alt: "CristAlex Dent",
-        team_photo_alt: "Echipa CristAlex Dent",
+        logo_alt: "Cristalexdent",
+        team_photo_alt: "Echipa Cristalexdent",
         hero_interior_alt: "Interior Clinică Dentară"
       },
       hero: {
         title: "Excelență în Stomatologie Modernă",
-        subtitle: "Redescoperă încrederea zâmbetului tău la CristAlex Dent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
+        subtitle: "Redescoperă încrederea zâmbetului tău la Cristalexdent. Tehnologie digitală 3D, materiale premium și o echipă dedicată perfecțiunii.",
         cta: "Programează o Consultație",
         emergency: "Urgențe: +373 78388000",
         available_247: "Disponibili pentru tine 24/7",
@@ -45,7 +45,7 @@ const resources = {
         doctors: "Medici Specialiști"
       },
       features: {
-        title: "De ce să alegi CristAlex Dent?",
+        title: "De ce să alegi Cristalexdent?",
         tech_title: "Tehnologie Digitală 3D",
         tech_desc: "Scanare intraorală și planificare digitală pentru precizie maximă și confort.",
         pain_title: "Tratamente Fără Durere",
@@ -64,7 +64,7 @@ const resources = {
         test1_text: "Deja am cel puțin 10 zile de când mi-au fost tratați dinții de doamna Daniela. Nu pot să vă redau ce înseamnă satisfacția de a avea o dantura sănătoasă, de a avea plăcerea de a mânca, bea, în lipsa de stress. Mulțumesc mult Doamnei Daniela, Domnului Alexandru, Doamnei Ludmila, pentru bucuria de trai cu o dantura sănătoasă. După parerea mea cea mai bună clinică din Moldova, cu cei mai profesioniști și extraordinari specialiști.",
         test2_name: "Robert Begu",
         test2_role: "Pacient",
-        test2_text: "Servicii foarte bune la Cristalex Dent, recomand cu încredere!",
+        test2_text: "Servicii foarte bune la Cristalexdent, recomand cu încredere!",
         test3_name: "Valeria Ivanov",
         test3_role: "Pacient",
         test3_text: "Mulțumesc din suflet echipei Cristalexdent pentru grija și profesionalismul de care au dat dovadă! Am făcut tratament și extracție, totul a decurs fără durere și cu multă atenție. Mi-a plăcut foarte mult atitudinea medicilor, în special Scutelnic Daniela și Zanoaga Oleg. M-am simțit în siguranță și bine îngrijită. Recomand cu încredere!"
@@ -181,17 +181,17 @@ const resources = {
       },
       about: {
         title: "Despre Noi",
-        subtitle: "Cristalex Dent – Zâmbetul tău, pasiunea noastră",
+        subtitle: "Cristalexdent – Zâmbetul tău, pasiunea noastră",
         history_title: "Istoria Noastră",
         team_subtitle: "Echipa noastră de specialiști pregătiți să îți ofere cel mai bun tratament.",
         read_more: "Citește mai mult",
         blog_title: "Articole Recente",
         blog_subtitle: "Noutăți și sfaturi pentru sănătatea ta orală.",
         blog_see_all: "Vezi tot Blogul",
-        history_p1: "Clinica stomatologică Cristalex Dent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
+        history_p1: "Clinica stomatologică Cristalexdent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
         history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
         mission_title: "Misiunea Noastră",
-        mission_text: "Fiind niște stomatologi dedicați, echipa Cristalex Dent lucrează cu profesionalism pentru a vă oferi formula perfectă: zâmbetul mult visat cu o sănătate dentară optimă.",
+        mission_text: "Fiind niște stomatologi dedicați, echipa Cristalexdent lucrează cu profesionalism pentru a vă oferi formula perfectă: zâmbetul mult visat cu o sănătate dentară optimă.",
         promise_text: "Aici vei beneficia de un tratament individual și personalizat, la prețuri atractive. Sănătatea dentară e mult mai accesibilă decât te așteptai.",
         team_title: "Echipa Noastră",
         about_us_label: "Despre Noi",
@@ -306,7 +306,7 @@ const resources = {
         after: "După"
       },
       footer: {
-        desc: "CristAlex Dent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
+        desc: "Cristalexdent - Standardul de aur în stomatologia din Chișinău. Investim continuu în oameni și tehnologie.",
         description: "Clinica stomatologică modernă dedicată sănătății și frumuseții zâmbetului tău. Tehnologie de ultimă generație și specialiști de top.",
         links: "Link-uri Utile",
         program: "Program Clinica",
@@ -314,7 +314,7 @@ const resources = {
         social: "Social",
         schedule: "Lun - Vin: 09:00 - 18:00",
         saturday: "Sâm: 09:00 - 13:00",
-        rights: "© 2025 CristAlex Dent. Toate drepturile rezervate.",
+        rights: "© 2025 Cristalexdent. Toate drepturile rezervate.",
         call: "Sună",
         implantology: "Implantologie",
         orthodontics: "Ortodonție",
@@ -342,13 +342,13 @@ const resources = {
         change_language: "Изменить язык"
       },
       images: {
-        logo_alt: "CristAlex Dent",
-        team_photo_alt: "Команда CristAlex Dent",
+        logo_alt: "Cristalexdent",
+        team_photo_alt: "Команда Cristalexdent",
         hero_interior_alt: "Интерьер Стоматологической Клиники"
       },
       hero: {
         title: "Совершенство в Современной Стоматологии",
-        subtitle: "Верните уверенность в своей улыбке в CristAlex Dent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
+        subtitle: "Верните уверенность в своей улыбке в Cristalexdent. Цифровые 3D технологии, премиальные материалы и команда, преданная совершенству.",
         cta: "Записаться на Консультацию",
         emergency: "Срочно: +373 78388000",
         available_247: "Доступны для вас 24/7",
@@ -368,7 +368,7 @@ const resources = {
         doctors: "Врачей Специалистов"
       },
       features: {
-        title: "Почему выбирают CristAlex Dent?",
+        title: "Почему выбирают Cristalexdent?",
         tech_title: "Цифровые 3D Технологии",
         tech_desc: "Интраоральное сканирование и цифровое планирование для максимальной точности.",
         pain_title: "Лечение Без Боли",
@@ -387,7 +387,7 @@ const resources = {
         test1_text: "Уже прошло как минимум 10 дней с тех пор, как госпожа Даниела вылечила мне зубы. Не могу передать, что значит удовлетворение от здоровых зубов, удовольствие от еды, питья, отсутствие стресса. Большое спасибо госпоже Даниеле, господину Александру, госпоже Людмиле за радость жизни со здоровыми зубами. По моему мнению, лучшая клиника в Молдове с самыми профессиональными и выдающимися специалистами.",
         test2_name: "Роберт Бегу",
         test2_role: "Пациент",
-        test2_text: "Очень хорошие услуги в Cristalex Dent, рекомендую с уверенностью!",
+        test2_text: "Очень хорошие услуги в Cristalexdent, рекомендую с уверенностью!",
         test3_name: "Валерия Иванов",
         test3_role: "Пациент",
         test3_text: "Огромное спасибо команде Cristalexdent за заботу и профессионализм! Прошла лечение и удаление, все прошло безболезненно и с большим вниманием. Очень понравилось отношение врачей, особенно Скутельник Даниелы и Зэноагэ Олега. Чувствовала себя в безопасности и под хорошим присмотром. Рекомендую с уверенностью!"
@@ -504,17 +504,17 @@ const resources = {
       },
       about: {
         title: "О Нас",
-        subtitle: "Cristalex Dent – Ваша улыбка, наша страсть",
+        subtitle: "Cristalexdent – Ваша улыбка, наша страсть",
         history_title: "Наша История",
         team_subtitle: "Наша команда специалистов готова предложить вам лучшее лечение.",
         read_more: "Читать далее",
         blog_title: "Последние Статьи",
         blog_subtitle: "Новости и советы для здоровья полости рта.",
         blog_see_all: "Смотреть Весь Блог",
-        history_p1: "Стоматологическая клиника Cristalex Dent начала свою деятельность в 2008 году. Располагает двумя стоматологическими кабинетами, оснащенными новейшими технологиями, хирургическим кабинетом, кабинетом стерилизации и кабинетом радиовизиографии.",
+        history_p1: "Стоматологическая клиника Cristalexdent начала свою деятельность в 2008 году. Располагает двумя стоматологическими кабинетами, оснащенными новейшими технологиями, хирургическим кабинетом, кабинетом стерилизации и кабинетом радиовизиографии.",
         history_p2: "За более чем 16 лет работы сформировалась команда врачей, ставших экспертами в области стоматологии.",
         mission_title: "Наша Миссия",
-        mission_text: "Являясь преданными стоматологами, команда Cristalex Dent работает профессионально, чтобы предложить вам идеальную формулу: желанную улыбку с оптимальным здоровьем зубов.",
+        mission_text: "Являясь преданными стоматологами, команда Cristalexdent работает профессионально, чтобы предложить вам идеальную формулу: желанную улыбку с оптимальным здоровьем зубов.",
         promise_text: "Здесь вы получите индивидуальное и персонализированное лечение по привлекательным ценам. Здоровье зубов намного доступнее, чем вы ожидали.",
         team_title: "Наша Команда",
         about_us_label: "О Нас",
@@ -629,7 +629,7 @@ const resources = {
         after: "После"
       },
       footer: {
-        desc: "CristAlex Dent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
+        desc: "Cristalexdent - Золотой стандарт стоматологии в Кишиневе. Мы постоянно инвестируем в людей и технологии.",
         description: "Современная стоматологическая клиника, посвященная здоровью и красоте вашей улыбки. Новейшие технологии и ведущие специалисты.",
         links: "Полезные Ссылки",
         program: "График Работы",
@@ -637,7 +637,7 @@ const resources = {
         social: "Социальные Сети",
         schedule: "Пн - Пт: 09:00 - 18:00",
         saturday: "Сб: 09:00 - 13:00",
-        rights: "© 2025 CristAlex Dent. Все права защищены.",
+        rights: "© 2025 Cristalexdent. Все права защищены.",
         call: "Звонить",
         implantology: "Имплантология",
         orthodontics: "Ортодонтия",
@@ -665,13 +665,13 @@ const resources = {
         change_language: "Change language"
       },
       images: {
-        logo_alt: "CristAlex Dent",
-        team_photo_alt: "CristAlex Dent Team",
+        logo_alt: "Cristalexdent",
+        team_photo_alt: "Cristalexdent Team",
         hero_interior_alt: "Dental Clinic Interior"
       },
       hero: {
         title: "Excellence in Modern Dentistry",
-        subtitle: "Rediscover the confidence in your smile at CristAlex Dent. Digital 3D technology, premium materials and a team dedicated to perfection.",
+        subtitle: "Rediscover the confidence in your smile at Cristalexdent. Digital 3D technology, premium materials and a team dedicated to perfection.",
         cta: "Schedule a Consultation",
         emergency: "Emergency: +373 78388000",
         available_247: "Available for you 24/7",
@@ -691,7 +691,7 @@ const resources = {
         doctors: "Specialist Doctors"
       },
       features: {
-        title: "Why Choose CristAlex Dent?",
+        title: "Why Choose Cristalexdent?",
         tech_title: "Digital 3D Technology",
         tech_desc: "Intraoral scanning and digital planning for maximum precision and comfort.",
         pain_title: "Painless Treatments",
@@ -710,7 +710,7 @@ const resources = {
         test1_text: "It has already been at least 10 days since my teeth were treated by Mrs. Daniela. I cannot convey what it means to have healthy teeth, the pleasure of eating and drinking without stress. Thank you very much to Mrs. Daniela, Mr. Alexandru, Mrs. Ludmila for the joy of living with healthy teeth. In my opinion, the best clinic in Moldova with the most professional and extraordinary specialists.",
         test2_name: "Robert Begu",
         test2_role: "Patient",
-        test2_text: "Very good services at Cristalex Dent, I confidently recommend!",
+        test2_text: "Very good services at Cristalexdent, I confidently recommend!",
         test3_name: "Valeria Ivanov",
         test3_role: "Patient",
         test3_text: "Thank you from the bottom of my heart to the Cristalexdent team for the care and professionalism they showed! I had treatment and extraction, everything went painlessly and with great attention. I really liked the attitude of the doctors, especially Scutelnic Daniela and Zanoaga Oleg. I felt safe and well cared for. I confidently recommend!"
@@ -827,17 +827,17 @@ const resources = {
       },
       about: {
         title: "About Us",
-        subtitle: "Cristalex Dent – Your smile, our passion",
+        subtitle: "Cristalexdent – Your smile, our passion",
         history_title: "Our History",
         team_subtitle: "Our team of specialists ready to offer you the best treatment.",
         read_more: "Read more",
         blog_title: "Recent Articles",
         blog_subtitle: "News and tips for your oral health.",
         blog_see_all: "See All Blog",
-        history_p1: "The Cristalex Dent dental clinic started its activities in 2008. It has two dental offices equipped with state-of-the-art technologies, a surgical office, a sterilization office and a dental radiography office.",
+        history_p1: "The Cristalexdent dental clinic started its activities in 2008. It has two dental offices equipped with state-of-the-art technologies, a surgical office, a sterilization office and a dental radiography office.",
         history_p2: "Over more than 16 years of activity, a team of doctors has been consolidated who have become experts in the field of dental medicine.",
         mission_title: "Our Mission",
-        mission_text: "As dedicated dentists, the Cristalex Dent team works professionally to offer you the perfect formula: the smile you've always dreamed of with optimal dental health.",
+        mission_text: "As dedicated dentists, the Cristalexdent team works professionally to offer you the perfect formula: the smile you've always dreamed of with optimal dental health.",
         promise_text: "Here you will benefit from individual and personalized treatment at attractive prices. Dental health is much more accessible than you thought.",
         team_title: "Our Team",
         about_us_label: "About Us",
@@ -952,7 +952,7 @@ const resources = {
         after: "After"
       },
       footer: {
-        desc: "CristAlex Dent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
+        desc: "Cristalexdent - The gold standard in dentistry in Chișinău. We continually invest in people and technology.",
         description: "Modern dental clinic dedicated to the health and beauty of your smile. State-of-the-art technology and top specialists.",
         links: "Useful Links",
         program: "Clinic Hours",
@@ -960,7 +960,7 @@ const resources = {
         social: "Social Media",
         schedule: "Mon - Fri: 09:00 - 18:00",
         saturday: "Sat: 09:00 - 13:00",
-        rights: "© 2025 CristAlex Dent. All rights reserved.",
+        rights: "© 2025 Cristalexdent. All rights reserved.",
         call: "Call",
         implantology: "Implantology",
         orthodontics: "Orthodontics",

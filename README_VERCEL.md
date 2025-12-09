@@ -1,4 +1,4 @@
-# Deployare Site CristAlex Dent pe Vercel
+# Deployare Site Cristalexdent pe Vercel
 
 Site-ul este pregătit complet pentru deployment pe Vercel! ✅
 

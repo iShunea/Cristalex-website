@@ -1,4 +1,4 @@
-# Vercel Deployment Guide - CristAlex Dent
+# Vercel Deployment Guide - Cristalexdent
 
 ## Prerequisites
 - Vercel account
