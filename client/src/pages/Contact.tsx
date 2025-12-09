@@ -54,7 +54,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900">{t("contact_page.phone")}</h4>
-                  <p className="text-gray-600">{t("contact.phone")}</p>
+                  <a href="tel:+37378388000" className="text-gray-600 hover:text-primary transition-colors">{t("contact.phone")}</a>
                   <p className="text-gray-500 text-sm">{t("contact_page.emergency_available")}</p>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900">{t("contact_page.email")}</h4>
-                  <p className="text-gray-600">{t("contact.email")}</p>
+                  <a href="mailto:cristalexdent23@gmail.com" className="text-gray-600 hover:text-primary transition-colors">{t("contact.email")}</a>
                 </div>
               </div>
 

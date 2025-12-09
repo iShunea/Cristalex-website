@@ -403,9 +403,9 @@ export default function Home() {
       </section>
 
       {/* DOCTORS TEAM */}
-      <section className="py-16 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="section-title">{t("nav.team")}</h2>
             <p className="section-subtitle">{t("about.team_subtitle")}</p>
           </div>
