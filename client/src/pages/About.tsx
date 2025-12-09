@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getExternalTeamMembers, ExternalTeamMember, getTranslatedField } from "@/lib/api";
+import { getExternalTeamMembers, ExternalTeamMember, getTranslatedField, EXTERNAL_BASE_URL } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
 
 import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
@@ -32,12 +32,16 @@ export default function About() {
   ], [t, i18n.language]);
 
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
-    ? apiTeamMembers.map((m) => ({ 
-        name: m.name, 
-        role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
-        img: m.image || '', 
-        bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
-      }))
+    ? apiTeamMembers.map((m) => {
+        const imgPath = m.imageUrl || m.image || '';
+        const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : '');
+        return { 
+          name: m.name, 
+          role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
+          img: fullImageUrl, 
+          bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
+        };
+      })
     : staticDoctors;
 
   return (

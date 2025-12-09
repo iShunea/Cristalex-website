@@ -31,7 +31,7 @@ import {
 import { Link } from "wouter";
 import { useBlogPosts } from "./Blog";
 import { useQuery } from "@tanstack/react-query";
-import { getExternalBlogPosts, getExternalTeamMembers, getExternalTestimonials, ExternalTeamMember, ExternalTestimonial, ExternalBlogPost, getTranslatedField } from "@/lib/api";
+import { getExternalBlogPosts, getExternalTeamMembers, getExternalTestimonials, ExternalTeamMember, ExternalTestimonial, ExternalBlogPost, getTranslatedField, EXTERNAL_BASE_URL } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SocialReviews } from "@/components/SocialReviews";
@@ -125,12 +125,16 @@ export default function Home() {
 
   // Use API data if available, otherwise fall back to static data
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
-    ? apiTeamMembers.map((m) => ({ 
-        name: m.name, 
-        role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
-        img: m.image || '', 
-        bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
-      }))
+    ? apiTeamMembers.map((m) => {
+        const imgPath = m.imageUrl || m.image || '';
+        const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : '');
+        return { 
+          name: m.name, 
+          role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
+          img: fullImageUrl, 
+          bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
+        };
+      })
     : staticDoctors;
     
   const testimonialsData = apiTestimonials && apiTestimonials.length > 0

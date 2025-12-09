@@ -1,4 +1,5 @@
 const EXTERNAL_API_BASE = "https://a5e6b9c8-56df-4a28-80b4-8e30c119abc5-00-3p3h7u3k5vbpw.worf.replit.dev/api";
+export const EXTERNAL_BASE_URL = "https://a5e6b9c8-56df-4a28-80b4-8e30c119abc5-00-3p3h7u3k5vbpw.worf.replit.dev";
 
 export interface ExternalService {
   _id: string;
@@ -23,11 +24,13 @@ export interface ExternalTeamMember {
   role?: string;
   bio?: string;
   image?: string;
+  imageUrl?: string;
   specialization?: string;
   education?: string[];
   experience?: string;
   isActive?: boolean;
   order?: number;
+  orderIndex?: number;
   translations?: {
     ro?: { role?: string; bio?: string; specialization?: string };
     ru?: { role?: string; bio?: string; specialization?: string };
