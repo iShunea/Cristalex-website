@@ -548,12 +548,10 @@ export default function Home() {
       {/* LATEST FROM BLOG */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="section-title block text-left">{t("about.blog_title")}</h2>
-              <p className="text-gray-500 text-lg">{t("about.blog_subtitle")}</p>
-            </div>
-            <Link href="/blog" className="text-primary font-bold hover:underline flex items-center gap-2">
+          <div className="text-center mb-12">
+            <h2 className="section-title block">{t("about.blog_title")}</h2>
+            <p className="text-gray-500 text-lg">{t("about.blog_subtitle")}</p>
+            <Link href="/blog" className="text-primary font-bold hover:underline inline-flex items-center gap-2 mt-4">
               {t("about.blog_see_all")} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
