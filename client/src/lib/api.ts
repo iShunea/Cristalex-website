@@ -115,7 +115,7 @@ export async function getExternalSocialMediaPosts(): Promise<ExternalSocialMedia
 }
 
 export async function getExternalBlogPosts(): Promise<ExternalBlogPost[]> {
-  return fetchFromExternalApi<ExternalBlogPost>("/blogs");
+  return fetchFromExternalApi<ExternalBlogPost>("/blog-posts");
 }
 
 export function getTranslatedField<T>(
