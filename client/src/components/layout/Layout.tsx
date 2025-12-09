@@ -211,10 +211,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-bold mb-6 text-lg text-slate-900">{t("nav.services")}</h4>
               <ul className="space-y-3 text-gray-600 text-sm">
-                <li><Link href="/services" className="hover:text-primary transition-colors">{t("footer.implantology")}</Link></li>
-                <li><Link href="/services" className="hover:text-primary transition-colors">{t("footer.orthodontics")}</Link></li>
-                <li><Link href="/services" className="hover:text-primary transition-colors">{t("footer.aesthetic")}</Link></li>
-                <li><Link href="/services" className="hover:text-primary transition-colors">{t("footer.surgery")}</Link></li>
+                <li><Link href="/services#implant" className="hover:text-primary transition-colors">{t("footer.implantology")}</Link></li>
+                <li><Link href="/services#therapy" className="hover:text-primary transition-colors">{t("footer.orthodontics")}</Link></li>
+                <li><Link href="/services#prosth" className="hover:text-primary transition-colors">{t("footer.aesthetic")}</Link></li>
+                <li><Link href="/services#extraction" className="hover:text-primary transition-colors">{t("footer.surgery")}</Link></li>
               </ul>
             </div>
 
