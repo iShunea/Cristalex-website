@@ -56,7 +56,7 @@ export function useBlogPosts() {
 }
 
 export default function Blog() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const localizedPosts = useBlogPosts();
   
   const { data: apiPosts, isLoading } = useQuery({
@@ -64,8 +64,42 @@ export default function Blog() {
     queryFn: getExternalBlogPosts,
   });
 
+  // Helper to get language suffix
+  const getLangSuffix = () => {
+    const lang = i18n.language;
+    if (lang === 'ro') return 'Ro';
+    if (lang === 'ru') return 'Ru';
+    return 'En';
+  };
+
+  // Helper to get blog field with language fallback
+  const getBlogField = (post: any, fieldBase: string) => {
+    const suffix = getLangSuffix();
+    // Try language-specific field first (e.g., blogTitleRo)
+    const langField = `${fieldBase}${suffix}`;
+    if (post[langField]) return post[langField];
+    // Fallback to English
+    if (post[`${fieldBase}En`]) return post[`${fieldBase}En`];
+    // Fallback to Romanian
+    if (post[`${fieldBase}Ro`]) return post[`${fieldBase}Ro`];
+    // Fallback to base field name
+    if (post[fieldBase.replace('blog', '').toLowerCase()]) {
+      return post[fieldBase.replace('blog', '').toLowerCase()];
+    }
+    return '';
+  };
+
+  // Transform API posts to have consistent structure
+  const transformedApiPosts = apiPosts?.map((post: any) => ({
+    ...post,
+    title: getBlogField(post, 'blogTitle') || post.title || '',
+    excerpt: getBlogField(post, 'blogIntro') || post.excerpt || '',
+    category: post.label || post.category || '',
+    author: post.author || 'Cristalex Dent',
+  })) || [];
+
   // Use API data if available, otherwise fall back to localized static data
-  const posts = apiPosts && apiPosts.length > 0 ? apiPosts : localizedPosts;
+  const posts = transformedApiPosts.length > 0 ? transformedApiPosts : localizedPosts;
 
   return (
     <Layout>
