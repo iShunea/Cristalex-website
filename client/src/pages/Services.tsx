@@ -3,14 +3,34 @@ import { useTranslation } from "react-i18next";
 import { CheckCircle2, ArrowRight, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
+import { useQuery } from "@tanstack/react-query";
+import { getExternalServices, ExternalService, getTranslatedField } from "@/lib/api";
 import implantImage from "@assets/generated_images/dental_implant_model.png";
 import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 
 export default function Services() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const categories = [
+  // Fetch external services
+  const { data: externalServices } = useQuery<ExternalService[]>({
+    queryKey: ["external-services"],
+    queryFn: getExternalServices,
+  });
+
+  // Static fallback images mapping
+  const categoryImages: Record<string, string> = {
+    implant: implantImage,
+    therapy: orthoImage,
+    endo: aestheticImage,
+    prophy: implantImage,
+    prosth: orthoImage,
+    pedo: aestheticImage,
+    extraction: implantImage,
+    sinus: orthoImage,
+  };
+
+  const staticCategories = [
     {
       id: "implant",
       title: t("services.implant"),
@@ -76,6 +96,31 @@ export default function Services() {
       image: orthoImage
     }
   ];
+
+  // Helper to get translated features array
+  const getTranslatedFeatures = (service: ExternalService): string[] => {
+    const langKey = i18n.language as "ro" | "ru" | "en";
+    const translations = service.translations as any;
+    if (translations && translations[langKey]?.features && Array.isArray(translations[langKey].features)) {
+      return translations[langKey].features;
+    }
+    if (translations?.ro?.features && Array.isArray(translations.ro.features)) {
+      return translations.ro.features;
+    }
+    return service.features || [];
+  };
+
+  // Use API data if available, otherwise fall back to static data
+  const categories = externalServices && externalServices.length > 0
+    ? externalServices.map((service, idx) => ({
+        id: service._id,
+        title: getTranslatedField(service, 'name' as any, i18n.language, service.name || ''),
+        desc: getTranslatedField(service, 'description' as any, i18n.language, service.description || ''),
+        price: service.price || '',
+        features: getTranslatedFeatures(service),
+        image: service.image || categoryImages[service.category || ''] || (idx % 3 === 0 ? implantImage : idx % 3 === 1 ? orthoImage : aestheticImage)
+      }))
+    : staticCategories;
 
   return (
     <Layout>

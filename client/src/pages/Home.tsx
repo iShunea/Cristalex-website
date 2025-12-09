@@ -31,7 +31,7 @@ import {
 import { Link } from "wouter";
 import { useBlogPosts } from "./Blog";
 import { useQuery } from "@tanstack/react-query";
-import { getBlogPosts, getTeamMembers, getTestimonials } from "@/lib/api";
+import { getExternalBlogPosts, getExternalTeamMembers, getExternalTestimonials, ExternalTeamMember, ExternalTestimonial, ExternalBlogPost, getTranslatedField } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SocialReviews } from "@/components/SocialReviews";
@@ -62,7 +62,7 @@ import beforeRestoration from "@assets/generated_images/broken_chipped_tooth_bef
 import afterRestoration from "@assets/generated_images/restored_tooth_after_crown_placement.png";
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
   const localizedBlogPosts = useBlogPosts();
 
@@ -73,20 +73,20 @@ export default function Home() {
     { beforeImage: beforeRestoration, afterImage: afterRestoration, title: t("before_after_cases.restoration") },
   ];
 
-  // Fetch data from API
-  const { data: apiBlogPosts } = useQuery({
-    queryKey: ["blog-posts"],
-    queryFn: getBlogPosts,
+  // Fetch data from external API
+  const { data: apiBlogPosts } = useQuery<ExternalBlogPost[]>({
+    queryKey: ["external-blog-posts"],
+    queryFn: getExternalBlogPosts,
   });
 
-  const { data: apiTeamMembers } = useQuery({
-    queryKey: ["team-members"],
-    queryFn: getTeamMembers,
+  const { data: apiTeamMembers } = useQuery<ExternalTeamMember[]>({
+    queryKey: ["external-team-members"],
+    queryFn: getExternalTeamMembers,
   });
 
-  const { data: apiTestimonials } = useQuery({
-    queryKey: ["testimonials"],
-    queryFn: () => getTestimonials(true),
+  const { data: apiTestimonials } = useQuery<ExternalTestimonial[]>({
+    queryKey: ["external-testimonials"],
+    queryFn: getExternalTestimonials,
   });
 
   const stats = [
@@ -114,11 +114,20 @@ export default function Home() {
 
   // Use API data if available, otherwise fall back to static data
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
-    ? apiTeamMembers.map((m: any) => ({ name: m.name, role: m.role, img: m.imageUrl, bio: m.bio }))
+    ? apiTeamMembers.map((m) => ({ 
+        name: m.name, 
+        role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
+        img: m.image || '', 
+        bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
+      }))
     : staticDoctors;
     
   const testimonialsData = apiTestimonials && apiTestimonials.length > 0
-    ? apiTestimonials
+    ? apiTestimonials.map((t) => ({
+        name: t.name,
+        role: getTranslatedField(t, 'role' as any, i18n.language, t.role || ''),
+        text: getTranslatedField(t, 'text' as any, i18n.language, t.text || '')
+      }))
     : staticTestimonials;
 
   return (

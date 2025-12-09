@@ -58,6 +58,11 @@ export interface ExternalSocialMediaPost {
   thumbnail?: string;
   title?: string;
   isActive?: boolean;
+  translations?: {
+    ro?: { title?: string };
+    ru?: { title?: string };
+    en?: { title?: string };
+  };
 }
 
 export interface ExternalBlogPost {

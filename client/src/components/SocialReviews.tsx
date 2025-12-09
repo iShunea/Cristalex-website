@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
 import { Instagram, Music } from "lucide-react";
 import {
   Carousel,
@@ -9,64 +8,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-interface SocialMediaPost {
-  id: number;
-  platform: string;
-  videoUrl: string;
-  titleRo: string;
-  titleRu: string;
-  titleEn: string;
-  descriptionRo?: string;
-  descriptionRu?: string;
-  descriptionEn?: string;
-  displayOrder: number;
-  isActive: boolean;
-}
-
-async function getSocialMediaPosts(): Promise<SocialMediaPost[]> {
-  const response = await fetch("/api/social-media-posts");
-  if (!response.ok) {
-    throw new Error("Failed to fetch social media posts");
-  }
-  return response.json();
-}
+import { getExternalSocialMediaPosts, ExternalSocialMediaPost, getTranslatedField } from "@/lib/api";
 
 export function SocialReviews() {
   const { t, i18n } = useTranslation();
   
-  const { data: apiPosts, isLoading, error } = useQuery({
-    queryKey: ["social-media-posts"],
-    queryFn: getSocialMediaPosts,
+  const { data: apiPosts, isLoading, error } = useQuery<ExternalSocialMediaPost[]>({
+    queryKey: ["external-social-media-posts"],
+    queryFn: getExternalSocialMediaPosts,
   });
 
   const posts = apiPosts || [];
-
-  const getLocalizedTitle = (post: SocialMediaPost): string => {
-    switch (i18n.language) {
-      case "ro":
-        return post.titleRo;
-      case "ru":
-        return post.titleRu;
-      case "en":
-        return post.titleEn;
-      default:
-        return post.titleRo;
-    }
-  };
-
-  const getLocalizedDescription = (post: SocialMediaPost): string | undefined => {
-    switch (i18n.language) {
-      case "ro":
-        return post.descriptionRo;
-      case "ru":
-        return post.descriptionRu;
-      case "en":
-        return post.descriptionEn;
-      default:
-        return post.descriptionRo;
-    }
-  };
 
   if (isLoading) {
     return (
@@ -97,8 +49,8 @@ export function SocialReviews() {
         <div className="max-w-6xl mx-auto">
           <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
             <CarouselContent className="-ml-4">
-              {posts.map((post: SocialMediaPost) => (
-                <CarouselItem key={post.id} className="pl-4 md:basis-1/2 lg:basis-1/3" data-testid={`social-post-${post.id}`}>
+              {posts.map((post) => (
+                <CarouselItem key={post._id} className="pl-4 md:basis-1/2 lg:basis-1/3" data-testid={`social-post-${post._id}`}>
                   <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow h-full">
                     {/* Platform Badge */}
                     <div className="p-4 bg-gradient-to-r from-primary to-secondary">
@@ -117,41 +69,41 @@ export function SocialReviews() {
                       </div>
                     </div>
 
-                    {/* Video Embed Placeholder */}
+                    {/* Video/Thumbnail */}
                     <div className="aspect-[9/16] bg-gray-100 relative group">
-                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                        <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                          {post.platform === "instagram" ? (
-                            <Instagram className="w-8 h-8 text-primary" />
-                          ) : (
-                            <Music className="w-8 h-8 text-primary" />
-                          )}
+                      {post.thumbnail ? (
+                        <img src={post.thumbnail} alt={post.title || ''} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                            {post.platform === "instagram" ? (
+                              <Instagram className="w-8 h-8 text-primary" />
+                            ) : (
+                              <Music className="w-8 h-8 text-primary" />
+                            )}
+                          </div>
                         </div>
-                        <p className="text-gray-600 text-sm mb-4">
-                          {t("social_reviews.watch")} {post.platform === "instagram" ? "Instagram" : "TikTok"}
-                        </p>
-                        <a
-                          href={post.videoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg"
-                          data-testid={`link-video-${post.id}`}
-                        >
-                          {t("social_reviews.watch")} →
-                        </a>
-                      </div>
+                      )}
+                      {post.url && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
+                          <a
+                            href={post.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg"
+                            data-testid={`link-video-${post._id}`}
+                          >
+                            {t("social_reviews.watch")} →
+                          </a>
+                        </div>
+                      )}
                     </div>
 
                     {/* Content */}
                     <div className="p-6">
-                      <h3 className="font-bold text-lg mb-2 text-gray-900" data-testid={`title-post-${post.id}`}>
-                        {getLocalizedTitle(post)}
+                      <h3 className="font-bold text-lg mb-2 text-gray-900" data-testid={`title-post-${post._id}`}>
+                        {getTranslatedField(post, 'title' as any, i18n.language, post.title || '')}
                       </h3>
-                      {getLocalizedDescription(post) && (
-                        <p className="text-gray-600 text-sm line-clamp-2" data-testid={`description-post-${post.id}`}>
-                          {getLocalizedDescription(post)}
-                        </p>
-                      )}
                     </div>
                   </div>
                 </CarouselItem>

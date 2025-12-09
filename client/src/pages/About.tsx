@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getTeamMembers } from "@/lib/api";
+import { getExternalTeamMembers, ExternalTeamMember, getTranslatedField } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
 
 import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
@@ -17,9 +17,9 @@ import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa
 export default function About() {
   const { t, i18n } = useTranslation();
 
-  const { data: apiTeamMembers } = useQuery({
-    queryKey: ["team-members"],
-    queryFn: getTeamMembers,
+  const { data: apiTeamMembers } = useQuery<ExternalTeamMember[]>({
+    queryKey: ["external-team-members"],
+    queryFn: getExternalTeamMembers,
   });
 
   const staticDoctors = useMemo(() => [
@@ -32,7 +32,12 @@ export default function About() {
   ], [t, i18n.language]);
 
   const doctors = apiTeamMembers && apiTeamMembers.length > 0 
-    ? apiTeamMembers.map((m: any) => ({ name: m.name, role: m.role, img: m.imageUrl, bio: m.bio }))
+    ? apiTeamMembers.map((m) => ({ 
+        name: m.name, 
+        role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
+        img: m.image || '', 
+        bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
+      }))
     : staticDoctors;
 
   return (
