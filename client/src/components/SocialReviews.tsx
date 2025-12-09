@@ -71,8 +71,8 @@ export function SocialReviews() {
 
                     {/* Video/Thumbnail */}
                     <div className="aspect-[9/16] bg-gray-100 relative group">
-                      {post.thumbnail ? (
-                        <img src={post.thumbnail} alt={post.title || ''} className="w-full h-full object-cover" />
+                      {((post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail) ? (
+                        <img src={(post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail} alt={post.title || ''} className="w-full h-full object-cover" />
                       ) : (
                         <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                           <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
@@ -84,10 +84,10 @@ export function SocialReviews() {
                           </div>
                         </div>
                       )}
-                      {post.url && (
+                      {((post as any).videoUrl || post.url) && (
                         <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
                           <a
-                            href={post.url}
+                            href={(post as any).videoUrl || post.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg"
