@@ -445,8 +445,8 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
-          <h2 className="section-title block">{t("testimonials.title")}</h2>
-          <p className="section-subtitle">{t("testimonials.subtitle")}</p>
+          <h2 className="section-title block text-center">{t("testimonials.title")}</h2>
+          <p className="section-subtitle text-center">{t("testimonials.subtitle")}</p>
           
           <div className="max-w-6xl mx-auto relative">
              <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
