@@ -112,9 +112,9 @@ export default function BlogPost() {
 
   return (
     <Layout>
-      <div className="bg-white min-h-screen pb-20">
+      <div className="min-h-screen pb-20">
         {/* Header Image */}
-        <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden -mt-20 pt-20">
+        <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden -mt-20">
           <img 
             src={post.image} 
             alt={post.title} 
@@ -154,7 +154,7 @@ export default function BlogPost() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12 max-w-4xl">
+        <div className="container mx-auto px-4 py-12 max-w-4xl bg-white">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Main Content */}
             <div className="flex-1">
