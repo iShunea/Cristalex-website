@@ -28,6 +28,40 @@ function parseMarkdownToHtml(content: string): string {
   return html;
 }
 
+function getLangSuffix(lang: string): string {
+  if (lang === 'ro') return 'Ro';
+  if (lang === 'ru') return 'Ru';
+  return 'En';
+}
+
+function getFieldByLang(post: any, fieldBase: string, lang: string): string {
+  const suffix = getLangSuffix(lang);
+  return post[fieldBase + suffix] || post[fieldBase + 'En'] || post[fieldBase + 'Ro'] || '';
+}
+
+function buildStructuredContent(post: any, lang: string): string {
+  const intro = getFieldByLang(post, 'blogIntro', lang);
+  const h1Title = getFieldByLang(post, 'firstSubheadingTitle', lang);
+  const h1Text = getFieldByLang(post, 'firstSubheadingText', lang);
+  const h2Title = getFieldByLang(post, 'secondSubheadingTitle', lang);
+  const h2Text = getFieldByLang(post, 'secondSubheadingText', lang);
+  const h3Title = getFieldByLang(post, 'thirdSubheadingTitle', lang);
+  const h3Text = getFieldByLang(post, 'thirdSubheadingText', lang);
+  const conclusion = getFieldByLang(post, 'conclusion', lang);
+
+  let html = '';
+  if (intro) html += `<p>${intro}</p>`;
+  if (h1Title) html += `<h2>${h1Title}</h2>`;
+  if (h1Text) html += `<p>${h1Text}</p>`;
+  if (h2Title) html += `<h2>${h2Title}</h2>`;
+  if (h2Text) html += `<p>${h2Text}</p>`;
+  if (h3Title) html += `<h2>${h3Title}</h2>`;
+  if (h3Text) html += `<p>${h3Text}</p>`;
+  if (conclusion) html += `<p><strong>${conclusion}</strong></p>`;
+  
+  return html;
+}
+
 export default function BlogPost() {
   const { t, i18n } = useTranslation();
   const [, params] = useRoute("/blog/:id");
@@ -42,18 +76,26 @@ export default function BlogPost() {
   const localPost = blogPosts.find(p => p.id === Number(params?.id));
   
   // Try to find in API posts (string _id)
-  const apiPost = apiPosts?.find(p => p._id === params?.id);
+  const apiPost = apiPosts?.find(p => p._id === params?.id) as any;
   
   // Normalize API post to match local post format
+  // Handle both old structure (title/content) and new structure (blogTitleEn/blogIntroEn etc)
   const post = localPost || (apiPost ? {
     id: apiPost._id,
-    title: getTranslatedField(apiPost, 'title' as any, i18n.language, apiPost.title || ''),
-    excerpt: getTranslatedField(apiPost, 'excerpt' as any, i18n.language, apiPost.excerpt || ''),
-    content: getTranslatedField(apiPost, 'content' as any, i18n.language, apiPost.content || ''),
+    title: apiPost.blogTitleEn 
+      ? getFieldByLang(apiPost, 'blogTitle', i18n.language)
+      : (getTranslatedField(apiPost, 'title' as any, i18n.language, apiPost.title || '')),
+    excerpt: apiPost.blogIntroEn
+      ? getFieldByLang(apiPost, 'blogIntro', i18n.language)
+      : (getTranslatedField(apiPost, 'excerpt' as any, i18n.language, apiPost.excerpt || '')),
+    content: apiPost.blogIntroEn
+      ? buildStructuredContent(apiPost, i18n.language)
+      : parseMarkdownToHtml(getTranslatedField(apiPost, 'content' as any, i18n.language, apiPost.content || '')),
     author: apiPost.author || 'CristAlex Dent',
-    category: apiPost.category || 'General',
+    category: apiPost.category || apiPost.label || 'General',
     date: apiPost.publishedAt ? new Date(apiPost.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : '',
-    image: apiPost.image || '',
+    image: apiPost.imageUrl || apiPost.image || apiPost.titleImagePath || '',
+    isStructured: !!apiPost.blogTitleEn,
   } : null);
 
   if (isLoading) {
@@ -118,7 +160,7 @@ export default function BlogPost() {
             <div className="flex-1">
               <div 
                 className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-gray-600 prose-p:mb-4 prose-p:leading-relaxed prose-li:text-gray-600 prose-a:text-primary hover:prose-a:text-primary/80"
-                dangerouslySetInnerHTML={{ __html: parseMarkdownToHtml(post.content) }}
+                dangerouslySetInnerHTML={{ __html: (post as any).isStructured ? post.content : parseMarkdownToHtml(post.content) }}
               />
               
               <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
