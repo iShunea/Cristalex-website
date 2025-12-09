@@ -9,6 +9,25 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalBlogPosts, ExternalBlogPost, getTranslatedField } from "@/lib/api";
 
+function parseMarkdownToHtml(content: string): string {
+  if (!content) return '';
+  
+  let html = content
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br/>');
+  
+  if (!html.startsWith('<h') && !html.startsWith('<p>')) {
+    html = '<p>' + html + '</p>';
+  }
+  
+  return html;
+}
+
 export default function BlogPost() {
   const { t, i18n } = useTranslation();
   const [, params] = useRoute("/blog/:id");
@@ -98,8 +117,8 @@ export default function BlogPost() {
             {/* Main Content */}
             <div className="flex-1">
               <div 
-                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-p:text-gray-600 prose-li:text-gray-600 prose-a:text-primary hover:prose-a:text-primary/80"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-slate-900 prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 prose-p:text-gray-600 prose-p:mb-4 prose-p:leading-relaxed prose-li:text-gray-600 prose-a:text-primary hover:prose-a:text-primary/80"
+                dangerouslySetInnerHTML={{ __html: parseMarkdownToHtml(post.content) }}
               />
               
               <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
