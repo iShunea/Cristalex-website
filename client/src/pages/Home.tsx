@@ -410,34 +410,26 @@ export default function Home() {
             <p className="section-subtitle">{t("about.team_subtitle")}</p>
           </div>
           
-          <div className="max-w-6xl mx-auto">
-             <Carousel className="w-full">
-                <CarouselContent>
-                  {doctors.map((doc, index) => (
-                    <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 xl:basis-1/4 pl-6">
-                      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
-                        <div className="h-[350px] overflow-hidden relative bg-gray-100">
-                          <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
-                          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
-                          <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform">
-                            <h3 className="text-lg font-bold text-white">{doc.name}</h3>
-                            <p className="text-white/90 text-xs font-medium">{doc.role}</p>
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4">{doc.bio}</p>
-                          <div className="flex gap-2">
-                            <div className="h-1 w-12 bg-primary rounded-full"></div>
-                            <div className="h-1 w-4 bg-secondary rounded-full"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-             </Carousel>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            {doctors.map((doc, index) => (
+              <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group h-full hover:shadow-xl transition-all duration-300">
+                <div className="h-[300px] overflow-hidden relative bg-gray-100">
+                  <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white translate-y-2 group-hover:translate-y-0 transition-transform">
+                    <h3 className="text-lg font-bold text-white">{doc.name}</h3>
+                    <p className="text-white/90 text-xs font-medium">{doc.role}</p>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">{doc.bio}</p>
+                  <div className="flex gap-2">
+                    <div className="h-1 w-12 bg-primary rounded-full"></div>
+                    <div className="h-1 w-4 bg-secondary rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
