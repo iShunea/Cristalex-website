@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "wouter";
 import { Calendar, User, ArrowRight, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getBlogPosts } from "@/lib/api";
+import { getExternalBlogPosts, ExternalBlogPost, getTranslatedField } from "@/lib/api";
 import implantImage from "@assets/generated_images/dental_implants_guide_blog_post_thumbnail.png";
 import whiteningImage from "@assets/generated_images/teeth_whitening_tips_blog_post_thumbnail.png";
 import childImage from "@assets/generated_images/child_dental_care_blog_post_thumbnail.png";
@@ -61,7 +61,7 @@ export default function Blog() {
   
   const { data: apiPosts, isLoading } = useQuery({
     queryKey: ["blog-posts"],
-    queryFn: getBlogPosts,
+    queryFn: getExternalBlogPosts,
   });
 
   // Use API data if available, otherwise fall back to localized static data
@@ -86,8 +86,10 @@ export default function Blog() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-            <Link key={post.id} href={`/blog/${post.id}`} className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+            {posts.map((post) => {
+              const postId = '_id' in post ? post._id : post.id;
+              return (
+            <Link key={postId} href={`/blog/${postId}`} className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
               <div className="h-60 overflow-hidden relative">
                 <img 
                   src={(post as any).imageUrl || (post as any).image} 
@@ -120,7 +122,8 @@ export default function Blog() {
                 </div>
               </div>
             </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>
