@@ -19,7 +19,7 @@ export default function BlogPost() {
     <Layout>
       <div className="bg-white min-h-screen pb-20">
         {/* Header Image */}
-        <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden -mt-20 pt-20">
           <img 
             src={post.image} 
             alt={post.title} 
