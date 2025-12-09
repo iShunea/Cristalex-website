@@ -38,11 +38,11 @@ export default function About() {
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="bg-primary py-20 relative overflow-hidden brandbook-gradient">
+      <div className="bg-slate-50 -mt-20 pt-28 pb-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <h1 className="text-5xl font-bold text-center mb-4 text-white">{t("about.title")}</h1>
-          <p className="text-center text-red-100 max-w-2xl mx-auto text-xl">
+          <h1 className="text-5xl font-bold text-center mb-4 text-gray-900">{t("about.title")}</h1>
+          <p className="text-center text-gray-600 max-w-2xl mx-auto text-xl">
             {t("about.subtitle")}
           </p>
         </div>
