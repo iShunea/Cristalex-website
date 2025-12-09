@@ -70,27 +70,34 @@ export function SocialReviews() {
                     </div>
 
                     {/* Video/Thumbnail */}
-                    <div className="aspect-[9/16] bg-gray-100 relative group">
+                    <div className="aspect-[9/16] relative group">
                       {((post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail) ? (
                         <img src={(post as any).imageUrl || (post as any).thumbnailUrl || post.thumbnail} alt={post.title || ''} className="w-full h-full object-cover" />
                       ) : (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <div className={`absolute inset-0 flex flex-col items-center justify-center p-6 text-center ${
+                          post.platform === "instagram" 
+                            ? "bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400" 
+                            : "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+                        }`}>
+                          <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mb-6">
                             {post.platform === "instagram" ? (
-                              <Instagram className="w-8 h-8 text-primary" />
+                              <Instagram className="w-10 h-10 text-white" />
                             ) : (
-                              <Music className="w-8 h-8 text-primary" />
+                              <Music className="w-10 h-10 text-white" />
                             )}
                           </div>
+                          <p className="text-white/90 text-sm font-medium leading-relaxed max-w-[200px] line-clamp-4">
+                            {getTranslatedField(post, 'description' as any, i18n.language, (post as any).descriptionRo || '')}
+                          </p>
                         </div>
                       )}
                       {((post as any).videoUrl || post.url) && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 hover:opacity-100 transition-opacity">
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 hover:opacity-100 transition-opacity">
                           <a
                             href={(post as any).videoUrl || post.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg"
+                            className="bg-white text-gray-900 px-6 py-3 rounded-full font-bold transition-all hover:shadow-lg hover:scale-105"
                             data-testid={`link-video-${post._id}`}
                           >
                             {t("social_reviews.watch")} →
