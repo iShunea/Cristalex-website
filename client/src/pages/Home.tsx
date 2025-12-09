@@ -61,6 +61,17 @@ import afterBraces from "@assets/generated_images/straight_teeth_after_orthodont
 import beforeRestoration from "@assets/generated_images/broken_chipped_tooth_before_restoration.png";
 import afterRestoration from "@assets/generated_images/restored_tooth_after_crown_placement.png";
 
+function getLangSuffix(lang: string): string {
+  if (lang === 'ro') return 'Ro';
+  if (lang === 'ru') return 'Ru';
+  return 'En';
+}
+
+function getBlogField(post: any, fieldBase: string, lang: string): string {
+  const suffix = getLangSuffix(lang);
+  return post[fieldBase + suffix] || post[fieldBase + 'En'] || post[fieldBase + 'Ro'] || post[fieldBase] || '';
+}
+
 export default function Home() {
   const { t, i18n } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
@@ -555,23 +566,33 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : localizedBlogPosts).slice(0, 3).map((post: any) => (
-              <Link key={post.id} href={`/blog/${post.id}`} className="group cursor-pointer block">
+            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : localizedBlogPosts).slice(0, 3).map((post: any) => {
+              const postId = post._id || post.id;
+              const postTitle = post.blogTitleEn 
+                ? getBlogField(post, 'blogTitle', i18n.language)
+                : (post.title || '');
+              const postExcerpt = post.blogIntroEn
+                ? getBlogField(post, 'blogIntro', i18n.language)
+                : (post.excerpt || '');
+              
+              return (
+              <Link key={postId} href={`/blog/${postId}`} className="group cursor-pointer block">
                 <div className="rounded-2xl overflow-hidden h-64 mb-6 relative">
-                  <img src={post.imageUrl || post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <img src={post.imageUrl || post.image} alt={postTitle} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary uppercase">
-                    {post.category}
+                    {post.category || post.label}
                   </div>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-gray-400 mb-3">
                   <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : post.date}</span>
                   <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>{post.author}</span>
+                  <span>{post.author || 'CristAlex Dent'}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{post.title}</h3>
-                <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
+                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">{postTitle}</h3>
+                <p className="text-gray-600 line-clamp-2">{postExcerpt}</p>
               </Link>
-            ))}
+              );
+            })}
           </div>
           
           <div className="flex justify-end mt-8">
