@@ -101,8 +101,8 @@ export default function BlogPost() {
               </div>
 
               <div className="bg-primary text-white p-6 rounded-xl sticky top-[300px]">
-                <h3 className="text-xl font-bold mb-4">{t("blog_post.booking_title")}</h3>
-                <p className="text-red-100 mb-6 text-sm">
+                <h3 className="text-xl font-bold mb-4 text-white">{t("blog_post.booking_title")}</h3>
+                <p className="text-white/90 mb-6 text-sm">
                   {t("blog_post.booking_text", { category: post.category.toLowerCase() })}
                 </p>
                 <BookingModal 
