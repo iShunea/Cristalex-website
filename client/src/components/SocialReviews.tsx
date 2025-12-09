@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
-import { Instagram, Music } from "lucide-react";
+import { Instagram } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import {
   Carousel,
   CarouselContent,
@@ -105,7 +106,7 @@ export function SocialReviews() {
                           </>
                         ) : (
                           <>
-                            <Music className="w-5 h-5" />
+                            <SiTiktok className="w-5 h-5" />
                             <span className="font-bold text-sm">TikTok</span>
                           </>
                         )}
@@ -123,7 +124,7 @@ export function SocialReviews() {
                         >
                           <section className="flex items-center justify-center h-full">
                             <div className="text-white text-center p-4">
-                              <Music className="w-12 h-12 mx-auto mb-2 animate-pulse" />
+                              <SiTiktok className="w-12 h-12 mx-auto mb-2 animate-pulse" />
                               <p className="text-sm">Se încarcă...</p>
                             </div>
                           </section>
