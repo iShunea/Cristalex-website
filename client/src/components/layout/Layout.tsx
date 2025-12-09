@@ -1,7 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, Video } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check } from "lucide-react";
+import { SiTiktok } from "react-icons/si";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
@@ -267,7 +268,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   aria-label="TikTok"
                   data-testid="link-tiktok"
                 >
-                  <Video className="w-5 h-5 text-primary group-hover:text-white" />
+                  <SiTiktok className="w-5 h-5 text-primary group-hover:text-white" />
                 </a>
               </div>
             </div>
