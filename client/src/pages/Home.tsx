@@ -482,8 +482,8 @@ export default function Home() {
       {/* ABOUT US SECTION */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+            <div className="flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-6">
                 <span className="h-px w-12 bg-primary"></span>
                 <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.title")}</span>
@@ -517,8 +517,8 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative">
-              <div className="rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative flex items-center">
+              <div className="rounded-2xl overflow-hidden shadow-2xl w-full h-full">
                 <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" />
               </div>
               
