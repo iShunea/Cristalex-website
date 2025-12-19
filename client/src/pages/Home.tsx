@@ -289,8 +289,8 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[90vh] lg:h-screen xl:h-screen flex items-center bg-white overflow-hidden pb-8 sm:pb-12 md:pb-10 lg:pb-0 -mt-20 pt-20 lg:mx-8 xl:mx-12">
-        <div className="absolute inset-0 z-0 lg:rounded-b-2xl overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[90vh] lg:h-screen xl:h-screen flex items-center bg-white overflow-hidden pb-8 sm:pb-12 md:pb-10 lg:pb-0 -mt-20 pt-20">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <img
             src={heroImage}
             alt={t("images.hero_interior_alt")}
@@ -301,8 +301,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/80" />
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-4 sm:pt-6 md:pt-12 lg:pt-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-8 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 pt-4 sm:pt-6 md:pt-12 lg:pt-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
