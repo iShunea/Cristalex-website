@@ -289,7 +289,7 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[70vh] sm:min-h-[80vh] md:min-h-[85vh] lg:min-h-[75vh] xl:min-h-[70vh] flex items-center bg-white overflow-hidden pb-8 sm:pb-12 md:pb-10 lg:pb-8 -mt-20 pt-20">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[95vh] lg:min-h-[100vh] xl:min-h-[100vh] flex items-center bg-white overflow-hidden pb-8 sm:pb-12 md:pb-10 lg:pb-8 -mt-20 pt-20">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
