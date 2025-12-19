@@ -373,7 +373,7 @@ export default function Home() {
       </section>
 
       {/* STATS BANNER - Fresh Light Theme */}
-      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-6 sm:py-8 md:py-8 lg:py-6 text-white relative z-20 shadow-lg -mt-4 sm:-mt-6 md:-mt-8 lg:-mt-6">
+      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-8 sm:py-10 md:py-12 lg:py-10 text-white relative z-20 shadow-lg mt-8 sm:mt-10 md:mt-12 lg:mt-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-6 lg:gap-4 text-center md:divide-x divide-white/10">
             {stats.map((stat, i) => (
