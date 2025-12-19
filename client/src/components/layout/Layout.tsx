@@ -1,19 +1,27 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, ChevronDown } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
+import { useQuery } from "@tanstack/react-query";
+import { getExternalServices, ExternalService, getTranslatedField } from "@/lib/api";
 import logo from "@assets/logo CristAlex Dent_1763723661858.png";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { t, i18n } = useTranslation();
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [tratamenteDropdownOpen, setTratamenteDropdownOpen] = useState(false);
+  const [despreNoiDropdownOpen, setDespreNoiDropdownOpen] = useState(false);
+  const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
+  const [mobileTratamenteExpanded, setMobileTratamenteExpanded] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
+  const tratamenteDropdownRef = useRef<HTMLDivElement>(null);
+  const despreNoiDropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -21,15 +29,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
       if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
         setLangDropdownOpen(false);
       }
+      if (tratamenteDropdownRef.current && !tratamenteDropdownRef.current.contains(event.target as Node)) {
+        setTratamenteDropdownOpen(false);
+      }
+      if (despreNoiDropdownRef.current && !despreNoiDropdownRef.current.contains(event.target as Node)) {
+        setDespreNoiDropdownOpen(false);
+      }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const languages = [
-    { code: "ro", label: "Română", flag: "🇷🇴" },
-    { code: "ru", label: "Русский", flag: "🇷🇺" },
-    { code: "en", label: "English", flag: "🇬🇧" },
+    { code: "ro", label: "Română" },
+    { code: "ru", label: "Rusă" },
+    { code: "en", label: "Engleză" },
   ];
 
   const changeLang = (code: string) => {
@@ -37,12 +51,51 @@ export function Layout({ children }: { children: React.ReactNode }) {
     setLangDropdownOpen(false);
   };
 
-  const navItems = [
-    { href: "/", label: t("nav.home") },
-    { href: "/about", label: t("nav.about") },
-    { href: "/services", label: t("nav.services") },
-    { href: "/blog", label: t("nav.blog") },
-    { href: "/contact", label: t("nav.contact") },
+  // Fetch services from API
+  const { data: apiServices } = useQuery<ExternalService[]>({
+    queryKey: ["external-services"],
+    queryFn: getExternalServices,
+    staleTime: 5 * 60 * 1000, // Cache for 5 minutes
+  });
+
+  // Static fallback services
+  const staticServices = [
+    { id: "implant", label: t("services.implant") },
+    { id: "therapy", label: t("services.therapy") },
+    { id: "endo", label: t("services.endo") },
+    { id: "prophy", label: t("services.prophy") },
+    { id: "prosth", label: t("services.prosth") },
+    { id: "pedo", label: t("services.pedo") },
+    { id: "extraction", label: t("services.extraction") },
+    { id: "sinus", label: t("services.sinus") },
+  ];
+
+  // Helper to get field with language suffix (titleRo, descEn, etc.)
+  const getServiceField = (service: any, fieldBase: string) => {
+    const lang = i18n.language;
+    const suffix = lang === 'ro' ? 'Ro' : lang === 'ru' ? 'Ru' : 'En';
+    // Try language-specific field first
+    if (service[`${fieldBase}${suffix}`]) return service[`${fieldBase}${suffix}`];
+    // Fallback to other languages
+    if (service[`${fieldBase}En`]) return service[`${fieldBase}En`];
+    if (service[`${fieldBase}Ro`]) return service[`${fieldBase}Ro`];
+    // Fallback to base field
+    if (service[fieldBase]) return service[fieldBase];
+    return '';
+  };
+
+  // Use API services if available, otherwise fall back to static
+  const services = apiServices && apiServices.length > 0
+    ? apiServices.filter(s => s.isActive !== false).map((s: any) => ({
+        id: s._id,
+        label: getServiceField(s, 'title') || getTranslatedField(s, 'name' as any, i18n.language, s.name || '')
+      }))
+    : staticServices;
+
+  // About Us submenu items
+  const aboutItems = [
+    { href: "/about#team", label: t("nav.team") },
+    { href: "/about#mission", label: t("nav.mission") },
   ];
 
   return (
@@ -71,18 +124,98 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <img src={logo} alt={t("images.logo_alt")} className="h-12 w-auto" />
+            <img src={logo} alt={t("images.logo_alt")} className="h-12 w-auto" loading="eager" decoding="async" />
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <Link key={item.href} href={item.href} className={`text-sm font-medium transition-colors hover:text-primary ${
-                location === item.href ? "text-primary font-bold" : "text-gray-600"
-              }`}>
-                {item.label}
-              </Link>
-            ))}
+          <nav className="hidden md:flex items-center gap-6">
+            {/* Home */}
+            <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${
+              location === "/" ? "text-primary font-bold" : "text-gray-600"
+            }`}>
+              {t("nav.home")}
+            </Link>
+
+            {/* Despre Noi Dropdown */}
+            <div className="relative" ref={despreNoiDropdownRef}>
+              <button
+                onClick={() => setDespreNoiDropdownOpen(!despreNoiDropdownOpen)}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                  location.startsWith("/about") ? "text-primary font-bold" : "text-gray-600"
+                }`}
+              >
+                {t("nav.about")}
+                <ChevronDown className={`w-4 h-4 transition-transform ${despreNoiDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {despreNoiDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-48 py-2"
+                >
+                  {aboutItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setDespreNoiDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            {/* Tratamente Dropdown */}
+            <div className="relative" ref={tratamenteDropdownRef}>
+              <button
+                onClick={() => setTratamenteDropdownOpen(!tratamenteDropdownOpen)}
+                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                  location.startsWith("/services") ? "text-primary font-bold" : "text-gray-600"
+                }`}
+              >
+                {t("nav.treatments")}
+                <ChevronDown className={`w-4 h-4 transition-transform ${tratamenteDropdownOpen ? "rotate-180" : ""}`} />
+              </button>
+
+              {tratamenteDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-56 py-2"
+                >
+                  {services.map((service) => (
+                    <Link
+                      key={service.id}
+                      href={`/services#${service.id}`}
+                      onClick={() => setTratamenteDropdownOpen(false)}
+                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    >
+                      {service.label}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            {/* Blog */}
+            <Link href="/blog" className={`text-sm font-medium transition-colors hover:text-primary ${
+              location === "/blog" ? "text-primary font-bold" : "text-gray-600"
+            }`}>
+              {t("nav.blog")}
+            </Link>
+
+            {/* Contact */}
+            <Link href="/contact" className={`text-sm font-medium transition-colors hover:text-primary ${
+              location === "/contact" ? "text-primary font-bold" : "text-gray-600"
+            }`}>
+              {t("nav.contact")}
+            </Link>
+
             {/* Language Dropdown */}
             <div className="relative" ref={langDropdownRef}>
               <button 
@@ -112,7 +245,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           : "text-gray-700 hover:bg-gray-50 active:bg-gray-100 hover:translate-x-1"
                       }`}
                     >
-                      <span>{lang.flag}</span>
                       <span className="flex-1">{lang.label}</span>
                       {i18n.language === lang.code && <Check className="w-4 h-4 text-primary" />}
                     </button>
@@ -143,24 +275,91 @@ export function Layout({ children }: { children: React.ReactNode }) {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-20 z-40 bg-white md:hidden p-6 flex flex-col gap-6"
+            className="fixed inset-0 top-20 z-40 bg-white md:hidden p-6 flex flex-col gap-4 overflow-y-auto"
           >
-            <nav className="flex flex-col gap-6 text-center">
-              {navItems.map((item) => (
-                <Link 
-                  key={item.href} 
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-xl font-medium text-gray-800"
+            <nav className="flex flex-col gap-2">
+              {/* Home */}
+              <Link
+                href="/"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
+              >
+                {t("nav.home")}
+              </Link>
+
+              {/* Despre Noi - Expandable */}
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setMobileAboutExpanded(!mobileAboutExpanded)}
+                  className="flex items-center justify-between text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
                 >
-                  {item.label}
-                </Link>
-              ))}
+                  {t("nav.about")}
+                  <ChevronDown className={`w-5 h-5 transition-transform ${mobileAboutExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {mobileAboutExpanded && (
+                  <div className="ml-4 flex flex-col gap-1 border-l-2 border-primary/20 pl-4">
+                    {aboutItems.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-base text-gray-600 py-2 px-3 rounded-lg hover:bg-primary/10 hover:text-primary"
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Tratamente - Expandable */}
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setMobileTratamenteExpanded(!mobileTratamenteExpanded)}
+                  className="flex items-center justify-between text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
+                >
+                  {t("nav.treatments")}
+                  <ChevronDown className={`w-5 h-5 transition-transform ${mobileTratamenteExpanded ? "rotate-180" : ""}`} />
+                </button>
+                {mobileTratamenteExpanded && (
+                  <div className="ml-4 flex flex-col gap-1 border-l-2 border-primary/20 pl-4">
+                    {services.map((service) => (
+                      <Link
+                        key={service.id}
+                        href={`/services#${service.id}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-base text-gray-600 py-2 px-3 rounded-lg hover:bg-primary/10 hover:text-primary"
+                      >
+                        {service.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Blog */}
+              <Link
+                href="/blog"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
+              >
+                {t("nav.blog")}
+              </Link>
+
+              {/* Contact */}
+              <Link
+                href="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
+              >
+                {t("nav.contact")}
+              </Link>
+
               <div className="h-px bg-gray-100 my-2" />
-              
+
               {/* Mobile Language Selector */}
               <div className="flex flex-col gap-2">
-                <div className="text-sm font-bold text-gray-600 px-4">Schimbă limba</div>
+                <div className="text-sm font-bold text-gray-600 px-4">{t("top_bar.change_language")}</div>
                 <div className="grid grid-cols-3 gap-2 px-2">
                   {languages.map((lang) => (
                     <button
@@ -175,15 +374,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
                           : "bg-gray-50 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
                       }`}
                     >
-                      <span className="text-lg">{lang.flag}</span>
-                      <span className="text-xs">{lang.label}</span>
+                      <span className="text-sm">{lang.label}</span>
                       {i18n.language === lang.code && <Check className="w-4 h-4" />}
                     </button>
                   ))}
                 </div>
               </div>
-              
-              <BookingModal 
+
+              <BookingModal
                 buttonText={t("nav.book")}
                 buttonClassName="w-full mt-4 bg-primary hover:bg-primary/90 active:bg-primary/80 h-12 text-lg font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
               />
@@ -202,7 +400,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <img src={logo} alt={t("images.logo_alt")} className="h-10 w-auto" />
+                <img src={logo} alt={t("images.logo_alt")} className="h-10 w-auto" loading="lazy" decoding="async" />
               </div>
               <p className="text-gray-600 text-sm leading-relaxed">
                 {t("footer.description")}

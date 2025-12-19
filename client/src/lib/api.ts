@@ -1,5 +1,5 @@
-const EXTERNAL_API_BASE = "https://a5e6b9c8-56df-4a28-80b4-8e30c119abc5-00-3p3h7u3k5vbpw.worf.replit.dev/api";
-export const EXTERNAL_BASE_URL = "https://a5e6b9c8-56df-4a28-80b4-8e30c119abc5-00-3p3h7u3k5vbpw.worf.replit.dev";
+const EXTERNAL_API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5001/api";
+export const EXTERNAL_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
 
 export interface ExternalService {
   _id: string;

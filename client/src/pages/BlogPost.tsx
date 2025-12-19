@@ -115,10 +115,12 @@ export default function BlogPost() {
       <div className="min-h-screen pb-20">
         {/* Header Image */}
         <div className="relative h-[60vh] min-h-[400px] w-full overflow-hidden -mt-20">
-          <img 
-            src={post.image} 
-            alt={post.title} 
+          <img
+            src={post.image}
+            alt={post.title}
             className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
           

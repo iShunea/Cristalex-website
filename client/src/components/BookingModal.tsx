@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import {
   Dialog,
   DialogContent,
@@ -14,7 +14,7 @@ interface BookingModalProps {
   buttonClassName?: string;
 }
 
-export function BookingModal({ trigger, buttonText = "Programare Online", buttonClassName }: BookingModalProps) {
+export const BookingModal = memo(function BookingModal({ trigger, buttonText = "Programare Online", buttonClassName }: BookingModalProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -52,4 +52,4 @@ export function BookingModal({ trigger, buttonText = "Programare Online", button
       </DialogContent>
     </Dialog>
   );
-}
+});

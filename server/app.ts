@@ -1,6 +1,7 @@
 import { type Server } from "node:http";
 
 import express, { type Express, type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 
 export function log(message: string, source = "express") {
@@ -15,6 +16,26 @@ export function log(message: string, source = "express") {
 }
 
 export const app = express();
+
+// Enable gzip/deflate compression for all responses
+app.use(compression());
+
+// Cache control middleware for static assets and API responses
+app.use((req, res, next) => {
+  // Static assets - cache for 1 year (immutable with hash in filename)
+  if (req.path.match(/\.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+  // API GET requests - cache for 5 minutes with revalidation
+  else if (req.path.startsWith('/api') && req.method === 'GET') {
+    res.setHeader('Cache-Control', 'public, max-age=300, stale-while-revalidate=60');
+  }
+  // HTML pages - no cache, always revalidate
+  else if (req.path === '/' || !req.path.includes('.')) {
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  }
+  next();
+});
 
 declare module 'http' {
   interface IncomingMessage {
@@ -83,7 +104,6 @@ export default async function runApp(
   server.listen({
     port,
     host: "0.0.0.0",
-    reusePort: true,
   }, () => {
     log(`serving on port ${port}`);
   });

@@ -37,6 +37,22 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    // Performance optimizations
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        // Manual chunk splitting for better caching
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['wouter'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-accordion', '@radix-ui/react-tabs'],
+          query: ['@tanstack/react-query'],
+          i18n: ['react-i18next', 'i18next'],
+        },
+      },
+    },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
   },
   server: {
     host: "0.0.0.0",

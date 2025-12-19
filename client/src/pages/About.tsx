@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { useMemo } from "react";
+import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -16,6 +17,16 @@ import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa
 
 export default function About() {
   const { t, i18n } = useTranslation();
+
+  // Dynamic SEO meta tags
+  const lang = i18n.language as "ro" | "ru" | "en";
+  const seoConfig = seoConfigs.about[lang] || seoConfigs.about.ro;
+  useSEO({
+    title: seoConfig.title,
+    description: seoConfig.description,
+    keywords: seoConfig.keywords,
+    canonicalUrl: "https://cristalexdent.md/about",
+  });
 
   const { data: apiTeamMembers } = useQuery<ExternalTeamMember[]>({
     queryKey: ["external-team-members"],
@@ -59,8 +70,8 @@ export default function About() {
 
       {/* Historia Section */}
       <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
-          <div className="order-2 lg:order-1">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch mb-20">
+          <div className="order-2 lg:order-1 flex flex-col">
             <div className="flex items-center gap-2 mb-6">
               <span className="h-px w-12 bg-primary"></span>
               <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.about_us_label")}</span>
@@ -72,8 +83,8 @@ export default function About() {
             <p className="text-gray-600 text-lg leading-relaxed mb-8">
               {t("about.history_p2")}
             </p>
-            
-            <div className="grid grid-cols-2 gap-6">
+
+            <div className="grid grid-cols-2 gap-6 mt-auto">
               <div className="text-center p-6 bg-red-50 rounded-xl">
                 <div className="text-4xl font-bold text-primary mb-2">2008</div>
                 <div className="text-gray-600 text-sm">{t("about.founded_year")}</div>
@@ -84,14 +95,14 @@ export default function About() {
               </div>
             </div>
           </div>
-          
+
           <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-2xl">
-             <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" />
+             <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" loading="eager" decoding="async" />
           </div>
         </div>
 
         {/* Mission Section */}
-        <div className="bg-gray-50 rounded-3xl p-12 mb-20">
+        <div id="mission" className="bg-gray-50 rounded-3xl p-12 mb-20 scroll-mt-24">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">{t("about.mission_title")}</h2>
           <p className="text-gray-700 text-xl mb-6 leading-relaxed text-center max-w-4xl mx-auto">
             {t("about.mission_text")}
@@ -137,17 +148,17 @@ export default function About() {
         </div>
 
         {/* Team Members Section - Vertical List */}
-        <div className="mb-20">
+        <div id="team" className="mb-20 scroll-mt-24">
           <h2 className="text-3xl font-bold text-center mb-12">{t("about.team_title")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {doctors.map((doc, index) => (
               <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
                 <div className="h-[320px] overflow-hidden relative">
-                  <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" />
+                  <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
                   <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
                     <h3 className="text-xl font-bold text-white">{doc.name}</h3>
-                    <p className="text-primary text-sm font-medium">{doc.role}</p>
+                    <p className="text-white/90 text-sm font-medium">{doc.role}</p>
                   </div>
                 </div>
                 <div className="p-6">

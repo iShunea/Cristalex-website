@@ -1,12 +1,23 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
+import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  // Dynamic SEO meta tags
+  const lang = i18n.language as "ro" | "ru" | "en";
+  const seoConfig = seoConfigs.contact[lang] || seoConfigs.contact.ro;
+  useSEO({
+    title: seoConfig.title,
+    description: seoConfig.description,
+    keywords: seoConfig.keywords,
+    canonicalUrl: "https://cristalexdent.md/contact",
+  });
 
   return (
     <Layout>

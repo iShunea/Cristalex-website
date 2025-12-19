@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface CaseProps {
@@ -13,7 +13,7 @@ interface BeforeAfterProps {
   mainSubtitle?: string;
 }
 
-function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
+const SingleBeforeAfter = memo(function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
   const { t } = useTranslation();
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -74,7 +74,7 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <img src={afterImage} alt={t("beforeafter.after")} className="w-full h-auto block" draggable={false} />
+        <img src={afterImage} alt={t("beforeafter.after")} className="w-full h-auto block" draggable={false} loading="lazy" decoding="async" />
         <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${sliderPos}%` }}>
           <img
             src={beforeImage}
@@ -82,6 +82,8 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
             className="w-full h-full object-cover"
             style={{ width: `${(100 / sliderPos) * 100}%` }}
             draggable={false}
+            loading="lazy"
+            decoding="async"
           />
         </div>
         <div
@@ -105,9 +107,9 @@ function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
       <h3 className="text-center mt-4 font-semibold text-gray-800">{title}</h3>
     </div>
   );
-}
+});
 
-export function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubtitle = "Glisează pentru a vedea rezultatele noastre" }: BeforeAfterProps) {
+export const BeforeAfter = memo(function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubtitle = "Glisează pentru a vedea rezultatele noastre" }: BeforeAfterProps) {
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -123,4 +125,4 @@ export function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubt
       </div>
     </section>
   );
-}
+});

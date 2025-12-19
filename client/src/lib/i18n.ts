@@ -6,13 +6,19 @@ const resources = {
     translation: {
       nav: {
         home: "Acasă",
-        about: "Despre Noi",
+        about: "Despre noi",
         services: "Tratamente",
+        treatments: "Tratamente",
         prices: "Tarife",
-        team: "Echipa",
+        team: "Echipa noastră",
+        mission: "Misiunea noastră",
         contact: "Contact",
         blog: "Blog",
-        book: "Programare Online"
+        book: "Programare online"
+      },
+      common: {
+        close: "Închide",
+        book: "Programează"
       },
       top_bar: {
         schedule: "Lun-Vin: 09:00 - 18:00",
@@ -86,7 +92,7 @@ const resources = {
         a3: "Colaborăm cu parteneri bancari pentru a oferi soluții flexibile de plată în rate fără dobândă."
       },
       services: {
-        title: "Spectrul Nostru de Servicii",
+        title: "Spectrul nostru de servicii",
         subtitle: "Tehnologie de ultimă oră și medici specialiști pentru fiecare ramură a stomatologiei.",
         subtitle_features: "Standarde ridicate, tehnologie de ultimă oră și o abordare umană.",
         see_all: "Vezi Toate Serviciile",
@@ -180,21 +186,21 @@ const resources = {
         free_btn: "Vreau Consultație Gratuită"
       },
       about: {
-        title: "Despre Noi",
+        title: "Despre noi",
         subtitle: "Cristalexdent – Zâmbetul tău, pasiunea noastră",
-        history_title: "Istoria Noastră",
+        history_title: "Istoria noastră",
         team_subtitle: "Echipa noastră de specialiști pregătiți să îți ofere cel mai bun tratament.",
         read_more: "Citește mai mult",
-        blog_title: "Articole Recente",
+        blog_title: "Articole recente",
         blog_subtitle: "Noutăți și sfaturi pentru sănătatea ta orală.",
-        blog_see_all: "Vezi tot Blogul",
+        blog_see_all: "Vezi tot blogul",
         history_p1: "Clinica stomatologică Cristalexdent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
         history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
-        mission_title: "Misiunea Noastră",
+        mission_title: "Misiunea noastră",
         mission_text: "Fiind niște stomatologi dedicați, echipa Cristalexdent lucrează cu profesionalism pentru a vă oferi formula perfectă: zâmbetul mult visat cu o sănătate dentară optimă.",
         promise_text: "Aici vei beneficia de un tratament individual și personalizat, la prețuri atractive. Sănătatea dentară e mult mai accesibilă decât te așteptai.",
-        team_title: "Echipa Noastră",
-        about_us_label: "Despre Noi",
+        team_title: "Echipa noastră",
+        about_us_label: "Despre noi",
         excellence: "Excelență",
         excellence_desc: "Standarde înalte în fiecare tratament",
         dedication: "Dedicare",
@@ -329,13 +335,19 @@ const resources = {
     translation: {
       nav: {
         home: "Главная",
-        about: "О Клинике",
+        about: "О нас",
         services: "Услуги",
+        treatments: "Лечение",
         prices: "Цены",
-        team: "Команда",
+        team: "Наша команда",
+        mission: "Наша миссия",
         contact: "Контакты",
         blog: "Блог",
-        book: "Запись Онлайн"
+        book: "Запись онлайн"
+      },
+      common: {
+        close: "Закрыть",
+        book: "Записаться"
       },
       top_bar: {
         schedule: "Пн-Пт: 09:00 - 18:00",
@@ -409,7 +421,7 @@ const resources = {
         a3: "Мы сотрудничаем с банковскими партнерами для предоставления гибких решений по оплате в рассрочку."
       },
       services: {
-        title: "Наш Спектр Услуг",
+        title: "Наш спектр услуг",
         subtitle: "Новейшие технологии и врачи-специалисты для каждой отрасли стоматологии.",
         subtitle_features: "Высокие стандарты, передовые технологии и человеческий подход.",
         see_all: "Посмотреть Все Услуги",
@@ -652,13 +664,19 @@ const resources = {
     translation: {
       nav: {
         home: "Home",
-        about: "About Us",
+        about: "About us",
         services: "Services",
+        treatments: "Treatments",
         prices: "Prices",
-        team: "Team",
+        team: "Our team",
+        mission: "Our mission",
         contact: "Contact",
         blog: "Blog",
-        book: "Book Online"
+        book: "Book online"
+      },
+      common: {
+        close: "Close",
+        book: "Book"
       },
       top_bar: {
         schedule: "Mon-Fri: 09:00 - 18:00",
@@ -732,7 +750,7 @@ const resources = {
         a3: "We work with banking partners to offer flexible payment solutions in installments without interest."
       },
       services: {
-        title: "Our Service Spectrum",
+        title: "Our service spectrum",
         subtitle: "State-of-the-art technology and specialist doctors for every branch of dentistry.",
         subtitle_features: "High standards, state-of-the-art technology and a human approach.",
         see_all: "See All Services",

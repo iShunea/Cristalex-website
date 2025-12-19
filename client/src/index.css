@@ -83,11 +83,11 @@
 }
 
 .section-title {
-  @apply text-3xl md:text-4xl font-bold text-center mb-4 relative inline-block;
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-2xl font-bold text-center mb-3 md:mb-4 lg:mb-2 relative inline-block;
 }
 
 .section-subtitle {
-  @apply text-gray-500 text-center max-w-2xl mx-auto mb-12 text-lg;
+  @apply text-gray-500 text-center max-w-2xl mx-auto mb-8 md:mb-12 lg:mb-6 text-base md:text-lg lg:text-sm;
 }
 
 .nav-link {
@@ -126,4 +126,22 @@
   height: 100%;
   background: linear-gradient(90deg, transparent 0%, rgba(72, 201, 176, 0.08) 100%);
   pointer-events: none;
+}
+
+/* Infinite scroll animation for team carousel */
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 30s linear infinite;
+}
+
+.animate-scroll-infinite:hover {
+  animation-play-state: paused;
 }

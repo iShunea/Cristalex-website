@@ -1,0 +1,23 @@
+# Robots.txt for Cristalexdent
+# https://cristalexdent.md
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://cristalexdent.md/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow search engines to crawl all public pages
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /blog
+Allow: /contact
+
+# Crawl delay (optional, be nice to the server)
+Crawl-delay: 1

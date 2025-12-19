@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { Link } from "wouter";
+import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import { Calendar, User, ArrowRight, Loader2 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalBlogPosts, ExternalBlogPost, getTranslatedField } from "@/lib/api";
@@ -58,7 +59,17 @@ export function useBlogPosts() {
 export default function Blog() {
   const { t, i18n } = useTranslation();
   const localizedPosts = useBlogPosts();
-  
+
+  // Dynamic SEO meta tags
+  const lang = i18n.language as "ro" | "ru" | "en";
+  const seoConfig = seoConfigs.blog[lang] || seoConfigs.blog.ro;
+  useSEO({
+    title: seoConfig.title,
+    description: seoConfig.description,
+    keywords: seoConfig.keywords,
+    canonicalUrl: "https://cristalexdent.md/blog",
+  });
+
   const { data: apiPosts, isLoading } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: getExternalBlogPosts,
@@ -125,10 +136,12 @@ export default function Blog() {
               return (
             <Link key={postId} href={`/blog/${postId}`} className="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col h-full">
               <div className="h-60 overflow-hidden relative">
-                <img 
-                  src={(post as any).imageUrl || (post as any).image} 
-                  alt={post.title} 
+                <img
+                  src={(post as any).imageUrl || (post as any).image}
+                  alt={post.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-primary uppercase tracking-wider">
                   {post.category}

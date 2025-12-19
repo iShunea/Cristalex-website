@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useEffect, memo, useCallback, useRef } from "react";
 import { Instagram } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import {
@@ -22,9 +22,10 @@ function extractInstagramPostId(url: string): string | null {
   return match ? match[2] : null;
 }
 
-export function SocialReviews() {
+export const SocialReviews = memo(function SocialReviews() {
   const { t, i18n } = useTranslation();
-  
+  const renderAttempts = useRef(0);
+
   const { data: apiPosts, isLoading, error } = useQuery<ExternalSocialMediaPost[]>({
     queryKey: ["external-social-media-posts"],
     queryFn: getExternalSocialMediaPosts,
@@ -32,37 +33,78 @@ export function SocialReviews() {
 
   const posts = apiPosts || [];
 
+  // Function to re-render embeds
+  const renderEmbeds = useCallback(() => {
+    if ((window as any).tiktokEmbed?.lib?.render) {
+      (window as any).tiktokEmbed.lib.render();
+    }
+    if ((window as any).instgrm?.Embeds?.process) {
+      (window as any).instgrm.Embeds.process();
+    }
+  }, []);
+
   useEffect(() => {
     if (posts.length === 0) return;
 
     const hasTikTok = posts.some(p => p.platform === "tiktok");
     const hasInstagram = posts.some(p => p.platform === "instagram");
 
-    if (hasTikTok && !document.querySelector('script[src*="tiktok.com/embed"]')) {
-      const script = document.createElement("script");
-      script.src = "https://www.tiktok.com/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
+    // Load TikTok embed script
+    if (hasTikTok) {
+      const existingScript = document.querySelector('script[src*="tiktok.com/embed"]');
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://www.tiktok.com/embed.js";
+        script.async = true;
+        script.onload = () => {
+          setTimeout(renderEmbeds, 500);
+        };
+        document.body.appendChild(script);
+      }
     }
 
-    if (hasInstagram && !document.querySelector('script[src*="instagram.com/embed"]')) {
-      const script = document.createElement("script");
-      script.src = "https://www.instagram.com/embed.js";
-      script.async = true;
-      document.body.appendChild(script);
+    // Load Instagram embed script
+    if (hasInstagram) {
+      const existingScript = document.querySelector('script[src*="instagram.com/embed"]');
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://www.instagram.com/embed.js";
+        script.async = true;
+        script.onload = () => {
+          setTimeout(renderEmbeds, 500);
+        };
+        document.body.appendChild(script);
+      }
     }
 
-    const timer = setTimeout(() => {
-      if ((window as any).tiktokEmbed?.lib?.render) {
-        (window as any).tiktokEmbed.lib.render();
-      }
-      if ((window as any).instgrm?.Embeds?.process) {
-        (window as any).instgrm.Embeds.process();
-      }
-    }, 1000);
+    // Re-render embeds multiple times to ensure they load
+    const timers = [
+      setTimeout(renderEmbeds, 500),
+      setTimeout(renderEmbeds, 1500),
+      setTimeout(renderEmbeds, 3000),
+      setTimeout(renderEmbeds, 5000),
+    ];
 
-    return () => clearTimeout(timer);
-  }, [posts]);
+    // Also re-render when the component becomes visible
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          renderAttempts.current += 1;
+          renderEmbeds();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const section = document.querySelector('[data-social-reviews]');
+    if (section) {
+      observer.observe(section);
+    }
+
+    return () => {
+      timers.forEach(clearTimeout);
+      observer.disconnect();
+    };
+  }, [posts, renderEmbeds]);
 
   if (isLoading) {
     return (
@@ -83,11 +125,11 @@ export function SocialReviews() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-br from-primary/5 via-white to-accent/5">
+    <section className="py-24 bg-gradient-to-br from-primary/5 via-white to-accent/5" data-social-reviews>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="section-title">{t("social_reviews.title")}</h2>
-          <p className="section-subtitle">{t("social_reviews.subtitle")}</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("social_reviews.title")}</h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-lg">{t("social_reviews.subtitle")}</p>
         </div>
 
         <div className="max-w-6xl mx-auto">
@@ -173,4 +215,4 @@ export function SocialReviews() {
       </div>
     </section>
   );
-}
+});

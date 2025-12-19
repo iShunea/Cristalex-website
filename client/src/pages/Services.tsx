@@ -1,16 +1,27 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { CheckCircle2, ArrowRight, Info } from "lucide-react";
+import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
 import { useQuery } from "@tanstack/react-query";
-import { getExternalServices, ExternalService, getTranslatedField } from "@/lib/api";
+import { getExternalServices, ExternalService, getTranslatedField, EXTERNAL_BASE_URL } from "@/lib/api";
 import implantImage from "@assets/generated_images/dental_implant_model.png";
 import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 
 export default function Services() {
   const { t, i18n } = useTranslation();
+
+  // Dynamic SEO meta tags
+  const lang = i18n.language as "ro" | "ru" | "en";
+  const seoConfig = seoConfigs.services[lang] || seoConfigs.services.ro;
+  useSEO({
+    title: seoConfig.title,
+    description: seoConfig.description,
+    keywords: seoConfig.keywords,
+    canonicalUrl: "https://cristalexdent.md/services",
+  });
 
   // Fetch external services
   const { data: externalServices } = useQuery<ExternalService[]>({
@@ -133,7 +144,13 @@ export default function Services() {
         desc: getServiceField(service, 'desc') || getTranslatedField(service, 'description' as any, i18n.language, service.description || service.descKey || ''),
         price: service.price || '',
         features: getTranslatedFeatures(service),
-        image: service.imageUrl || service.image || categoryImages[service.category || ''] || (idx % 3 === 0 ? implantImage : idx % 3 === 1 ? orthoImage : aestheticImage)
+        image: (() => {
+          const imgPath = service.heroImage || service.imageUrl || service.image || '';
+          if (imgPath) {
+            return imgPath.startsWith('http') ? imgPath : `${EXTERNAL_BASE_URL}${imgPath}`;
+          }
+          return categoryImages[service.category || ''] || (idx % 3 === 0 ? implantImage : idx % 3 === 1 ? orthoImage : aestheticImage);
+        })()
       }))
     : staticCategories;
 
@@ -154,7 +171,7 @@ export default function Services() {
             <div id={cat.id} key={idx} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center scroll-mt-24`}>
               <div className="lg:w-2/5">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
-                  <img src={cat.image} alt={cat.title} className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={cat.image} alt={cat.title} className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" />
                   <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
                 </div>
               </div>
