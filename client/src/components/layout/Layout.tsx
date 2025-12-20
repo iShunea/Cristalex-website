@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, ChevronDown, ArrowUp } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { BookingModal } from "@/components/BookingModal";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalServices, ExternalService, getTranslatedField } from "@/lib/api";
@@ -162,25 +161,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <ChevronDown className={`w-4 h-4 transition-transform ${despreNoiDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {despreNoiDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-48 py-2"
-                >
-                  {aboutItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setDespreNoiDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
+              <div
+                className={`absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-48 py-2 transition-all duration-200 origin-top ${
+                  despreNoiDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                }`}
+              >
+                {aboutItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setDespreNoiDropdownOpen(false)}
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Tratamente Dropdown */}
@@ -195,25 +191,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <ChevronDown className={`w-4 h-4 transition-transform ${tratamenteDropdownOpen ? "rotate-180" : ""}`} />
               </button>
 
-              {tratamenteDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-56 py-2"
-                >
-                  {services.map((service) => (
-                    <Link
-                      key={service.id}
-                      href={`/services#${service.id}`}
-                      onClick={() => setTratamenteDropdownOpen(false)}
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    >
-                      {service.label}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
+              <div
+                className={`absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-56 py-2 transition-all duration-200 origin-top ${
+                  tratamenteDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                }`}
+              >
+                {services.map((service) => (
+                  <Link
+                    key={service.id}
+                    href={`/services#${service.id}`}
+                    onClick={() => setTratamenteDropdownOpen(false)}
+                    className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                  >
+                    {service.label}
+                  </Link>
+                ))}
+              </div>
             </div>
 
             {/* Blog */}
@@ -242,29 +235,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </button>
               
               {/* Dropdown Menu */}
-              {langDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-40"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => changeLang(lang.code)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all cursor-pointer ${
-                        i18n.language === lang.code
-                          ? "bg-primary/15 text-primary font-bold border-l-4 border-primary"
-                          : "text-gray-700 hover:bg-gray-50 active:bg-gray-100 hover:translate-x-1"
-                      }`}
-                    >
-                      <span className="flex-1">{lang.label}</span>
-                      {i18n.language === lang.code && <Check className="w-4 h-4 text-primary" />}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
+              <div
+                className={`absolute top-full right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-40 transition-all duration-200 origin-top ${
+                  langDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'
+                }`}
+              >
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => changeLang(lang.code)}
+                    className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-all cursor-pointer ${
+                      i18n.language === lang.code
+                        ? "bg-primary/15 text-primary font-bold border-l-4 border-primary"
+                        : "text-gray-700 hover:bg-gray-50 active:bg-gray-100 hover:translate-x-1"
+                    }`}
+                  >
+                    <span className="flex-1">{lang.label}</span>
+                    {i18n.language === lang.code && <Check className="w-4 h-4 text-primary" />}
+                  </button>
+                ))}
+              </div>
             </div>
             <BookingModal 
               buttonText={t("nav.book")}
@@ -283,14 +273,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </header>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-20 z-40 bg-white md:hidden p-6 flex flex-col gap-4 overflow-y-auto"
-          >
+      <div
+        className={`fixed inset-0 top-20 z-40 bg-white md:hidden p-6 flex flex-col gap-4 overflow-y-auto transition-all duration-300 ${
+          isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}
+      >
             <nav className="flex flex-col gap-2">
               {/* Home */}
               <Link
@@ -400,9 +387,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 buttonClassName="w-full mt-4 bg-primary hover:bg-primary/90 active:bg-primary/80 h-12 text-lg font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
               />
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
 
       <main className="flex-grow pb-20 md:pb-0 pt-20">
         {children}
@@ -497,20 +482,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </footer>
 
       {/* Scroll to Top Button */}
-      <AnimatePresence>
-        {showScrollTop && (
-          <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            onClick={scrollToTop}
-            className="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 w-12 h-12 bg-primary hover:bg-primary/90 active:bg-primary/80 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center cursor-pointer"
-            aria-label="Scroll to top"
-          >
-            <ArrowUp className="w-5 h-5" />
-          </motion.button>
-        )}
-      </AnimatePresence>
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 w-12 h-12 bg-primary hover:bg-primary/90 active:bg-primary/80 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center cursor-pointer ${
+          showScrollTop ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+        }`}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp className="w-5 h-5" />
+      </button>
 
       {/* Mobile Contact Bottom Bar - Visible only on mobile */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden pb-safe">
