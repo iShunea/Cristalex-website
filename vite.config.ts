@@ -5,13 +5,16 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import viteImagemin from "vite-plugin-imagemin";
 
+// Only run imagemin locally, not in CI (Vercel/GitHub Actions)
+const isCI = process.env.CI === 'true' || process.env.VERCEL === '1';
+
 export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
     tailwindcss(),
-    // Image optimization - convert to WebP and compress
-    viteImagemin({
+    // Image optimization - only run locally, skip in CI for faster builds
+    ...(!isCI ? [viteImagemin({
       gifsicle: { optimizationLevel: 7, interlaced: false },
       optipng: { optimizationLevel: 7 },
       mozjpeg: { quality: 80 },
@@ -23,7 +26,7 @@ export default defineConfig({
           { name: 'removeEmptyAttrs', active: false },
         ],
       },
-    }),
+    })] : []),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
