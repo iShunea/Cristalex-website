@@ -237,6 +237,9 @@ export default function BlogPost() {
             className="w-full h-full object-cover"
             loading="eager"
             decoding="async"
+            width={1200}
+            height={600}
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
           

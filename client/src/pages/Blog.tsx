@@ -160,6 +160,8 @@ export default function Blog() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
+                  width={300}
+                  height={300}
                 />
                 <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-0.5 rounded-full text-[10px] font-bold text-primary uppercase tracking-wider">
                   {post.category}

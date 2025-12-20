@@ -70,11 +70,11 @@ const SingleBeforeAfter = memo(function SingleBeforeAfter({ beforeImage, afterIm
     <div className="w-full">
       <div
         ref={containerRef}
-        className="relative w-full overflow-hidden rounded-2xl shadow-lg cursor-col-resize select-none"
+        className="relative w-full overflow-hidden rounded-2xl shadow-lg cursor-col-resize select-none aspect-[4/3]"
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <img src={afterImage} alt={t("beforeafter.after")} className="w-full h-auto block" draggable={false} loading="lazy" decoding="async" />
+        <img src={afterImage} alt={t("beforeafter.after")} className="w-full h-full object-cover block" draggable={false} loading="lazy" decoding="async" width={600} height={450} />
         <div className="absolute top-0 left-0 h-full overflow-hidden" style={{ width: `${sliderPos}%` }}>
           <img
             src={beforeImage}

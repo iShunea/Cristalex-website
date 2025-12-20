@@ -155,8 +155,8 @@ export const SocialReviews = memo(function SocialReviews() {
                       </div>
                     </div>
 
-                    {/* Video Embed */}
-                    <div className="aspect-[9/16] relative bg-black flex items-center justify-center overflow-hidden">
+                    {/* Video Embed - Fixed height container to prevent CLS */}
+                    <div className="aspect-[9/16] relative bg-black flex items-center justify-center overflow-hidden" style={{ minHeight: '500px', containIntrinsicSize: '281px 500px', contentVisibility: 'auto' }}>
                       {post.platform === "tiktok" && (post as any).videoUrl ? (
                         <blockquote 
                           className="tiktok-embed w-full h-full" 

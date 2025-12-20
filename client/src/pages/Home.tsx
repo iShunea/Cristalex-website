@@ -153,7 +153,7 @@ function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: str
               {doctors.map((doc, index) => (
                 <div key={`first-${index}`} className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[280px] bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-md border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
                   <div className="h-[240px] sm:h-[280px] md:h-[340px] lg:h-[280px] overflow-hidden relative bg-gray-100">
-                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" width={320} height={340} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/60 transition-colors" />
                     <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 lg:p-4 text-white">
                       <h3 className="text-base sm:text-lg md:text-xl lg:text-lg font-bold text-white">{doc.name}</h3>
@@ -173,7 +173,7 @@ function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: str
               {doctors.map((doc, index) => (
                 <div key={`second-${index}`} className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[280px] bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-md border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
                   <div className="h-[240px] sm:h-[280px] md:h-[340px] lg:h-[280px] overflow-hidden relative bg-gray-100">
-                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" width={320} height={340} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/60 transition-colors" />
                     <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 lg:p-4 text-white">
                       <h3 className="text-base sm:text-lg md:text-xl lg:text-lg font-bold text-white">{doc.name}</h3>
@@ -297,6 +297,9 @@ export default function Home() {
             className="w-full h-full object-cover opacity-50 scale-105"
             loading="eager"
             decoding="async"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/80" />
         </div>
@@ -462,7 +465,7 @@ export default function Home() {
                   onClick={() => setSelectedService(s)}
                   className="group relative h-[280px] sm:h-[320px] md:h-[320px] lg:h-[280px] xl:h-[300px] rounded-xl sm:rounded-2xl lg:rounded-xl overflow-hidden cursor-pointer shadow-lg transform transition-all duration-300 hover:-translate-y-2"
                 >
-                  <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" />
+                  <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width={400} height={300} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-5 lg:p-4 text-white">
                     <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-1 sm:mb-2 lg:mb-1 text-white">{s.title}</h3>
@@ -567,8 +570,8 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Booking Widget - Always Open */}
-          <div className="max-w-7xl mx-auto bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-2xl overflow-hidden">
+          {/* Booking Widget - Always Open with fixed height to prevent CLS */}
+          <div className="max-w-7xl mx-auto bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-2xl overflow-hidden" style={{ minHeight: '480px', containIntrinsicSize: '0 480px', contentVisibility: 'auto' }}>
             <iframe
               src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
               className="w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[480px] border-0"
@@ -722,8 +725,8 @@ export default function Home() {
             </div>
 
             <div className="relative mt-8 lg:mt-0">
-              <div className="rounded-xl sm:rounded-2xl lg:rounded-xl overflow-hidden shadow-2xl">
-                <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-auto object-cover" loading="lazy" decoding="async" />
+              <div className="rounded-xl sm:rounded-2xl lg:rounded-xl overflow-hidden shadow-2xl aspect-[4/3]">
+                <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" loading="lazy" decoding="async" width={800} height={600} />
               </div>
 
               {/* Stats Cards Overlay */}
@@ -762,7 +765,7 @@ export default function Home() {
               return (
               <Link key={postId} href={`/blog/${postId}`} className="group cursor-pointer block">
                 <div className="rounded-xl overflow-hidden aspect-square mb-3 relative">
-                  <img src={post.imageUrl || post.image} alt={postTitle} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
+                  <img src={post.imageUrl || post.image} alt={postTitle} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" width={300} height={300} />
                   <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-bold text-primary uppercase">
                     {post.category || post.label}
                   </div>
