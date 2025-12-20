@@ -3,12 +3,27 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import viteImagemin from "vite-plugin-imagemin";
 
 export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
     tailwindcss(),
+    // Image optimization - convert to WebP and compress
+    viteImagemin({
+      gifsicle: { optimizationLevel: 7, interlaced: false },
+      optipng: { optimizationLevel: 7 },
+      mozjpeg: { quality: 80 },
+      pngquant: { quality: [0.7, 0.85], speed: 4 },
+      webp: { quality: 80 },
+      svgo: {
+        plugins: [
+          { name: 'removeViewBox', active: false },
+          { name: 'removeEmptyAttrs', active: false },
+        ],
+      },
+    }),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
