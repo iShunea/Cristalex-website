@@ -289,8 +289,8 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] md:min-h-[90vh] lg:h-screen xl:h-screen flex items-center bg-white overflow-hidden pb-8 sm:pb-12 md:pb-10 lg:pb-0 -mt-20 pt-20">
-        <div className="absolute inset-0 z-0 overflow-hidden">
+      <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4 -mt-20 pt-20">
+        <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
             alt={t("images.hero_interior_alt")}
@@ -301,8 +301,8 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/80" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 pt-4 sm:pt-6 md:pt-12 lg:pt-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-8 items-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -372,21 +372,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS BANNER - Fresh Light Theme */}
-      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-8 sm:py-10 md:py-12 lg:py-10 text-white relative z-20 shadow-lg">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-6 lg:gap-4 text-center md:divide-x divide-white/10">
-            {stats.map((stat, i) => (
-              <div key={i} className="p-2 sm:p-3 md:p-3 lg:p-2">
-                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 mx-auto mb-2 sm:mb-3 md:mb-2 text-white" />
-                <div className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold mb-1">{stat.value}</div>
-                <div className="text-xs sm:text-sm md:text-sm lg:text-xs text-white/90 uppercase tracking-wider">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES CAROUSEL / PREVIEW */}
       <section className="py-12 sm:py-16 md:py-16 lg:py-12 bg-white">
         <div className="container mx-auto px-4">
@@ -398,8 +383,8 @@ export default function Home() {
            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-5 lg:gap-4">
               {(apiServices && apiServices.length > 0
                 ? apiServices.filter(s => s.isActive !== false).slice(0, 4).map((service: any) => {
-                    const imgPath = service.imageUrl || service.image || '';
-                    const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : implantImage);
+                    const imgPath = service.heroImage || service.imageUrl || service.image || '';
+                    const fullImageUrl = imgPath ? (imgPath.startsWith('http') ? imgPath : `${EXTERNAL_BASE_URL}${imgPath}`) : implantImage;
 
                     // Helper to get field with language suffix (titleRo, descEn, etc.)
                     const getField = (fieldBase: string) => {
@@ -498,42 +483,67 @@ export default function Home() {
 
            <Dialog open={!!selectedService} onOpenChange={(open) => !open && setSelectedService(null)}>
             <DialogContent className="sm:max-w-[600px] bg-white p-0 overflow-hidden gap-0 border-0">
-              {selectedService && (
-                <>
-                  <div className="relative h-48 w-full">
-                    <img src={selectedService.img} alt={selectedService.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                    <h2 className="absolute bottom-4 left-6 text-2xl font-bold text-white">{selectedService.title}</h2>
-                  </div>
+              {selectedService && (() => {
+                // Extract clean description - first 2 sentences without markdown
+                const cleanDesc = (selectedService.desc || '')
+                  .replace(/\*\*[^*]+\*\*/g, '') // Remove **bold** sections
+                  .replace(/##[^\n]+/g, '') // Remove ## headers
+                  .replace(/- /g, '') // Remove list markers
+                  .replace(/\n+/g, ' ') // Replace newlines with spaces
+                  .trim()
+                  .split(/[.!?]/)
+                  .filter(s => s.trim().length > 10)
+                  .slice(0, 2)
+                  .join('. ')
+                  .trim();
 
-                  <div className="p-6">
-                    <DialogHeader className="mb-4 text-left">
-                      <DialogDescription className="text-lg text-gray-700 leading-relaxed">
-                        {selectedService.details}
-                      </DialogDescription>
-                    </DialogHeader>
+                const displayDesc = cleanDesc ? cleanDesc + '.' : '';
 
-                    {selectedService.features && selectedService.features.length > 0 && (
-                      <div className="grid grid-cols-2 gap-3 mb-6">
-                        {selectedService.features.map((feat: string, idx: number) => (
-                          <div key={idx} className="flex items-center gap-2 bg-primary/10 p-2 rounded-lg">
-                            <CheckCircle2 className="w-4 h-4 text-primary" />
-                            <span className="text-sm font-medium text-gray-700">{feat}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="flex justify-end gap-3 mt-4">
-                      <Button variant="outline" onClick={() => setSelectedService(null)}>{t("common.close") || "Închide"}</Button>
-                      <BookingModal
-                        buttonText={`${t("common.book") || "Programează"} ${selectedService.title}`}
-                        buttonClassName="bg-primary hover:bg-primary/90 active:bg-primary/80 text-white font-bold rounded-lg transition-all hover:shadow-lg active:shadow-md cursor-pointer"
-                      />
+                return (
+                  <>
+                    <div className="relative h-48 w-full flex-shrink-0">
+                      <img src={selectedService.img} alt={selectedService.title} className="w-full h-full object-cover" loading="lazy" decoding="async" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      <h2 className="absolute bottom-4 left-6 right-6 text-xl font-bold text-white">{selectedService.title}</h2>
                     </div>
-                  </div>
-                </>
-              )}
+
+                    <div className="p-5">
+                      {displayDesc && (
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                          {displayDesc}
+                        </p>
+                      )}
+
+                      {selectedService.features && selectedService.features.length > 0 && (
+                        <div className="mb-4">
+                          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">{t("services.includes")}</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                            {selectedService.features.slice(0, 4).map((feat: string, idx: number) => (
+                              <div key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                                <span className="line-clamp-1">{feat}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="flex justify-between items-center gap-3 pt-4 border-t border-gray-100">
+                        <Link href={`/services#${selectedService.id}`} className="text-primary text-sm font-medium hover:underline">
+                          {t("services.details")} →
+                        </Link>
+                        <div className="flex gap-2">
+                          <Button variant="outline" size="sm" onClick={() => setSelectedService(null)} className="cursor-pointer">{t("common.close")}</Button>
+                          <BookingModal
+                            buttonText={t("common.book")}
+                            buttonClassName="bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg px-4 h-9 cursor-pointer"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                );
+              })()}
             </DialogContent>
           </Dialog>
         </div>
@@ -558,10 +568,10 @@ export default function Home() {
           </div>
 
           {/* Booking Widget - Always Open */}
-          <div className="max-w-5xl lg:max-w-4xl mx-auto bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-2xl overflow-hidden">
+          <div className="max-w-7xl mx-auto bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-2xl overflow-hidden">
             <iframe
               src="https://my.businessdent.md/online-register.php?inst=1718966&ln=ro"
-              className="w-full h-[500px] sm:h-[600px] md:h-[650px] lg:h-[550px] border-0"
+              className="w-full h-[450px] sm:h-[500px] md:h-[550px] lg:h-[480px] border-0"
               title="Programare Online - Cristalexdent"
               sandbox="allow-scripts allow-forms allow-same-origin allow-popups"
               loading="lazy"
@@ -616,6 +626,21 @@ export default function Home() {
               <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 sm:mb-3 lg:mb-2">{t("features.steril_title")}</h3>
               <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("features.steril_desc")}</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS BANNER - Between Why Choose Us and Team */}
+      <section className="bg-gradient-to-r from-primary via-secondary to-accent py-6 sm:py-8 md:py-8 lg:py-6 text-white relative z-20 shadow-lg">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-6 lg:gap-4 text-center md:divide-x divide-white/10">
+            {stats.map((stat, i) => (
+              <div key={i} className="p-2 sm:p-3 md:p-3 lg:p-2">
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 mx-auto mb-2 sm:mb-3 md:mb-2 text-white" />
+                <div className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold mb-1">{stat.value}</div>
+                <div className="text-xs sm:text-sm md:text-sm lg:text-xs text-white/90 uppercase tracking-wider">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -724,8 +749,8 @@ export default function Home() {
             <p className="text-gray-500 text-sm sm:text-base md:text-lg lg:text-sm">{t("about.blog_subtitle")}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-5">
-            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : localizedBlogPosts).slice(0, 3).map((post: any) => {
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-4">
+            {(apiBlogPosts && apiBlogPosts.length > 0 ? apiBlogPosts : localizedBlogPosts).slice(0, 4).map((post: any) => {
               const postId = post._id || post.id;
               const postTitle = post.blogTitleEn
                 ? getBlogField(post, 'blogTitle', i18n.language)
@@ -736,19 +761,16 @@ export default function Home() {
 
               return (
               <Link key={postId} href={`/blog/${postId}`} className="group cursor-pointer block">
-                <div className="rounded-xl sm:rounded-2xl lg:rounded-xl overflow-hidden h-40 sm:h-52 md:h-64 lg:h-44 mb-3 sm:mb-4 md:mb-6 lg:mb-3 relative">
+                <div className="rounded-xl overflow-hidden aspect-square mb-3 relative">
                   <img src={post.imageUrl || post.image} alt={postTitle} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
-                  <div className="absolute top-2 sm:top-3 md:top-4 lg:top-2 left-2 sm:left-3 md:left-4 lg:left-2 bg-white/90 backdrop-blur-md px-2 sm:px-3 lg:px-2 py-0.5 sm:py-1 lg:py-0.5 rounded-full text-[10px] sm:text-xs lg:text-[10px] font-bold text-primary uppercase">
+                  <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-md px-2 py-0.5 rounded-full text-[10px] font-bold text-primary uppercase">
                     {post.category || post.label}
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 lg:gap-2 text-xs sm:text-sm lg:text-xs text-gray-400 mb-2 sm:mb-3 lg:mb-1">
-                  <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'long', year: 'numeric' }) : post.date}</span>
-                  <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                  <span>{post.author || 'CristAlex Dent'}</span>
+                <div className="flex items-center gap-2 text-[10px] sm:text-xs text-gray-400 mb-1">
+                  <span>{post.publishedAt ? new Date(post.publishedAt).toLocaleDateString('ro-RO', { day: 'numeric', month: 'short', year: 'numeric' }) : post.date}</span>
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl lg:text-base font-bold mb-2 sm:mb-3 lg:mb-1 group-hover:text-primary transition-colors line-clamp-2">{postTitle}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-xs line-clamp-2">{postExcerpt}</p>
+                <h3 className="text-sm sm:text-base font-bold mb-1 group-hover:text-primary transition-colors line-clamp-2">{postTitle}</h3>
               </Link>
               );
             })}
@@ -764,28 +786,30 @@ export default function Home() {
 
       {/* FAQ Section */}
       <section className="py-12 sm:py-16 md:py-24 lg:py-10 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
+        <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="section-title block">{t("faq.title")}</h2>
-          <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-6">
-            <Accordion type="single" collapsible className="w-full space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-2">
-              <AccordionItem value="item-1" className="border border-gray-100 rounded-lg px-3 sm:px-4 lg:px-3 shadow-sm">
-                <AccordionTrigger className="hover:no-underline text-sm sm:text-base md:text-lg lg:text-sm font-medium py-4 sm:py-5 md:py-6 lg:py-3">{t("faq.q1")}</AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4 sm:pb-5 md:pb-6 lg:pb-3 text-xs sm:text-sm md:text-base lg:text-sm">
-                  {t("faq.a1")}
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2" className="border border-gray-100 rounded-lg px-3 sm:px-4 lg:px-3 shadow-sm">
-                <AccordionTrigger className="hover:no-underline text-sm sm:text-base md:text-lg lg:text-sm font-medium py-4 sm:py-5 md:py-6 lg:py-3">{t("faq.q2")}</AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4 sm:pb-5 md:pb-6 lg:pb-3 text-xs sm:text-sm md:text-base lg:text-sm">
-                  {t("faq.a2")}
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3" className="border border-gray-100 rounded-lg px-3 sm:px-4 lg:px-3 shadow-sm">
-                <AccordionTrigger className="hover:no-underline text-sm sm:text-base md:text-lg lg:text-sm font-medium py-4 sm:py-5 md:py-6 lg:py-3">{t("faq.q3")}</AccordionTrigger>
-                <AccordionContent className="text-gray-600 pb-4 sm:pb-5 md:pb-6 lg:pb-3 text-xs sm:text-sm md:text-base lg:text-sm">
-                  {t("faq.a3")}
-                </AccordionContent>
-              </AccordionItem>
+          <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+            {/* Left Column */}
+            <Accordion type="single" collapsible className="w-full space-y-2 sm:space-y-3 lg:space-y-2">
+              {Array.from({ length: 9 }, (_, i) => i + 1).map((num) => (
+                <AccordionItem key={num} value={`item-${num}`} className="border border-gray-100 rounded-lg px-3 sm:px-4 lg:px-3 shadow-sm bg-white">
+                  <AccordionTrigger className="hover:no-underline text-sm sm:text-base lg:text-sm font-medium py-3 sm:py-4 lg:py-3 text-left">{t(`faq.q${num}`)}</AccordionTrigger>
+                  <AccordionContent className="text-gray-600 pb-3 sm:pb-4 lg:pb-3 text-xs sm:text-sm lg:text-xs">
+                    {t(`faq.a${num}`)}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            {/* Right Column */}
+            <Accordion type="single" collapsible className="w-full space-y-2 sm:space-y-3 lg:space-y-2">
+              {Array.from({ length: 9 }, (_, i) => i + 10).map((num) => (
+                <AccordionItem key={num} value={`item-${num}`} className="border border-gray-100 rounded-lg px-3 sm:px-4 lg:px-3 shadow-sm bg-white">
+                  <AccordionTrigger className="hover:no-underline text-sm sm:text-base lg:text-sm font-medium py-3 sm:py-4 lg:py-3 text-left">{t(`faq.q${num}`)}</AccordionTrigger>
+                  <AccordionContent className="text-gray-600 pb-3 sm:pb-4 lg:pb-3 text-xs sm:text-sm lg:text-xs">
+                    {t(`faq.a${num}`)}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
         </div>

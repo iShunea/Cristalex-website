@@ -108,7 +108,7 @@ export const SocialReviews = memo(function SocialReviews() {
 
   if (isLoading) {
     return (
-      <section className="py-24 bg-gradient-to-br from-primary/5 via-white to-accent/5">
+      <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-gradient-to-br from-primary/5 via-white to-accent/5">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-500">{t("social_reviews.loading")}</p>
         </div>
@@ -125,11 +125,11 @@ export const SocialReviews = memo(function SocialReviews() {
   }
 
   return (
-    <section className="py-24 bg-gradient-to-br from-primary/5 via-white to-accent/5" data-social-reviews>
+    <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-gradient-to-br from-primary/5 via-white to-accent/5" data-social-reviews>
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("social_reviews.title")}</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto text-lg">{t("social_reviews.subtitle")}</p>
+        <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-6">
+          <h2 className="section-title">{t("social_reviews.title")}</h2>
+          <p className="section-subtitle">{t("social_reviews.subtitle")}</p>
         </div>
 
         <div className="max-w-6xl mx-auto">

@@ -10,6 +10,49 @@ import implantImage from "@assets/generated_images/dental_implant_model.png";
 import orthoImage from "@assets/generated_images/invisible_dental_aligners.png";
 import aestheticImage from "@assets/generated_images/perfect_dental_veneers_smile.png";
 
+// Parse markdown content to structured HTML
+function parseServiceDescription(content: string): { intro: string; sections: { title: string; items: string[] }[] } {
+  if (!content) return { intro: '', sections: [] };
+
+  const lines = content.split('\n').map(l => l.trim()).filter(l => l);
+  let intro = '';
+  const sections: { title: string; items: string[] }[] = [];
+  let currentSection: { title: string; items: string[] } | null = null;
+
+  for (const line of lines) {
+    // Check for section header (bold text with colon at the end)
+    const headerMatch = line.match(/^\*\*(.+?):\*\*$/);
+    if (headerMatch) {
+      if (currentSection) {
+        sections.push(currentSection);
+      }
+      currentSection = { title: headerMatch[1], items: [] };
+      continue;
+    }
+
+    // Check for list item
+    if (line.startsWith('- ')) {
+      const item = line.substring(2).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      if (currentSection) {
+        currentSection.items.push(item);
+      }
+      continue;
+    }
+
+    // Regular text - if no section started yet, it's intro
+    if (!currentSection) {
+      intro += (intro ? ' ' : '') + line;
+    }
+  }
+
+  // Push last section if exists
+  if (currentSection) {
+    sections.push(currentSection);
+  }
+
+  return { intro, sections };
+}
+
 export default function Services() {
   const { t, i18n } = useTranslation();
 
@@ -184,25 +227,62 @@ export default function Services() {
                 </div>
                 
                 <h2 className="text-4xl font-bold mb-6 text-gray-900">{cat.title}</h2>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  {cat.desc}
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                  {cat.features.map((feat, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-secondary" />
-                      <span className="text-gray-700 font-medium">{feat}</span>
-                    </div>
-                  ))}
-                </div>
+
+                {/* Parse and display structured description */}
+                {(() => {
+                  const parsed = parseServiceDescription(cat.desc);
+                  return (
+                    <>
+                      {parsed.intro && (
+                        <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                          {parsed.intro}
+                        </p>
+                      )}
+
+                      {parsed.sections.length > 0 ? (
+                        <div className="space-y-6 mb-8">
+                          {parsed.sections.map((section, sIdx) => (
+                            <div key={sIdx}>
+                              <h3 className="text-lg font-bold text-gray-800 mb-3">{section.title}</h3>
+                              <ul className="space-y-2">
+                                {section.items.map((item, iIdx) => (
+                                  <li key={iIdx} className="flex items-start gap-2 text-gray-600">
+                                    <CheckCircle2 className="w-4 h-4 text-secondary mt-1 flex-shrink-0" />
+                                    <span dangerouslySetInnerHTML={{ __html: item }} />
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        /* Fallback to simple description if no sections parsed */
+                        <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                          {cat.desc}
+                        </p>
+                      )}
+                    </>
+                  );
+                })()}
+
+                {/* Features grid - only show if we have features and no parsed sections */}
+                {cat.features.length > 0 && parseServiceDescription(cat.desc).sections.length === 0 && (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                    {cat.features.map((feat, i) => (
+                      <div key={i} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-secondary" />
+                        <span className="text-gray-700 font-medium">{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 <div className="flex gap-4">
-                  <BookingModal 
+                  <BookingModal
                     buttonText={t("services.book_consult")}
-                    buttonClassName="bg-primary hover:bg-primary/90 text-white px-8"
+                    buttonClassName="bg-primary hover:bg-primary/90 text-white px-8 cursor-pointer"
                   />
-                  <Button variant="outline" className="gap-2">
+                  <Button variant="outline" className="gap-2 cursor-pointer">
                     {t("services.details")} <ArrowRight className="w-4 h-4" />
                   </Button>
                 </div>

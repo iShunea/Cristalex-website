@@ -1,31 +1,107 @@
 import { Layout } from "@/components/layout/Layout";
 import { useRoute, Link } from "wouter";
 import { useBlogPosts } from "./Blog";
-import { Calendar, User, ArrowLeft, Share2, Clock, Loader2 } from "lucide-react";
+import { Calendar, User, ArrowLeft, Share2, Clock, Loader2, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
 import NotFound from "./not-found";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalBlogPosts, ExternalBlogPost, getTranslatedField } from "@/lib/api";
 
 function parseMarkdownToHtml(content: string): string {
   if (!content) return '';
-  
-  let html = content
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/\n/g, '<br/>');
-  
-  if (!html.startsWith('<h') && !html.startsWith('<p>')) {
-    html = '<p>' + html + '</p>';
+
+  // Step 1: Normalize inline list items - convert " - " to newlines
+  // This handles: "text. - **Item1:** desc - **Item2:** desc"
+  let normalized = content
+    // First, handle " - **" pattern (most common for inline lists)
+    .replace(/\s+-\s+\*\*/g, '\n- **')
+    // Handle ". - " pattern
+    .replace(/\.\s+-\s+/g, '.\n- ')
+    // Handle standalone " - " that starts a list item
+    .replace(/([^-\n])\s+-\s+([A-Z])/g, '$1\n- $2');
+
+  // Step 2: Parse the content structure
+  const result: string[] = [];
+
+  // Split into lines for processing
+  const lines = normalized.split('\n').map(l => l.trim()).filter(l => l);
+
+  let currentListItems: string[] = [];
+  let inIntro = true;
+
+  const flushList = () => {
+    if (currentListItems.length > 0) {
+      result.push(`<ul class="list-disc pl-6 my-4 space-y-2 text-gray-600">${currentListItems.map(item => `<li class="mb-2">${item}</li>`).join('')}</ul>`);
+      currentListItems = [];
+    }
+  };
+
+  for (const line of lines) {
+    // Check for section header: **Title:** at the start of a line or standalone
+    const headerMatch = line.match(/^\*\*([^*]+?):\*\*\s*$/);
+    if (headerMatch) {
+      flushList();
+      inIntro = false;
+      result.push(`<h3 class="text-lg font-bold mt-8 mb-3 text-gray-800">${headerMatch[1]}</h3>`);
+      continue;
+    }
+
+    // Check for inline header with content: **Title:** followed by text
+    const inlineHeaderMatch = line.match(/^\*\*([^*]+?):\*\*\s+(.+)$/);
+    if (inlineHeaderMatch) {
+      flushList();
+      inIntro = false;
+      result.push(`<h3 class="text-lg font-bold mt-8 mb-3 text-gray-800">${inlineHeaderMatch[1]}</h3>`);
+      // Process the remaining text as a paragraph
+      const text = inlineHeaderMatch[2]
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>');
+      result.push(`<p class="mb-4 leading-relaxed text-gray-600">${text}</p>`);
+      continue;
+    }
+
+    // Check for list item
+    if (line.startsWith('- ')) {
+      inIntro = false;
+      const itemContent = line.substring(2)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>');
+      currentListItems.push(itemContent);
+      continue;
+    }
+
+    // Regular markdown headers
+    if (line.startsWith('### ')) {
+      flushList();
+      result.push(`<h3 class="text-xl font-bold mt-6 mb-3 text-gray-900">${line.substring(4)}</h3>`);
+      continue;
+    }
+    if (line.startsWith('## ')) {
+      flushList();
+      result.push(`<h2 class="text-2xl font-bold mt-8 mb-4 text-gray-900">${line.substring(3)}</h2>`);
+      continue;
+    }
+    if (line.startsWith('# ')) {
+      flushList();
+      result.push(`<h1 class="text-3xl font-bold mt-8 mb-4 text-gray-900">${line.substring(2)}</h1>`);
+      continue;
+    }
+
+    // Regular paragraph text
+    flushList();
+    const paragraph = line
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>');
+    result.push(`<p class="mb-4 leading-relaxed text-gray-600">${paragraph}</p>`);
   }
-  
-  return html;
+
+  // Final flush
+  flushList();
+
+  return result.join('');
 }
 
 function getLangSuffix(lang: string): string {
@@ -66,11 +142,51 @@ export default function BlogPost() {
   const { t, i18n } = useTranslation();
   const [, params] = useRoute("/blog/:id");
   const blogPosts = useBlogPosts();
-  
+  const [shareStatus, setShareStatus] = useState<'idle' | 'copied' | 'shared'>('idle');
+
   const { data: apiPosts, isLoading } = useQuery({
     queryKey: ["blog-posts"],
     queryFn: getExternalBlogPosts,
   });
+
+  // Share functionality
+  const handleShare = async (postTitle: string) => {
+    const shareUrl = window.location.href;
+    const shareText = `${postTitle} - CristAlex Dent`;
+
+    // Try native share API first (mobile)
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: postTitle,
+          text: shareText,
+          url: shareUrl,
+        });
+        setShareStatus('shared');
+        setTimeout(() => setShareStatus('idle'), 2000);
+        return;
+      } catch (err) {
+        // User cancelled or error - fall through to clipboard
+      }
+    }
+
+    // Fallback to clipboard copy
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      setShareStatus('copied');
+      setTimeout(() => setShareStatus('idle'), 2000);
+    } catch (err) {
+      // Final fallback - select and copy
+      const textArea = document.createElement('textarea');
+      textArea.value = shareUrl;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+      setShareStatus('copied');
+      setTimeout(() => setShareStatus('idle'), 2000);
+    }
+  };
 
   // Try to find in local posts first (numeric ID)
   const localPost = blogPosts.find(p => p.id === Number(params?.id));
@@ -169,9 +285,27 @@ export default function BlogPost() {
                 <div className="text-gray-500 font-medium">
                   {t("blog_post.liked_article")}
                 </div>
-                <Button variant="outline" className="gap-2">
-                  <Share2 className="w-4 h-4" />
-                  {t("blog_post.share")}
+                <Button
+                  variant="outline"
+                  className="gap-2 cursor-pointer"
+                  onClick={() => handleShare(post.title)}
+                >
+                  {shareStatus === 'copied' ? (
+                    <>
+                      <Check className="w-4 h-4 text-green-500" />
+                      {t("blog_post.link_copied") || "Link copiat!"}
+                    </>
+                  ) : shareStatus === 'shared' ? (
+                    <>
+                      <Check className="w-4 h-4 text-green-500" />
+                      {t("blog_post.shared") || "Distribuit!"}
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-4 h-4" />
+                      {t("blog_post.share")}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>

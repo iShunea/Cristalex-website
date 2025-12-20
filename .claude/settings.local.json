@@ -16,7 +16,9 @@
       "Bash(timeout:*)",
       "Bash(ping:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(GIT_EDITOR=true git rebase:*)"
     ]
   }
 }

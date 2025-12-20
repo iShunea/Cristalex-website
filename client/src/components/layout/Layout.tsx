@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, ChevronDown } from "lucide-react";
+import { Globe, Menu, X, Phone, MapPin, Clock, Facebook, Instagram, MessageCircle, Check, ChevronDown, ArrowUp } from "lucide-react";
 import { SiTiktok } from "react-icons/si";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,6 +19,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [despreNoiDropdownOpen, setDespreNoiDropdownOpen] = useState(false);
   const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
   const [mobileTratamenteExpanded, setMobileTratamenteExpanded] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const tratamenteDropdownRef = useRef<HTMLDivElement>(null);
   const despreNoiDropdownRef = useRef<HTMLDivElement>(null);
@@ -39,6 +40,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Show scroll to top button when scrolled down
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const languages = [
     { code: "ro", label: "Română" },
@@ -481,6 +495,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </footer>
+
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-24 md:bottom-8 right-4 md:right-8 z-50 w-12 h-12 bg-primary hover:bg-primary/90 active:bg-primary/80 text-white rounded-full shadow-lg hover:shadow-xl transition-all flex items-center justify-center cursor-pointer"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp className="w-5 h-5" />
+          </motion.button>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Contact Bottom Bar - Visible only on mobile */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden pb-safe">
