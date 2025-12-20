@@ -128,20 +128,39 @@
   pointer-events: none;
 }
 
-/* Infinite scroll animation for team carousel */
+/* Infinite scroll animation for team carousel - GPU accelerated */
 @keyframes scroll-infinite {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-scroll-infinite {
   animation: scroll-infinite 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .animate-scroll-infinite:hover {
   animation-play-state: paused;
+}
+
+/* Performance optimization - CSS containment for sections */
+.contain-layout {
+  contain: layout style;
+}
+
+.contain-paint {
+  contain: paint;
+}
+
+/* GPU acceleration for animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }

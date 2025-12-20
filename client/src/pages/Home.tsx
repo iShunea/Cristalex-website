@@ -77,16 +77,16 @@ function getBlogField(post: any, fieldBase: string, lang: string): string {
 function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: string; img: string }>; t: any }) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const scrollPositionRef = useRef(0);
+  const [, forceUpdate] = useState(0);
   const cardWidth = 320; // Increased card width
   const gap = 24; // gap-6 = 24px
 
   const scroll = (direction: 'left' | 'right') => {
-    if (!carouselRef.current) return;
     const scrollAmount = cardWidth + gap;
     const newPosition = direction === 'left'
-      ? scrollPosition - scrollAmount
-      : scrollPosition + scrollAmount;
+      ? scrollPositionRef.current - scrollAmount
+      : scrollPositionRef.current + scrollAmount;
 
     // Calculate the total width of one set of doctors
     const singleSetWidth = doctors.length * (cardWidth + gap);
@@ -99,15 +99,16 @@ function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: str
       finalPosition = finalPosition - singleSetWidth;
     }
 
-    setScrollPosition(finalPosition);
+    scrollPositionRef.current = finalPosition;
     setIsPaused(true);
+    forceUpdate(n => n + 1);
 
     // Resume auto-scroll after 5 seconds of inactivity
     setTimeout(() => setIsPaused(false), 5000);
   };
 
   return (
-    <section className="py-10 sm:py-12 md:py-16 lg:py-10 bg-white">
+    <section className="py-10 sm:py-12 md:py-16 lg:py-10 bg-white contain-layout">
       <div className="container mx-auto px-4">
         <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-6">
           <h2 className="section-title">{t("nav.team")}</h2>
@@ -145,8 +146,10 @@ function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: str
               className={`flex gap-3 sm:gap-4 md:gap-6 ${!isPaused ? 'animate-scroll-infinite' : ''}`}
               style={{
                 width: 'max-content',
-                transform: isPaused ? `translateX(-${scrollPosition}px)` : undefined,
+                transform: isPaused ? `translate3d(-${scrollPositionRef.current}px, 0, 0)` : undefined,
                 transition: isPaused ? 'transform 0.5s ease-out' : undefined,
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
               }}
             >
               {/* First set of doctors */}
@@ -307,9 +310,10 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-8 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, transform: 'translateY(30px)' }}
+              animate={{ opacity: 1, transform: 'translateY(0px)' }}
               transition={{ duration: 0.8 }}
+              style={{ willChange: 'opacity, transform' }}
             >
               <div className="flex items-center gap-2 mb-3 sm:mb-4 md:mb-4 lg:mb-3">
                 <span className="h-px w-8 sm:w-10 md:w-12 bg-primary"></span>
@@ -336,9 +340,10 @@ export default function Home() {
 
             {/* Hero Card/Floating Element */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, transform: 'scale(0.9)' }}
+              animate={{ opacity: 1, transform: 'scale(1)' }}
               transition={{ delay: 0.3, duration: 0.8 }}
+              style={{ willChange: 'opacity, transform' }}
               className="hidden lg:block relative"
             >
               <div className="bg-white p-5 lg:p-6 xl:p-8 rounded-lg shadow-2xl max-w-sm lg:max-w-md ml-auto relative z-10">
@@ -376,7 +381,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES CAROUSEL / PREVIEW */}
-      <section className="py-12 sm:py-16 md:py-16 lg:py-12 bg-white">
+      <section className="py-12 sm:py-16 md:py-16 lg:py-12 bg-white contain-layout">
         <div className="container mx-auto px-4">
            <div className="text-center mb-8 sm:mb-12 md:mb-10 lg:mb-8">
              <h2 className="section-title">{t("services.title")}</h2>
@@ -652,7 +657,7 @@ export default function Home() {
       <TeamCarousel doctors={doctors} t={t} />
 
       {/* TESTIMONIALS */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-slate-50">
+      <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-slate-50 contain-layout">
         <div className="container mx-auto px-4">
           <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-6">
             <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 lg:mb-2">{t("testimonials.title")}</h2>
@@ -788,7 +793,7 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-10 bg-white">
+      <section className="py-12 sm:py-16 md:py-24 lg:py-10 bg-white contain-layout">
         <div className="container mx-auto px-4 max-w-7xl">
           <h2 className="section-title block">{t("faq.title")}</h2>
           <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-6 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
