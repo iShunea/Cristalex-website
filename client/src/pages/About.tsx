@@ -70,34 +70,37 @@ export default function About() {
 
       {/* Historia Section */}
       <div className="container mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch mb-20">
-          <div className="order-2 lg:order-1 flex flex-col">
-            <div className="flex items-center gap-2 mb-6">
-              <span className="h-px w-12 bg-primary"></span>
-              <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.about_us_label")}</span>
-            </div>
-            <h2 className="text-4xl font-bold mb-8 text-gray-900">{t("about.history_title")}</h2>
-            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-              {t("about.history_p1")}
-            </p>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">
-              {t("about.history_p2")}
-            </p>
+        <div className="max-w-5xl mx-auto mb-20">
+          <div className="flex items-center gap-2 mb-6">
+            <span className="h-px w-12 bg-primary"></span>
+            <span className="text-primary font-bold tracking-widest uppercase text-sm">{t("about.about_us_label")}</span>
+          </div>
+          <h2 className="text-4xl font-bold mb-8 text-gray-900">{t("about.history_title")}</h2>
 
-            <div className="grid grid-cols-2 gap-6 mt-auto">
-              <div className="text-center p-6 bg-red-50 rounded-xl">
-                <div className="text-4xl font-bold text-primary mb-2">2008</div>
-                <div className="text-gray-600 text-sm">{t("about.founded_year")}</div>
-              </div>
-              <div className="text-center p-6 bg-red-50 rounded-xl">
-                <div className="text-4xl font-bold text-primary mb-2">{new Date().getFullYear() - 2008}+</div>
-                <div className="text-gray-600 text-sm">{t("about.years_experience")}</div>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+            <div className="lg:col-span-2">
+              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                {t("about.history_p1")}
+              </p>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {t("about.history_p2")}
+              </p>
+            </div>
+
+            <div className="rounded-xl overflow-hidden shadow-lg max-h-64">
+              <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
 
-          <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-2xl">
-             <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" loading="eager" decoding="async" />
+          <div className="grid grid-cols-2 gap-6 max-w-md mx-auto">
+            <div className="text-center p-6 bg-red-50 rounded-xl">
+              <div className="text-4xl font-bold text-primary mb-2">2008</div>
+              <div className="text-gray-600 text-sm">{t("about.founded_year")}</div>
+            </div>
+            <div className="text-center p-6 bg-red-50 rounded-xl">
+              <div className="text-4xl font-bold text-primary mb-2">{new Date().getFullYear() - 2008}+</div>
+              <div className="text-gray-600 text-sm">{t("about.years_experience")}</div>
+            </div>
           </div>
         </div>
 
