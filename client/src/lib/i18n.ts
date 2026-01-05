@@ -225,23 +225,52 @@ const resources = {
         blog_title: "Articole recente",
         blog_subtitle: "Noutăți și sfaturi pentru sănătatea ta orală.",
         blog_see_all: "Vezi tot blogul",
-        history_p1: "Clinica stomatologică Cristalexdent și-a lansat activitatea în 2008. Dispune de două cabinete stomatologice dotate cu tehnologii de ultimă generație, cabinet chirurgical, cabinet de sterilizare și cabinet de radioviziografie dentară.",
-        history_p2: "Pe parcursul a peste 16 ani de activitate s-a consolidat o echipă de medici care au devenit experți în domeniul medicinei dentare.",
-        mission_title: "Misiunea noastră",
-        mission_text: "Fiind niște stomatologi dedicați, echipa Cristalexdent lucrează cu profesionalism pentru a vă oferi formula perfectă: zâmbetul mult visat cu o sănătate dentară optimă.",
-        promise_text: "Aici vei beneficia de un tratament individual și personalizat, la prețuri atractive. Sănătatea dentară e mult mai accesibilă decât te așteptai.",
+        history_p1: "CristalexDent, s-a născut în 2008 cu scop de a acorda servicii stomatologice celor apropiați: prietenilor de familie, cunoscuților, cumetrilor și altor membri de familie.",
+        history_p2: "Ca orice familie, CristalexDent s-a mărit, și în 2019 am schimbat locația. Acum avem câteva fotolii, o echipă mare de specialiști de categorie superioară, datorită cărora putem oferi servicii stomatologice complete și complexe.",
+        mission_title: "Misiunea Noastră",
+        mission_text: "Misiunea noastră este de a reda și de a menține sănătatea orală a fiecărui pacient, prin servicii stomatologice complete și bine gândite, bazate pe cunoștințe medicale actualizate, experiență clinică și multă empatie. Ne dorim ca fiecare vizită la noi să fie o experiență pozitivă, lipsită de teamă, iar rezultatele obținute să fie stabile, durabile și să aducă zâmbete sănătoase pe termen lung.",
+        promise_text: "Oferim o abordare personalizată și individuală fiecărui caz, în dependență de complexitatea și posibilitățile fiecărui pacient, care este ca și membru al familiei noastre - CristalexDent. Din această cauză, toți pacienții noștri ne aleg mereu și ne recomandă cu multă încredere, pentru că doar la CristalexDent pot beneficia de toate serviciile stomatologice în același loc, cu siguranță într-o calitate premium, cu explicații clare și transparente, având garantat - rezultatul dorit!",
         team_title: "Echipa noastră",
         about_us_label: "Despre noi",
         excellence: "Excelență",
-        excellence_desc: "Standarde înalte în fiecare tratament",
-        dedication: "Dedicare",
-        dedication_desc: "Echipă de profesioniști dedicați",
-        technology: "Tehnologie",
-        technology_desc: "Echipamente de ultimă generație",
-        safety: "Siguranță",
-        safety_desc: "Protocoale stricte de sterilizare",
+        excellence_desc: "Utilizăm tehnologii moderne, materiale de calitate superioară și metode de tratament actuale, menite să asigure rezultate sigure, estetice și funcționale.",
+        dedication: "Încredere",
+        dedication_desc: "Încrederea este temelia relației cu pacienții noștri. Fiecare persoană se simte în siguranță, ascultată și respectată, din primul moment și până la finalul tratamentului.",
+        technology: "Profesionalism",
+        technology_desc: "Respectăm standardele medicale moderne și internaționale. Echipa noastră investește constant în educație continuă, perfecționare și dezvoltare profesională.",
+        safety: "Grijă",
+        safety_desc: "Fiecare pacient este tratat ca un membru al familiei CristalexDent, cu nevoi, emoții și așteptări unice. Ascultăm, explicăm clar și alegem împreună cele mai potrivite soluții.",
         founded_year: "Anul Fondării",
         years_experience: "Ani Experiență",
+        services_title: "Serviciile Noastre Complete",
+        services_intro: "Toți medicii noștri au calificare de categorie Superioară (examene susținute și confirmate la fiecare 5 ani). Mereu își mențin cunoștințele teoretice și abilitățile practice în topul noutăților moderne de ultimă oră, mergând la diverse cursuri și congrese locale și internaționale.",
+        services: {
+          aesthetic: {
+            title: "Restabilirea Zâmbetului Sănătos și Fericit",
+            desc: "Prin restaurări estetice directe (obturații) și indirecte (fațete)"
+          },
+          orthodontics: {
+            title: "Tratamente Ortodontice",
+            desc: "Alinierea dinților înghesuiți cu aparate dentare fixe (braket) sau mobilizabile (alignere sau plăcute)"
+          },
+          surgery: {
+            title: "Chirurgie Stomatologică",
+            desc: "Extracții dentare de la cele mai simple (resturi radiculare = rădăcini) până la cele mai complexe ale dinților de minte incluși"
+          },
+          implantology: {
+            title: "Implantologie",
+            desc: "Rezolvăm chiar și cele mai complicate cazuri cu intervenții de sinuslifting sau augmentare osoasă (creștere de os), folosind doar materiale și implanturi de clasă Premium"
+          },
+          prosthetics: {
+            title: "Restabiliri Protetice",
+            desc: "De la înlocuirea unui singur dinte lipsă sau edentație totală (lipsa tuturor dinților) prin punte dentară, proteze parțiale/totale mobilizabile până la protezarea pe 'all on X'. Folosim de la simple până la cele mai sofisticate materiale, garantând estetică dar și funcționalitate maximă"
+          },
+          pediatric: {
+            title: "Stomatologia pentru Copii",
+            desc: "Oferim toate serviciile stomatologice necesare copiilor (igienizare, tratamentul cariilor și pulpitelor, extracția dinților de lapte). La noi copiii vin cu drag, plăcere și fără frică, iar părinții stau liniștiți atunci când și picii lor sunt liniștiți!"
+          }
+        },
+        closing_message: "Vă așteptăm cu drag la CristalexDent de pe str. Alba Iulia 23, or. Chișinău",
         doctors: {
           dr_scutelnic_name: "Scutelnic Daniela",
           dr_scutelnic_role: "Stomatolog Generalist",

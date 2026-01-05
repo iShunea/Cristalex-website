@@ -104,11 +104,48 @@ export default function About() {
         {/* Mission Section */}
         <div id="mission" className="bg-gray-50 rounded-3xl p-12 mb-20 scroll-mt-24">
           <h2 className="text-3xl font-bold mb-8 text-center text-primary">{t("about.mission_title")}</h2>
-          <p className="text-gray-700 text-xl mb-6 leading-relaxed text-center max-w-4xl mx-auto">
+          <p className="text-gray-700 text-lg mb-6 leading-relaxed text-center max-w-4xl mx-auto">
             {t("about.mission_text")}
           </p>
-          <p className="text-gray-600 text-lg leading-relaxed text-center max-w-3xl mx-auto">
+          <p className="text-gray-600 text-lg leading-relaxed text-center max-w-3xl mx-auto mb-8">
             {t("about.promise_text")}
+          </p>
+        </div>
+
+        {/* Services Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">{t("about.services_title")}</h2>
+          <p className="text-gray-600 text-lg leading-relaxed text-center max-w-4xl mx-auto mb-12">
+            {t("about.services_intro")}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.aesthetic.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.aesthetic.desc")}</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.orthodontics.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.orthodontics.desc")}</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.surgery.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.surgery.desc")}</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.implantology.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.implantology.desc")}</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.prosthetics.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.prosthetics.desc")}</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.pediatric.title")}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.pediatric.desc")}</p>
+            </div>
+          </div>
+          <p className="text-gray-700 text-xl text-center mt-12 font-medium">
+            {t("about.closing_message")}
           </p>
         </div>
 
