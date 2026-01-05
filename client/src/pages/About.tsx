@@ -87,7 +87,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="rounded-xl overflow-hidden shadow-lg max-h-64">
+            <div className="rounded-xl overflow-hidden shadow-lg max-h-80">
               <img src={teamPhoto} alt={t("images.team_photo_alt")} className="w-full h-full object-cover" loading="eager" decoding="async" />
             </div>
           </div>
