@@ -148,7 +148,15 @@ export default function About() {
             </div>
           </div>
           <p className="text-gray-700 text-xl text-center mt-12 font-medium">
-            {t("about.closing_message")}
+            Vă așteptăm cu drag la CristalexDent de pe{" "}
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=47.02463,28.8365"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors font-semibold"
+            >
+              str. Alba Iulia 23, or. Chișinău
+            </a>
           </p>
         </div>
 
