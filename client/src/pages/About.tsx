@@ -150,7 +150,7 @@ export default function About() {
           <p className="text-gray-700 text-xl text-center mt-12 font-medium">
             Vă așteptăm cu drag la CristalexDent de pe{" "}
             <a
-              href="https://www.google.com/maps/search/?api=1&query=47.02463,28.8365"
+              href="https://www.google.com/maps/place/Cristalex+Dent/@47.0346182,28.7739308,565m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40c97d8f45cc6361:0xe7a27095dc95ae87!8m2!3d47.0346146!4d28.7765057!16s%2Fg%2F11k40qtv_2?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-primary/80 underline underline-offset-4 transition-colors font-semibold"

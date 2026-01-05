@@ -31,7 +31,7 @@ export default function Contact() {
       {/* Map Section */}
       <div className="w-full h-96">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2719.5234!2d28.8365!3d47.02463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDAxJzI4LjciTiAyOMKwNTAnMTEuNCJF!5e0!3m2!1sen!2smd!4v1234567890"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2719.5234!2d28.7739308!3d47.0346182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c97d8f45cc6361%3A0xe7a27095dc95ae87!2sCristalex%20Dent!5e0!3m2!1sen!2smd!4v1234567890"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -55,7 +55,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-bold text-gray-900">{t("contact_page.address")}</h4>
                   <p className="text-gray-600">{t("contact.address")}</p>
-                  <a href="https://www.google.com/maps/search/?api=1&query=47.02463,28.8365" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline mt-1 inline-block">{t("contact_page.view_map")}</a>
+                  <a href="https://www.google.com/maps/place/Cristalex+Dent/@47.0346182,28.7739308,565m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40c97d8f45cc6361:0xe7a27095dc95ae87!8m2!3d47.0346146!4d28.7765057!16s%2Fg%2F11k40qtv_2?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium hover:underline mt-1 inline-block">{t("contact_page.view_map")}</a>
                 </div>
               </div>
 
