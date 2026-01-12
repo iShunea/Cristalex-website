@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
 import { CheckCircle2, ArrowRight, Info } from "lucide-react";
 import { useSEO, seoConfigs } from "@/hooks/useSEO";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { BookingModal } from "@/components/BookingModal";
 import { useQuery } from "@tanstack/react-query";
@@ -197,6 +198,20 @@ export default function Services() {
       }))
     : staticCategories;
 
+  // Smooth scroll to section based on hash in URL
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, []);
+
   return (
     <Layout>
       <div className="bg-slate-50 -mt-20 pt-28 pb-12 relative overflow-hidden">
@@ -211,22 +226,35 @@ export default function Services() {
       <div className="container mx-auto px-4 py-20">
         <div className="space-y-24">
           {categories.map((cat, idx) => (
-            <div id={cat.id} key={idx} className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center scroll-mt-24`}>
-              <div className="lg:w-2/5">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl group aspect-[4/3]">
-                  <img src={cat.image} alt={cat.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" width={600} height={400} />
-                  <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
-                </div>
-              </div>
-              
-              <div className="lg:w-3/5">
+            <div id={cat.id} key={idx} className={`scroll-mt-24`}>
+              {/* Title section - shows first on mobile */}
+              <div className="mb-6 lg:hidden">
                 <div className="flex items-center gap-3 mb-4">
                    <div className="bg-red-50 text-primary px-3 py-1 rounded text-sm font-bold tracking-wider uppercase">
                      {t("services.specialization")}
                    </div>
                 </div>
-                
-                <h2 className="text-4xl font-bold mb-6 text-gray-900">{cat.title}</h2>
+                <h2 className="text-4xl font-bold text-gray-900">{cat.title}</h2>
+              </div>
+
+              <div className={`flex flex-col ${idx % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 items-center`}>
+                <div className="lg:w-2/5">
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl group aspect-[4/3]">
+                    <img src={cat.image} alt={cat.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" width={600} height={400} />
+                    <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-colors"></div>
+                  </div>
+                </div>
+
+                <div className="lg:w-3/5">
+                  {/* Title section - shows on desktop */}
+                  <div className="hidden lg:block">
+                    <div className="flex items-center gap-3 mb-4">
+                       <div className="bg-red-50 text-primary px-3 py-1 rounded text-sm font-bold tracking-wider uppercase">
+                         {t("services.specialization")}
+                       </div>
+                    </div>
+                    <h2 className="text-4xl font-bold mb-6 text-gray-900">{cat.title}</h2>
+                  </div>
 
                 {/* Parse and display structured description */}
                 {(() => {
@@ -287,6 +315,7 @@ export default function Services() {
                   </Button>
                 </div>
               </div>
+            </div>
             </div>
           ))}
         </div>

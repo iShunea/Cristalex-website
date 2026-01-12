@@ -292,7 +292,7 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4 -mt-20 pt-20">
+      <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
@@ -718,14 +718,55 @@ export default function Home() {
                 {t("about.history_p1")}
               </p>
 
-              <p className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-sm mb-5 sm:mb-6 md:mb-8 lg:mb-4 leading-relaxed">
-                {t("about.history_p2")}
-              </p>
-
-              <div className="bg-primary/10 p-4 sm:p-6 md:p-8 lg:p-4 rounded-lg sm:rounded-xl lg:rounded-lg">
-                <p className="text-gray-700 text-sm sm:text-base md:text-lg lg:text-sm leading-relaxed font-medium">
+              <div className="mb-5 sm:mb-6 md:mb-8 lg:mb-4">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-xl font-bold mb-2 sm:mb-3 lg:mb-2 text-gray-900">{t("about.mission_title")}</h3>
+                <p className="text-gray-600 text-sm sm:text-base md:text-lg lg:text-sm leading-relaxed">
                   {t("about.mission_text")}
                 </p>
+              </div>
+
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-xl font-bold mb-3 sm:mb-4 md:mb-5 lg:mb-3 text-gray-900">{t("about.values_title")}</h3>
+
+              <div className="space-y-3 sm:space-y-4 lg:space-y-3">
+                <div className="flex gap-3 items-start">
+                  <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base lg:text-sm mb-1">{t("about.dedication")}</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("about.dedication_desc")}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 items-start">
+                  <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Microscope className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base lg:text-sm mb-1">{t("about.technology")}</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("about.technology_desc")}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 items-start">
+                  <div className="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base lg:text-sm mb-1">{t("about.excellence")}</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("about.excellence_desc")}</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 items-start">
+                  <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-sm sm:text-base lg:text-sm mb-1">{t("about.safety")}</h4>
+                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("about.safety_desc")}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
