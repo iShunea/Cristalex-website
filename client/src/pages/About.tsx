@@ -1,6 +1,6 @@
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import { Award, Users, Microscope, Shield } from "lucide-react";
@@ -42,18 +42,32 @@ export default function About() {
     { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
   ], [t, i18n.language]);
 
-  const doctors = apiTeamMembers && apiTeamMembers.length > 0 
+  const doctors = apiTeamMembers && apiTeamMembers.length > 0
     ? apiTeamMembers.map((m) => {
         const imgPath = m.imageUrl || m.image || '';
         const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : '');
-        return { 
-          name: m.name, 
+        return {
+          name: m.name,
           role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
-          img: fullImageUrl, 
+          img: fullImageUrl,
           bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
         };
       })
     : staticDoctors;
+
+  // Smooth scroll to section based on hash in URL
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      // Small delay to ensure page is fully loaded
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -69,7 +83,7 @@ export default function About() {
       </div>
 
       {/* Historia Section */}
-      <div className="container mx-auto px-4 py-20">
+      <div id="history" className="container mx-auto px-4 py-20 scroll-mt-24">
         <div className="max-w-5xl mx-auto mb-20">
           <div className="flex items-center gap-2 mb-6">
             <span className="h-px w-12 bg-primary"></span>
@@ -92,14 +106,16 @@ export default function About() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 max-w-md mx-auto">
-            <div className="text-center p-6 bg-red-50 rounded-xl">
-              <div className="text-4xl font-bold text-primary mb-2">2008</div>
-              <div className="text-gray-600 text-sm">{t("about.founded_year")}</div>
-            </div>
-            <div className="text-center p-6 bg-red-50 rounded-xl">
-              <div className="text-4xl font-bold text-primary mb-2">{new Date().getFullYear() - 2008}+</div>
-              <div className="text-gray-600 text-sm">{t("about.years_experience")}</div>
+          <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 divide-x divide-gray-200">
+              <div className="text-center px-6">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">2008</div>
+                <div className="text-gray-600 font-medium text-base">{t("about.founded_year")}</div>
+              </div>
+              <div className="text-center px-6">
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">{new Date().getFullYear() - 2008}+</div>
+                <div className="text-gray-600 font-medium text-base">{t("about.years_experience")}</div>
+              </div>
             </div>
           </div>
         </div>

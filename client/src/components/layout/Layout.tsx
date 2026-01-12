@@ -53,6 +53,48 @@ export function Layout({ children }: { children: React.ReactNode }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Smooth scroll to section when clicking on about menu items
+  const handleAboutClick = (href: string, e?: React.MouseEvent) => {
+    const hash = href.split('#')[1];
+    const path = href.split('#')[0];
+
+    // If we're already on the about page, just scroll
+    if (location === path) {
+      e?.preventDefault();
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setDespreNoiDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+    } else {
+      // Navigate to about page, scroll will happen after page load
+      setDespreNoiDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  // Smooth scroll to section when clicking on tratamente menu items
+  const handleTratamenteClick = (href: string, e?: React.MouseEvent) => {
+    const hash = href.split('#')[1];
+    const path = href.split('#')[0];
+
+    // If we're already on the services page, just scroll
+    if (location === path) {
+      e?.preventDefault();
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setTratamenteDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+    } else {
+      // Navigate to services page, scroll will happen after page load
+      setTratamenteDropdownOpen(false);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   const languages = [
     { code: "ro", label: "Română" },
     { code: "ru", label: "Rusă" },
@@ -105,10 +147,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       }))
     : staticServices;
 
-  // About Us submenu items
+  // About Us submenu items - Istoria noastră, Misiunea noastră, Echipa noastră
   const aboutItems = [
-    { href: "/about#team", label: t("nav.team") },
+    { href: "/about#history", label: t("nav.history") },
     { href: "/about#mission", label: t("nav.mission") },
+    { href: "/about#team", label: t("nav.team") },
   ];
 
   return (
@@ -170,7 +213,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Link
                     key={item.href}
                     href={item.href}
-                    onClick={() => setDespreNoiDropdownOpen(false)}
+                    onClick={(e) => handleAboutClick(item.href, e)}
                     className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                   >
                     {item.label}
@@ -200,7 +243,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   <Link
                     key={service.id}
                     href={`/services#${service.id}`}
-                    onClick={() => setTratamenteDropdownOpen(false)}
+                    onClick={(e) => handleTratamenteClick(`/services#${service.id}`, e)}
                     className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                   >
                     {service.label}
@@ -303,7 +346,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                       <Link
                         key={item.href}
                         href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={(e) => handleAboutClick(item.href, e)}
                         className="text-base text-gray-600 py-2 px-3 rounded-lg hover:bg-primary/10 hover:text-primary"
                       >
                         {item.label}
@@ -328,7 +371,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                       <Link
                         key={service.id}
                         href={`/services#${service.id}`}
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        onClick={(e) => handleTratamenteClick(`/services#${service.id}`, e)}
                         className="text-base text-gray-600 py-2 px-3 rounded-lg hover:bg-primary/10 hover:text-primary"
                       >
                         {service.label}

@@ -12,6 +12,7 @@ const resources = {
         prices: "Tarife",
         team: "Echipa noastră",
         mission: "Misiunea noastră",
+        history: "Istoria noastră",
         contact: "Contact",
         blog: "Blog",
         book: "Programare online"
@@ -229,6 +230,7 @@ const resources = {
         history_p2: "Ca orice familie, CristalexDent s-a mărit, și în 2019 am schimbat locația. Acum avem câteva fotolii, o echipă mare de specialiști de categorie superioară, datorită cărora putem oferi servicii stomatologice complete și complexe.",
         mission_title: "Misiunea Noastră",
         mission_text: "Misiunea noastră este de a reda și de a menține sănătatea orală a fiecărui pacient, prin servicii stomatologice complete și bine gândite, bazate pe cunoștințe medicale actualizate, experiență clinică și multă empatie. Ne dorim ca fiecare vizită la noi să fie o experiență pozitivă, lipsită de teamă, iar rezultatele obținute să fie stabile, durabile și să aducă zâmbete sănătoase pe termen lung.",
+        values_title: "Valorile noastre",
         promise_text: "Oferim o abordare personalizată și individuală fiecărui caz, în dependență de complexitatea și posibilitățile fiecărui pacient, care este ca și membru al familiei noastre - CristalexDent. Din această cauză, toți pacienții noștri ne aleg mereu și ne recomandă cu multă încredere, pentru că doar la CristalexDent pot beneficia de toate serviciile stomatologice în același loc, cu siguranță într-o calitate premium, cu explicații clare și transparente, având garantat - rezultatul dorit!",
         team_title: "Echipa noastră",
         about_us_label: "Despre noi",
@@ -401,6 +403,7 @@ const resources = {
         prices: "Цены",
         team: "Наша команда",
         mission: "Наша миссия",
+        history: "Наша История",
         contact: "Контакты",
         blog: "Блог",
         book: "Запись онлайн"
@@ -618,6 +621,7 @@ const resources = {
         history_p2: "За более чем 16 лет работы сформировалась команда врачей, ставших экспертами в области стоматологии.",
         mission_title: "Наша Миссия",
         mission_text: "Являясь преданными стоматологами, команда Cristalexdent работает профессионально, чтобы предложить вам идеальную формулу: желанную улыбку с оптимальным здоровьем зубов.",
+        values_title: "Наши Ценности",
         promise_text: "Здесь вы получите индивидуальное и персонализированное лечение по привлекательным ценам. Здоровье зубов намного доступнее, чем вы ожидали.",
         team_title: "Наша Команда",
         about_us_label: "О Нас",
@@ -761,6 +765,7 @@ const resources = {
         prices: "Prices",
         team: "Our team",
         mission: "Our mission",
+        history: "Our history",
         contact: "Contact",
         blog: "Blog",
         book: "Book online"
@@ -978,6 +983,7 @@ const resources = {
         history_p2: "Over more than 16 years of activity, a team of doctors has been consolidated who have become experts in the field of dental medicine.",
         mission_title: "Our Mission",
         mission_text: "As dedicated dentists, the Cristalexdent team works professionally to offer you the perfect formula: the smile you've always dreamed of with optimal dental health.",
+        values_title: "Our Values",
         promise_text: "Here you will benefit from individual and personalized treatment at attractive prices. Dental health is much more accessible than you thought.",
         team_title: "Our Team",
         about_us_label: "About Us",
