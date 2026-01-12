@@ -464,11 +464,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-start gap-3">
                   <MapPin className="w-5 h-5 text-primary shrink-0" />
-                  <span>str. Alba Iulia 23,<br/>Chișinău, Moldova</span>
+                  <a
+                    href="https://www.google.com/maps/place/Cristalex+Dent/@47.0346182,28.7739308,565m/data=!3m2!1e3!4b1!4m6!3m5!1s0x40c97d8f45cc6361:0xe7a27095dc95ae87!8m2!3d47.0346146!4d28.7765057!16s%2Fg%2F11k40qtv_2?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors"
+                  >
+                    str. Alba Iulia 23,<br/>Chișinău, Moldova
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-primary shrink-0" />
-                  <span>+373 78388000</span>
+                  <a href="tel:+37378388000" className="hover:text-primary transition-colors">+373 78388000</a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-primary shrink-0" />
