@@ -292,12 +292,12 @@ export default function Home() {
   return (
     <Layout>
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
-      <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4">
+      <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4 -mt-20">
         <div className="absolute inset-0 z-0">
           <img
             src={heroImage}
             alt={t("images.hero_interior_alt")}
-            className="w-full h-full object-cover opacity-50 scale-105"
+            className="w-full h-full object-cover opacity-90 scale-105"
             loading="eager"
             decoding="async"
             width={1920}
