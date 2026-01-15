@@ -126,7 +126,7 @@ const resources = {
         title: "Spectrul nostru de servicii",
         subtitle: "Tehnologie de ultimă oră și medici specialiști pentru fiecare ramură a stomatologiei.",
         subtitle_features: "Standarde ridicate, tehnologie de ultimă oră și o abordare umană.",
-        see_all: "Vezi Toate Serviciile",
+        see_all: "Vezi toate serviciile",
         specialization: "Specializare",
         book_consult: "Programează Consult",
         details: "Detalii",
@@ -228,7 +228,7 @@ const resources = {
         blog_see_all: "Vezi tot blogul",
         history_p1: "CristalexDent, s-a născut în 2008 cu scop de a acorda servicii stomatologice celor apropiați: prietenilor de familie, cunoscuților, cumetrilor și altor membri de familie.",
         history_p2: "Ca orice familie, CristalexDent s-a mărit, și în 2019 am schimbat locația. Acum avem câteva fotolii, o echipă mare de specialiști de categorie superioară, datorită cărora putem oferi servicii stomatologice complete și complexe.",
-        mission_title: "Misiunea Noastră",
+        mission_title: "Misiunea noastră",
         mission_text: "Misiunea noastră este de a reda și de a menține sănătatea orală a fiecărui pacient, prin servicii stomatologice complete și bine gândite, bazate pe cunoștințe medicale actualizate, experiență clinică și multă empatie. Ne dorim ca fiecare vizită la noi să fie o experiență pozitivă, lipsită de teamă, iar rezultatele obținute să fie stabile, durabile și să aducă zâmbete sănătoase pe termen lung.",
         values_title: "Valorile noastre",
         promise_text: "Oferim o abordare personalizată și individuală fiecărui caz, în dependență de complexitatea și posibilitățile fiecărui pacient, care este ca și membru al familiei noastre - CristalexDent. Din această cauză, toți pacienții noștri ne aleg mereu și ne recomandă cu multă încredere, pentru că doar la CristalexDent pot beneficia de toate serviciile stomatologice în același loc, cu siguranță într-o calitate premium, cu explicații clare și transparente, având garantat - rezultatul dorit!",
@@ -244,7 +244,7 @@ const resources = {
         safety_desc: "Fiecare pacient este tratat ca un membru al familiei CristalexDent, cu nevoi, emoții și așteptări unice. Ascultăm, explicăm clar și alegem împreună cele mai potrivite soluții.",
         founded_year: "Anul Fondării",
         years_experience: "Ani Experiență",
-        services_title: "Serviciile Noastre Complete",
+        services_title: "Serviciile noastre complete",
         services_intro: "Toți medicii noștri au calificare de categorie Superioară (examene susținute și confirmate la fiecare 5 ani). Mereu își mențin cunoștințele teoretice și abilitățile practice în topul noutăților moderne de ultimă oră, mergând la diverse cursuri și congrese locale și internaționale.",
         services: {
           aesthetic: {

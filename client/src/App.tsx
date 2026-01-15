@@ -1,5 +1,5 @@
 import { Switch, Route } from "wouter";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -45,6 +45,26 @@ function Router() {
 }
 
 function App() {
+  // Keep-alive mechanism to prevent Render.com backend from sleeping
+  useEffect(() => {
+    const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || 'https://backend-cristalex-dent.onrender.com';
+
+    // Ping backend every 13 minutes (780000ms) to keep it alive
+    const keepAliveInterval = setInterval(async () => {
+      try {
+        await fetch(`${BACKEND_URL}/api/health`);
+      } catch (error) {
+        // Silently handle errors - keep-alive is best effort
+        console.debug('Keep-alive ping failed:', error);
+      }
+    }, 780000); // 13 minutes
+
+    // Initial ping on mount
+    fetch(`${BACKEND_URL}/api/health`).catch(() => {});
+
+    return () => clearInterval(keepAliveInterval);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

@@ -138,30 +138,54 @@ export default function About() {
             {t("about.services_intro")}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.aesthetic.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.aesthetic.desc")}</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.orthodontics.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.orthodontics.desc")}</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.surgery.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.surgery.desc")}</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.implantology.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.implantology.desc")}</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.prosthetics.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.prosthetics.desc")}</p>
-            </div>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-              <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.pediatric.title")}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.pediatric.desc")}</p>
-            </div>
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.aesthetic.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.aesthetic.desc")}</p>
+                </div>
+              }
+            />
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.orthodontics.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.orthodontics.desc")}</p>
+                </div>
+              }
+            />
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.surgery.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.surgery.desc")}</p>
+                </div>
+              }
+            />
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.implantology.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.implantology.desc")}</p>
+                </div>
+              }
+            />
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.prosthetics.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.prosthetics.desc")}</p>
+                </div>
+              }
+            />
+            <BookingModal
+              trigger={
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow cursor-pointer">
+                  <h3 className="font-bold text-lg mb-3 text-primary">{t("about.services.pediatric.title")}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{t("about.services.pediatric.desc")}</p>
+                </div>
+              }
+            />
           </div>
           <p className="text-gray-700 text-xl text-center mt-12 font-medium">
             Vă așteptăm cu drag la CristalexDent de pe{" "}
