@@ -8,6 +8,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalServices, ExternalService, getTranslatedField } from "@/lib/api";
 import logo from "@assets/logo CristAlex Dent_1763723661858.png";
+import { UtilityBar } from "@/components/layout/UtilityBar";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { t, i18n } = useTranslation();
@@ -19,6 +20,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [mobileAboutExpanded, setMobileAboutExpanded] = useState(false);
   const [mobileTratamenteExpanded, setMobileTratamenteExpanded] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isUtilityBarVisible, setIsUtilityBarVisible] = useState(true);
   const langDropdownRef = useRef<HTMLDivElement>(null);
   const tratamenteDropdownRef = useRef<HTMLDivElement>(null);
   const despreNoiDropdownRef = useRef<HTMLDivElement>(null);
@@ -40,10 +42,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Show scroll to top button when scrolled down
+  // Show scroll to top button when scrolled down and track utility bar visibility
   useEffect(() => {
+    let lastScrollY = 0;
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      const currentScrollY = window.scrollY;
+      setShowScrollTop(currentScrollY > 400);
+
+      // Track utility bar visibility (same logic as UtilityBar component)
+      if (currentScrollY > 50) {
+        setIsUtilityBarVisible(currentScrollY < lastScrollY);
+      } else {
+        setIsUtilityBarVisible(true);
+      }
+      lastScrollY = currentScrollY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -156,28 +168,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans">
-      {/* Top Bar */}
-      <div className="bg-primary text-primary-foreground py-2 text-sm hidden md:block">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4" />
-              <span>{t("contact.phone")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              <span>{t("contact.address")}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4" />
-              <span>{t("top_bar.schedule")}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Utility Bar with hide-on-scroll */}
+      <UtilityBar />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
+      <header
+        className="fixed left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all duration-300"
+        style={{ top: isUtilityBarVisible ? '40px' : '0' }}
+      >
         <div className="container mx-auto px-4 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <img src={logo} alt={t("images.logo_alt")} className="h-12 w-auto" loading="eager" decoding="async" />
@@ -194,15 +192,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Despre Noi Dropdown */}
             <div className="relative" ref={despreNoiDropdownRef}>
-              <button
-                onClick={() => setDespreNoiDropdownOpen(!despreNoiDropdownOpen)}
-                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                  location.startsWith("/about") ? "text-primary font-bold" : "text-gray-600"
-                }`}
-              >
-                {t("nav.about")}
-                <ChevronDown className={`w-4 h-4 transition-transform ${despreNoiDropdownOpen ? "rotate-180" : ""}`} />
-              </button>
+              <Link href="/about">
+                <button
+                  onClick={() => setDespreNoiDropdownOpen(false)}
+                  onMouseEnter={() => setDespreNoiDropdownOpen(true)}
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                    location.startsWith("/about") ? "text-primary font-bold" : "text-gray-600"
+                  }`}
+                >
+                  {t("nav.about")}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${despreNoiDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+              </Link>
 
               <div
                 className={`absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-48 py-2 transition-all duration-200 origin-top ${
@@ -224,15 +225,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             {/* Tratamente Dropdown */}
             <div className="relative" ref={tratamenteDropdownRef}>
-              <button
-                onClick={() => setTratamenteDropdownOpen(!tratamenteDropdownOpen)}
-                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
-                  location.startsWith("/services") ? "text-primary font-bold" : "text-gray-600"
-                }`}
-              >
-                {t("nav.treatments")}
-                <ChevronDown className={`w-4 h-4 transition-transform ${tratamenteDropdownOpen ? "rotate-180" : ""}`} />
-              </button>
+              <Link href="/services">
+                <button
+                  onClick={() => setTratamenteDropdownOpen(false)}
+                  onMouseEnter={() => setTratamenteDropdownOpen(true)}
+                  className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
+                    location.startsWith("/services") ? "text-primary font-bold" : "text-gray-600"
+                  }`}
+                >
+                  {t("nav.treatments")}
+                  <ChevronDown className={`w-4 h-4 transition-transform ${tratamenteDropdownOpen ? "rotate-180" : ""}`} />
+                </button>
+              </Link>
 
               <div
                 className={`absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-50 min-w-56 py-2 transition-all duration-200 origin-top ${
@@ -264,6 +268,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               location === "/contact" ? "text-primary font-bold" : "text-gray-600"
             }`}>
               {t("nav.contact")}
+            </Link>
+
+            {/* Galerie Media */}
+            <Link href="/gallery-media" className={`text-sm font-medium transition-colors hover:text-primary ${
+              location === "/gallery-media" ? "text-primary font-bold" : "text-gray-600"
+            }`}>
+              {t("nav.galleryMedia")}
             </Link>
 
             {/* Language Dropdown */}
@@ -397,6 +408,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 className="text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
               >
                 {t("nav.contact")}
+              </Link>
+
+              {/* Galerie Media */}
+              <Link
+                href="/gallery-media"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="text-lg font-medium text-gray-800 py-3 px-4 rounded-lg hover:bg-gray-50"
+              >
+                {t("nav.galleryMedia")}
               </Link>
 
               <div className="h-px bg-gray-100 my-2" />

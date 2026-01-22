@@ -11,9 +11,11 @@ interface BeforeAfterProps {
   cases: CaseProps[];
   mainTitle?: string;
   mainSubtitle?: string;
+  mode?: "slider" | "grid"; // NEW: grid mode for static side-by-side display
 }
 
-const SingleBeforeAfter = memo(function SingleBeforeAfter({ beforeImage, afterImage, title }: CaseProps) {
+// Slider mode component (existing functionality)
+const SingleBeforeAfterSlider = memo(function SingleBeforeAfterSlider({ beforeImage, afterImage, title }: CaseProps) {
   const { t } = useTranslation();
   const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -109,7 +111,54 @@ const SingleBeforeAfter = memo(function SingleBeforeAfter({ beforeImage, afterIm
   );
 });
 
-export const BeforeAfter = memo(function BeforeAfter({ cases, mainTitle = "Transformări Reale", mainSubtitle = "Glisează pentru a vedea rezultatele noastre" }: BeforeAfterProps) {
+// NEW: Grid mode component - static side-by-side display
+const SingleBeforeAfterGrid = memo(function SingleBeforeAfterGrid({ beforeImage, afterImage, title }: CaseProps) {
+  const { t } = useTranslation();
+
+  return (
+    <div className="w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Before Image */}
+        <div className="relative group overflow-hidden rounded-xl shadow-lg">
+          <img
+            src={beforeImage}
+            alt={t("beforeafter.before")}
+            className="w-full h-full object-cover aspect-[4/3]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+            <span className="text-white text-lg font-bold">{t('beforeafter.before')}</span>
+          </div>
+        </div>
+
+        {/* After Image */}
+        <div className="relative group overflow-hidden rounded-xl shadow-lg">
+          <img
+            src={afterImage}
+            alt={t("beforeafter.after")}
+            className="w-full h-full object-cover aspect-[4/3]"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+            <span className="text-white text-lg font-bold">{t('beforeafter.after')}</span>
+          </div>
+        </div>
+      </div>
+      <h3 className="text-center mt-4 font-semibold text-gray-800">{title}</h3>
+    </div>
+  );
+});
+
+export const BeforeAfter = memo(function BeforeAfter({
+  cases,
+  mainTitle = "Transformări Reale",
+  mainSubtitle = "Glisează pentru a vedea rezultatele noastre",
+  mode = "slider" // Default to slider for backward compatibility
+}: BeforeAfterProps) {
+  const Component = mode === "grid" ? SingleBeforeAfterGrid : SingleBeforeAfterSlider;
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -117,9 +166,9 @@ export const BeforeAfter = memo(function BeforeAfter({ cases, mainTitle = "Trans
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900">{mainTitle}</h2>
           <p className="text-gray-500 text-base md:text-lg">{mainSubtitle}</p>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className={`grid grid-cols-1 ${mode === "grid" ? "lg:grid-cols-1" : "lg:grid-cols-3"} gap-8 max-w-7xl mx-auto`}>
           {cases.map((caseItem, idx) => (
-            <SingleBeforeAfter key={idx} {...caseItem} />
+            <Component key={idx} {...caseItem} />
           ))}
         </div>
       </div>

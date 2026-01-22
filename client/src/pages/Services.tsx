@@ -214,7 +214,7 @@ export default function Services() {
 
   return (
     <Layout>
-      <div className="bg-slate-50 -mt-20 pt-28 pb-12 relative overflow-hidden">
+      <div className="bg-slate-50 -mt-20 pt-36 pb-12 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-5xl font-bold mb-6 text-gray-900">{t("services.title")}</h1>
           <p className="text-xl text-gray-600 max-w-2xl">
@@ -310,9 +310,6 @@ export default function Services() {
                     buttonText={t("services.book_consult")}
                     buttonClassName="bg-primary hover:bg-primary/90 text-white px-8 cursor-pointer"
                   />
-                  <Button variant="outline" className="gap-2 cursor-pointer">
-                    {t("services.details")} <ArrowRight className="w-4 h-4" />
-                  </Button>
                 </div>
               </div>
             </div>

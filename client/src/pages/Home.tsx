@@ -1,13 +1,16 @@
 import { useState, useRef, useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "wouter";
+import Autoplay from "embla-carousel-autoplay";
 import { useSEO, seoConfigs } from "@/hooks/useSEO";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import {
   ShieldCheck, Users, Award, Clock, CheckCircle2,
   Star, Microscope, Sparkles, PhoneCall, ArrowRight,
-  HelpCircle, ChevronDown, X, ChevronLeft, ChevronRight
+  HelpCircle, ChevronDown, X, ChevronLeft, ChevronRight,
+  CreditCard, ClipboardList, Heart
 } from "lucide-react";
 import {
   Accordion,
@@ -37,7 +40,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SocialReviews } from "@/components/SocialReviews";
 
-import heroImage from "@assets/generated_images/modern_bright_dental_clinic_reception_area.png";
+import heroImage from "@assets/hero_reception_zambet_sanatos.jpg";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import techImage from "@assets/generated_images/dental_digital_technology_scanner.png";
@@ -74,13 +77,18 @@ function getBlogField(post: any, fieldBase: string, lang: string): string {
 }
 
 // Team Carousel Component with navigation and auto-scroll
-function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: string; img: string }>; t: any }) {
+function TeamCarousel({ doctors, t }: { doctors: Array<{ _id: string; name: string; role: string; img: string; specialization?: string }>; t: any }) {
+  const [, navigate] = useLocation();
   const carouselRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const scrollPositionRef = useRef(0);
   const [, forceUpdate] = useState(0);
   const cardWidth = 320; // Increased card width
   const gap = 24; // gap-6 = 24px
+
+  const handleDoctorClick = (doctor: { _id: string; name: string; role: string; img: string; specialization?: string }) => {
+    navigate(`/team/${doctor._id}`);
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     const scrollAmount = cardWidth + gap;
@@ -154,41 +162,73 @@ function TeamCarousel({ doctors, t }: { doctors: Array<{ name: string; role: str
             >
               {/* First set of doctors */}
               {doctors.map((doc, index) => (
-                <div key={`first-${index}`} className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[280px] bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-md border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                  <div className="h-[240px] sm:h-[280px] md:h-[340px] lg:h-[280px] overflow-hidden relative bg-gray-100">
-                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" width={320} height={340} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/60 transition-colors" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 lg:p-4 text-white">
-                      <h3 className="text-base sm:text-lg md:text-xl lg:text-lg font-bold text-white">{doc.name}</h3>
-                      <p className="text-white/90 text-xs sm:text-sm lg:text-xs font-medium mt-1">{doc.role}</p>
-                    </div>
+                <div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-[280px] md:w-[320px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                  onClick={() => handleDoctorClick(doc)}
+                >
+                  {/* Image - Clear without overlay */}
+                  <div className="h-[320px] md:h-[360px] overflow-hidden relative bg-gray-100">
+                    <img
+                      src={doc.img}
+                      alt={doc.name}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
+                      width={320}
+                      height={360}
+                    />
                   </div>
-                  <div className="p-3 sm:p-4 md:p-5 lg:p-3">
-                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed line-clamp-2">{doc.role}</p>
-                    <div className="flex gap-2 mt-3 sm:mt-4 lg:mt-2">
-                      <div className="h-1 sm:h-1.5 lg:h-1 w-10 sm:w-14 lg:w-10 bg-primary rounded-full"></div>
-                      <div className="h-1 sm:h-1.5 lg:h-1 w-4 sm:w-5 lg:w-4 bg-secondary rounded-full"></div>
-                    </div>
+
+                  {/* Text section - Clear below image */}
+                  <div className="p-6 text-center bg-white">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {doc.name}
+                    </h3>
+                    <p className="text-lg text-primary font-medium mb-3">
+                      {doc.role}
+                    </p>
+                    {doc.specialization && (
+                      <p className="text-sm text-gray-600">
+                        {doc.specialization}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
               {/* Duplicate set for seamless infinite loop */}
               {doctors.map((doc, index) => (
-                <div key={`second-${index}`} className="flex-shrink-0 w-[240px] sm:w-[280px] md:w-[320px] lg:w-[280px] bg-white rounded-xl sm:rounded-2xl lg:rounded-xl shadow-md border border-gray-100 overflow-hidden group hover:shadow-2xl transition-all duration-300">
-                  <div className="h-[240px] sm:h-[280px] md:h-[340px] lg:h-[280px] overflow-hidden relative bg-gray-100">
-                    <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" width={320} height={340} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/60 transition-colors" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5 lg:p-4 text-white">
-                      <h3 className="text-base sm:text-lg md:text-xl lg:text-lg font-bold text-white">{doc.name}</h3>
-                      <p className="text-white/90 text-xs sm:text-sm lg:text-xs font-medium mt-1">{doc.role}</p>
-                    </div>
+                <div
+                  key={`second-${index}`}
+                  className="flex-shrink-0 w-[280px] md:w-[320px] bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+                  onClick={() => handleDoctorClick(doc)}
+                >
+                  {/* Image - Clear without overlay */}
+                  <div className="h-[320px] md:h-[360px] overflow-hidden relative bg-gray-100">
+                    <img
+                      src={doc.img}
+                      alt={doc.name}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
+                      width={320}
+                      height={360}
+                    />
                   </div>
-                  <div className="p-3 sm:p-4 md:p-5 lg:p-3">
-                    <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed line-clamp-2">{doc.role}</p>
-                    <div className="flex gap-2 mt-3 sm:mt-4 lg:mt-2">
-                      <div className="h-1 sm:h-1.5 lg:h-1 w-10 sm:w-14 lg:w-10 bg-primary rounded-full"></div>
-                      <div className="h-1 sm:h-1.5 lg:h-1 w-4 sm:w-5 lg:w-4 bg-secondary rounded-full"></div>
-                    </div>
+
+                  {/* Text section - Clear below image */}
+                  <div className="p-6 text-center bg-white">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {doc.name}
+                    </h3>
+                    <p className="text-lg text-primary font-medium mb-3">
+                      {doc.role}
+                    </p>
+                    {doc.specialization && (
+                      <p className="text-sm text-gray-600">
+                        {doc.specialization}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -204,6 +244,11 @@ export default function Home() {
   const { t, i18n } = useTranslation();
   const [selectedService, setSelectedService] = useState<any>(null);
   const localizedBlogPosts = useBlogPosts();
+
+  // Autoplay plugin for testimonials carousel
+  const autoplayPlugin = useRef(
+    Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
+  );
 
   // Dynamic SEO meta tags
   const lang = i18n.language as "ro" | "ru" | "en";
@@ -253,12 +298,12 @@ export default function Home() {
 
 
   const staticDoctors = [
-    { name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
-    { name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
-    { name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
-    { name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
-    { name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
-    { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
+    { _id: "dr-scutelnic", name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio"), specialization: "" },
+    { _id: "dr-robu", name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio"), specialization: "" },
+    { _id: "dr-plesca", name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio"), specialization: "" },
+    { _id: "dr-zanoaga", name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio"), specialization: "" },
+    { _id: "dr-craciun", name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio"), specialization: "" },
+    { _id: "asst-barbarasa", name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio"), specialization: "" }
   ];
 
   const staticTestimonials = [
@@ -268,15 +313,17 @@ export default function Home() {
   ];
 
   // Use API data if available, otherwise fall back to static data
-  const doctors = apiTeamMembers && apiTeamMembers.length > 0 
+  const doctors = apiTeamMembers && apiTeamMembers.length > 0
     ? apiTeamMembers.map((m) => {
         const imgPath = m.imageUrl || m.image || '';
         const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : '');
-        return { 
-          name: m.name, 
+        return {
+          _id: m._id,
+          name: m.name,
           role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
-          img: fullImageUrl, 
-          bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || '')
+          img: fullImageUrl,
+          bio: getTranslatedField(m, 'bio' as any, i18n.language, m.bio || ''),
+          specialization: getTranslatedField(m, 'specialization' as any, i18n.language, m.specialization || '')
         };
       })
     : staticDoctors;
@@ -294,17 +341,26 @@ export default function Home() {
       {/* HERO SECTION - Fresh & Bright Medical Theme */}
       <section className="relative min-h-[100vh] flex items-center bg-white overflow-hidden pb-4 sm:pb-6 md:pb-6 lg:pb-4 -mt-20">
         <div className="absolute inset-0 z-0">
-          <img
-            src={heroImage}
-            alt={t("images.hero_interior_alt")}
-            className="w-full h-full object-cover opacity-90 scale-105"
-            loading="eager"
-            decoding="async"
-            width={1920}
-            height={1080}
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/80" />
+          <picture>
+            <source
+              srcSet={`${heroImage}?format=avif`}
+              type="image/avif"
+            />
+            <source
+              srcSet={`${heroImage}?format=webp`}
+              type="image/webp"
+            />
+            <img
+              src={heroImage}
+              alt={t("images.hero_interior_alt")}
+              className="w-full h-full object-cover scale-105"
+              loading="eager"
+              decoding="async"
+              width={1920}
+              height={1080}
+              fetchPriority="high"
+            />
+          </picture>
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
@@ -317,7 +373,7 @@ export default function Home() {
             >
               <div className="flex items-center gap-2 mb-3 sm:mb-4 md:mb-4 lg:mb-3">
                 <span className="h-px w-8 sm:w-10 md:w-12 bg-primary"></span>
-                <span className="text-primary font-bold tracking-widest uppercase text-xs sm:text-sm">Cristalexdent Professional</span>
+                <span className="text-primary font-bold tracking-widest uppercase text-xs sm:text-sm">Cristalexdent Stomatologie</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 mb-3 sm:mb-4 md:mb-4 lg:mb-3 leading-tight">
                 {t("hero.title")}
@@ -381,7 +437,7 @@ export default function Home() {
       </section>
 
       {/* SERVICES CAROUSEL / PREVIEW */}
-      <section className="py-12 sm:py-16 md:py-16 lg:py-12 bg-white contain-layout">
+      <section className="compact-section bg-white contain-layout">
         <div className="container mx-auto px-4">
            <div className="text-center mb-8 sm:mb-12 md:mb-10 lg:mb-8">
              <h2 className="section-title">{t("services.title")}</h2>
@@ -471,11 +527,11 @@ export default function Home() {
                   className="group relative h-[280px] sm:h-[320px] md:h-[320px] lg:h-[280px] xl:h-[300px] rounded-xl sm:rounded-2xl lg:rounded-xl overflow-hidden cursor-pointer shadow-lg transform transition-all duration-300 hover:-translate-y-2"
                 >
                   <img src={s.img} alt={s.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" decoding="async" width={400} height={300} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-5 lg:p-4 text-white">
-                    <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-1 sm:mb-2 lg:mb-1 text-white">{s.title}</h3>
-                    <p className="text-gray-300 text-xs sm:text-sm lg:text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 line-clamp-2">{s.desc}</p>
-                    <div className="mt-2 sm:mt-3 md:mt-3 lg:mt-2 w-8 h-8 sm:w-9 sm:h-9 md:w-9 md:h-9 lg:w-8 lg:h-8 rounded-full bg-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
+                    <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 text-white">{s.title}</h3>
+                    <p className="text-gray-200 text-xs sm:text-sm lg:text-xs line-clamp-2 mb-2">{s.desc}</p>
+                    <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-9 md:h-9 lg:w-8 lg:h-8 rounded-full bg-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all">
                       <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4" />
                     </div>
                   </div>
@@ -591,48 +647,84 @@ export default function Home() {
       </section>
 
       {/* WHY CHOOSE US */}
-      <section className="py-12 sm:py-16 md:py-16 lg:py-12 bg-slate-50">
+      <section className="compact-section bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12 md:mb-10 lg:mb-8">
             <h2 className="section-title">{t("features.title")}</h2>
             <p className="section-subtitle">{t("services.subtitle_features")}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-5 lg:gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 max-w-7xl mx-auto">
             {/* Feature 1 */}
-            <div className="bg-white p-5 sm:p-6 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl lg:rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-10 lg:h-10 bg-primary/10 rounded-lg sm:rounded-xl lg:rounded-lg flex items-center justify-center mb-4 sm:mb-5 md:mb-4 lg:mb-3">
-                <Microscope className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 text-primary" />
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                <Microscope className="w-8 h-8 md:w-10 md:h-10 text-primary" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 sm:mb-3 lg:mb-2">{t("features.tech_title")}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("features.tech_desc")}</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.tech_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.tech_desc")}</p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white p-5 sm:p-6 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl lg:rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-10 lg:h-10 bg-green-50 rounded-lg sm:rounded-xl lg:rounded-lg flex items-center justify-center mb-4 sm:mb-5 md:mb-4 lg:mb-3">
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 text-green-600" />
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-green-50 rounded-xl flex items-center justify-center mb-6">
+                <Sparkles className="w-8 h-8 md:w-10 md:h-10 text-green-600" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 sm:mb-3 lg:mb-2">{t("features.pain_title")}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("features.pain_desc")}</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.pain_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.pain_desc")}</p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white p-5 sm:p-6 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl lg:rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-10 lg:h-10 bg-blue-50 rounded-lg sm:rounded-xl lg:rounded-lg flex items-center justify-center mb-4 sm:mb-5 md:mb-4 lg:mb-3">
-                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 text-blue-600" />
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-blue-50 rounded-xl flex items-center justify-center mb-6">
+                <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-blue-600" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 sm:mb-3 lg:mb-2">{t("features.garantie_title")}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("features.garantie_desc")}</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.garantie_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.garantie_desc")}</p>
             </div>
 
             {/* Feature 4 */}
-            <div className="bg-white p-5 sm:p-6 md:p-6 lg:p-5 rounded-xl sm:rounded-2xl lg:rounded-xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 lg:w-10 lg:h-10 bg-purple-50 rounded-lg sm:rounded-xl lg:rounded-lg flex items-center justify-center mb-4 sm:mb-5 md:mb-4 lg:mb-3">
-                <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 md:w-6 md:h-6 lg:w-5 lg:h-5 text-purple-600" />
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-purple-50 rounded-xl flex items-center justify-center mb-6">
+                <CheckCircle2 className="w-8 h-8 md:w-10 md:h-10 text-purple-600" />
               </div>
-              <h3 className="text-base sm:text-lg md:text-lg lg:text-base font-bold mb-2 sm:mb-3 lg:mb-2">{t("features.steril_title")}</h3>
-              <p className="text-gray-600 text-xs sm:text-sm lg:text-xs leading-relaxed">{t("features.steril_desc")}</p>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.steril_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.steril_desc")}</p>
+            </div>
+
+            {/* Feature 5 - Achitare în rate */}
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-emerald-50 rounded-xl flex items-center justify-center mb-6">
+                <CreditCard className="w-8 h-8 md:w-10 md:h-10 text-emerald-600" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.installments_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.installments_desc")}</p>
+            </div>
+
+            {/* Feature 6 - Plan tratament personalizat */}
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-indigo-50 rounded-xl flex items-center justify-center mb-6">
+                <ClipboardList className="w-8 h-8 md:w-10 md:h-10 text-indigo-600" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.personalized_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.personalized_desc")}</p>
+            </div>
+
+            {/* Feature 7 - Atmosferă plăcută */}
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-pink-50 rounded-xl flex items-center justify-center mb-6">
+                <Heart className="w-8 h-8 md:w-10 md:h-10 text-pink-600" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.atmosphere_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.atmosphere_desc")}</p>
+            </div>
+
+            {/* Feature 8 - Tehnologie avansată */}
+            <div className="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:scale-105 transition-all">
+              <div className="w-16 h-16 md:w-20 md:h-20 bg-cyan-50 rounded-xl flex items-center justify-center mb-6">
+                <Microscope className="w-8 h-8 md:w-10 md:h-10 text-cyan-600" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">{t("features.technology_title")}</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">{t("features.technology_desc")}</p>
             </div>
           </div>
         </div>
@@ -657,15 +749,21 @@ export default function Home() {
       <TeamCarousel doctors={doctors} t={t} />
 
       {/* TESTIMONIALS */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-slate-50 contain-layout">
+      <section id="reviews" className="compact-section bg-slate-50 contain-layout">
         <div className="container mx-auto px-4">
           <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-6">
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 lg:mb-2">{t("testimonials.title")}</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-sm sm:text-base md:text-lg lg:text-sm">{t("testimonials.subtitle")}</p>
+            <h2 className="section-title">{t("testimonials.title")}</h2>
+            <p className="section-subtitle">{t("testimonials.subtitle")}</p>
           </div>
 
           <div className="max-w-6xl mx-auto relative">
-             <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
+             <Carousel
+               className="w-full"
+               opts={{ loop: true, align: "start" }}
+               plugins={[autoplayPlugin.current]}
+               onMouseEnter={() => autoplayPlugin.current.stop()}
+               onMouseLeave={() => autoplayPlugin.current.play()}
+             >
                 <CarouselContent className="-ml-2 sm:-ml-4 lg:-ml-3">
                   {testimonialsData.map((item: any, index: number) => (
                     <CarouselItem key={index} className="pl-2 sm:pl-4 lg:pl-3 md:basis-1/2 lg:basis-1/3">
@@ -704,7 +802,7 @@ export default function Home() {
       <SocialReviews />
 
       {/* ABOUT US SECTION */}
-      <section className="py-12 sm:py-16 md:py-24 lg:py-12 bg-white">
+      <section className="compact-section bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-10 items-start">
             <div className="flex flex-col">
@@ -777,12 +875,12 @@ export default function Home() {
 
               {/* Stats Cards Overlay */}
               <div className="absolute -bottom-4 sm:-bottom-6 md:-bottom-8 lg:-bottom-4 -left-2 sm:-left-4 md:-left-8 lg:-left-4 bg-white p-3 sm:p-4 md:p-6 lg:p-3 rounded-lg sm:rounded-xl lg:rounded-lg shadow-xl border border-gray-100">
-                <div className="text-xl sm:text-2xl md:text-4xl lg:text-2xl font-bold text-primary mb-1 sm:mb-2 lg:mb-1">2008</div>
+                <div className="text-xl sm:text-2xl md:text-4xl lg:text-2xl font-bold text-primary mb-1 sm:mb-2 lg:mb-1">2007</div>
                 <div className="text-gray-600 font-medium text-xs sm:text-sm md:text-base lg:text-xs">{t("about.founded_year")}</div>
               </div>
 
               <div className="absolute -top-4 sm:-top-6 md:-top-8 lg:-top-4 -right-2 sm:-right-4 md:-right-8 lg:-right-4 bg-primary text-white p-3 sm:p-4 md:p-6 lg:p-3 rounded-lg sm:rounded-xl lg:rounded-lg shadow-xl">
-                <div className="text-xl sm:text-2xl md:text-4xl lg:text-2xl font-bold mb-1 sm:mb-2 lg:mb-1">{new Date().getFullYear() - 2008}+</div>
+                <div className="text-xl sm:text-2xl md:text-4xl lg:text-2xl font-bold mb-1 sm:mb-2 lg:mb-1">{new Date().getFullYear() - 2007}+</div>
                 <div className="text-white/90 font-medium text-xs sm:text-sm md:text-base lg:text-xs">{t("about.years_experience")}</div>
               </div>
             </div>
@@ -865,16 +963,15 @@ export default function Home() {
       </section>
 
       {/* CTA BANNER */}
-      <section className="py-10 sm:py-14 md:py-20 lg:py-10 bg-primary relative overflow-hidden brandbook-gradient">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
-        <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 md:mb-6 lg:mb-3">{t("cta_banner.title")}</h2>
-          <p className="text-white/90 text-sm sm:text-base md:text-lg lg:text-sm mb-6 sm:mb-8 md:mb-10 lg:mb-5 max-w-2xl mx-auto">
+      <section className="compact-section bg-gradient-to-r from-primary to-secondary text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">{t("cta_banner.title")}</h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             {t("cta_banner.text")}
           </p>
           <BookingModal
             buttonText={t("cta_banner.btn")}
-            buttonClassName="bg-white text-primary hover:bg-gray-100 font-bold px-6 sm:px-8 md:px-12 lg:px-8 h-10 sm:h-12 md:h-16 lg:h-11 text-sm sm:text-base md:text-xl lg:text-base shadow-2xl rounded-full"
+            buttonClassName="bg-white text-primary hover:bg-gray-100 active:bg-gray-200 font-bold px-10 h-14 text-lg shadow-2xl rounded-full transition-all hover:shadow-xl active:shadow-lg cursor-pointer"
           />
         </div>
       </section>

@@ -14,6 +14,8 @@ const Services = lazy(() => import("@/pages/Services"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Blog = lazy(() => import("@/pages/Blog"));
 const BlogPost = lazy(() => import("@/pages/BlogPost"));
+const GalleryMedia = lazy(() => import("@/pages/GalleryMedia"));
+const DoctorDetail = lazy(() => import("@/pages/DoctorDetail"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 
 // Loading fallback component
@@ -37,6 +39,8 @@ function Router() {
           <Route path="/blog" component={Blog} />
           <Route path="/blog/:id" component={BlogPost} />
           <Route path="/contact" component={Contact} />
+          <Route path="/gallery-media" component={GalleryMedia} />
+          <Route path="/team/:id" component={DoctorDetail} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>

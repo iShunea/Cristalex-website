@@ -86,6 +86,37 @@ export interface ExternalBlogPost {
   };
 }
 
+export interface ExternalGalleryMedia {
+  _id: string;
+  id?: number;
+  titleEn?: string;
+  titleRo?: string;
+  titleRu?: string;
+  descriptionEn?: string;
+  descriptionRo?: string;
+  descriptionRu?: string;
+  category?: string;
+  mediaType?: 'photo' | 'video';
+  beforeImageUrl?: string;
+  afterImageUrl?: string;
+  videoUrl?: string;
+  videoPosterUrl?: string;
+  seoDescriptionEn?: string;
+  seoDescriptionRo?: string;
+  seoDescriptionRu?: string;
+  seoKeywordsEn?: string;
+  seoKeywordsRo?: string;
+  seoKeywordsRu?: string;
+  orderIndex?: number;
+  isActive?: boolean;
+  createdAt?: string;
+  translations?: {
+    ro?: { title?: string; description?: string };
+    ru?: { title?: string; description?: string };
+    en?: { title?: string; description?: string };
+  };
+}
+
 async function fetchFromExternalApi<T>(endpoint: string): Promise<T[]> {
   try {
     const response = await fetch(`${EXTERNAL_API_BASE}${endpoint}`);
@@ -120,6 +151,26 @@ export async function getExternalSocialMediaPosts(): Promise<ExternalSocialMedia
 export async function getExternalBlogPosts(): Promise<ExternalBlogPost[]> {
   return fetchFromExternalApi<ExternalBlogPost>("/blog-posts");
 }
+
+export async function getExternalGalleryMedia(filters?: { active?: boolean; mediaType?: 'photo' | 'video'; category?: string }): Promise<ExternalGalleryMedia[]> {
+  let endpoint = "/gallery-media";
+  const params = new URLSearchParams();
+
+  if (filters?.active) params.append("active", "true");
+  if (filters?.mediaType) params.append("mediaType", filters.mediaType);
+  if (filters?.category) params.append("category", filters.category);
+
+  const queryString = params.toString();
+  if (queryString) endpoint += `?${queryString}`;
+
+  return fetchFromExternalApi<ExternalGalleryMedia>(endpoint);
+}
+
+// Aliases for cleaner imports
+export type TeamMember = ExternalTeamMember;
+export const getTeamMembers = getExternalTeamMembers;
+export type GalleryMedia = ExternalGalleryMedia;
+export const getGalleryMedia = getExternalGalleryMedia;
 
 export function getTranslatedField<T>(
   item: { translations?: { ro?: T; ru?: T; en?: T } },

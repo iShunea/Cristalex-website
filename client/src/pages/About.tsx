@@ -7,6 +7,7 @@ import { Award, Users, Microscope, Shield } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getExternalTeamMembers, ExternalTeamMember, getTranslatedField, EXTERNAL_BASE_URL } from "@/lib/api";
 import { BookingModal } from "@/components/BookingModal";
+import { useLocation } from "wouter";
 
 import drScutelnic from "@assets/dr_scutelnic_daniela_real.jpg";
 import drRobu from "@assets/dr_ludmila_robu_real.jpg";
@@ -17,6 +18,7 @@ import asstBarbarasa from "@assets/generated_images/portrait_of_asist._barbarasa
 
 export default function About() {
   const { t, i18n } = useTranslation();
+  const [, navigate] = useLocation();
 
   // Dynamic SEO meta tags
   const lang = i18n.language as "ro" | "ru" | "en";
@@ -34,12 +36,12 @@ export default function About() {
   });
 
   const staticDoctors = useMemo(() => [
-    { name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
-    { name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
-    { name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
-    { name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
-    { name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
-    { name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
+    { _id: "dr-scutelnic", name: t("about.doctors.dr_scutelnic_name"), role: t("about.doctors.dr_scutelnic_role"), img: drScutelnic, bio: t("about.doctors.dr_scutelnic_bio") },
+    { _id: "dr-robu", name: t("about.doctors.dr_robu_name"), role: t("about.doctors.dr_robu_role"), img: drRobu, bio: t("about.doctors.dr_robu_bio") },
+    { _id: "dr-plesca", name: t("about.doctors.dr_plesca_name"), role: t("about.doctors.dr_plesca_role"), img: drPlesca, bio: t("about.doctors.dr_plesca_bio") },
+    { _id: "dr-zanoaga", name: t("about.doctors.dr_zanoaga_name"), role: t("about.doctors.dr_zanoaga_role"), img: drZanoaga, bio: t("about.doctors.dr_zanoaga_bio") },
+    { _id: "dr-craciun", name: t("about.doctors.dr_craciun_name"), role: t("about.doctors.dr_craciun_role"), img: drCraciun, bio: t("about.doctors.dr_craciun_bio") },
+    { _id: "asst-barbarasa", name: t("about.doctors.asst_barbarasa_name"), role: t("about.doctors.asst_barbarasa_role"), img: asstBarbarasa, bio: t("about.doctors.asst_barbarasa_bio") }
   ], [t, i18n.language]);
 
   const doctors = apiTeamMembers && apiTeamMembers.length > 0
@@ -47,6 +49,7 @@ export default function About() {
         const imgPath = m.imageUrl || m.image || '';
         const fullImageUrl = imgPath.startsWith('http') ? imgPath : (imgPath ? `${EXTERNAL_BASE_URL}${imgPath}` : '');
         return {
+          _id: m._id,
           name: m.name,
           role: getTranslatedField(m, 'role' as any, i18n.language, m.role || ''),
           img: fullImageUrl,
@@ -54,6 +57,10 @@ export default function About() {
         };
       })
     : staticDoctors;
+
+  const handleDoctorClick = (doctorId: string) => {
+    navigate(`/team/${doctorId}`);
+  };
 
   // Smooth scroll to section based on hash in URL
   useEffect(() => {
@@ -72,7 +79,7 @@ export default function About() {
   return (
     <Layout>
       {/* Hero Section */}
-      <div className="bg-slate-50 -mt-20 pt-28 pb-12 relative overflow-hidden">
+      <div className="bg-slate-50 -mt-20 pt-36 pb-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/diamond-upholstery.png')] opacity-5"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-5xl font-bold text-center mb-4 text-gray-900">{t("about.title")}</h1>
@@ -109,11 +116,11 @@ export default function About() {
           <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 max-w-3xl mx-auto">
             <div className="grid grid-cols-2 divide-x divide-gray-200">
               <div className="text-center px-6">
-                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">2008</div>
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">2007</div>
                 <div className="text-gray-600 font-medium text-base">{t("about.founded_year")}</div>
               </div>
               <div className="text-center px-6">
-                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">{new Date().getFullYear() - 2008}+</div>
+                <div className="text-5xl md:text-6xl font-bold text-primary mb-3">{new Date().getFullYear() - 2007}+</div>
                 <div className="text-gray-600 font-medium text-base">{t("about.years_experience")}</div>
               </div>
             </div>
@@ -240,21 +247,35 @@ export default function About() {
           <h2 className="text-3xl font-bold text-center mb-12">{t("about.team_title")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {doctors.map((doc, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300">
-                <div className="h-[320px] overflow-hidden relative">
-                  <img src={doc.img} alt={doc.name} className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" loading="lazy" decoding="async" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
-                  <div className="absolute bottom-0 left-0 p-6 text-white w-full translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 className="text-xl font-bold text-white">{doc.name}</h3>
-                    <p className="text-white/90 text-sm font-medium">{doc.role}</p>
-                  </div>
+              <div
+                key={index}
+                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer"
+                onClick={() => handleDoctorClick(doc._id)}
+              >
+                {/* Image - Clear without overlay */}
+                <div className="h-[360px] overflow-hidden relative bg-gray-100">
+                  <img
+                    src={doc.img}
+                    alt={doc.name}
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={320}
+                    height={360}
+                  />
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{doc.bio}</p>
-                  <div className="flex gap-2">
-                    <div className="h-1 w-12 bg-primary rounded-full"></div>
-                    <div className="h-1 w-4 bg-secondary rounded-full"></div>
-                  </div>
+
+                {/* Text section - Clear below image */}
+                <div className="p-6 text-center bg-white">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {doc.name}
+                  </h3>
+                  <p className="text-lg text-primary font-medium mb-4">
+                    {doc.role}
+                  </p>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {doc.bio}
+                  </p>
                 </div>
               </div>
             ))}
