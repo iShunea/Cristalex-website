@@ -15,7 +15,10 @@ const resources = {
         history: "Istoria noastră",
         contact: "Contact",
         blog: "Blog",
-        book: "Programare online"
+        book: "Programare online",
+        gallery: "Galerie foto",
+        reviews: "Recenzii",
+        galleryMedia: "Galerie Media"
       },
       common: {
         close: "Închide",
@@ -53,14 +56,22 @@ const resources = {
       },
       features: {
         title: "De ce să alegi Cristalexdent?",
-        tech_title: "Tehnologie Digitală 3D",
+        tech_title: "Tehnologie digitală 3D",
         tech_desc: "Scanare intraorală și planificare digitală pentru precizie maximă și confort.",
-        pain_title: "Tratamente Fără Durere",
+        pain_title: "Tratamente fără durere",
         pain_desc: "Utilizăm cele mai noi metode de sedare și anestezie pentru confortul tău.",
-        garantie_title: "Garanție Extinsă",
+        garantie_title: "Garanție extinsă",
         garantie_desc: "Oferim certificat de garanție pentru toate lucrările protetice și implanturi.",
-        steril_title: "Sterilizare Premium",
-        steril_desc: "Protocoale stricte de sterilizare conform standardelor europene."
+        steril_title: "Sterilizare premium",
+        steril_desc: "Protocoale stricte de sterilizare conform standardelor europene.",
+        installments_title: "Achitare în rate",
+        installments_desc: "Opțiuni flexibile de plată pentru tratamente",
+        personalized_title: "Plan personalizat",
+        personalized_desc: "Fiecare pacient primește plan de tratament individualizat",
+        atmosphere_title: "Atmosferă plăcută",
+        atmosphere_desc: "Mediu confortabil și relaxant pentru toți pacienții",
+        technology_title: "Tehnologie avansată",
+        technology_desc: "Echipamente moderne pentru rezultate superioare"
       },
       testimonials: {
         title: "Ce spun pacienții noștri",
@@ -128,7 +139,7 @@ const resources = {
         subtitle_features: "Standarde ridicate, tehnologie de ultimă oră și o abordare umană.",
         see_all: "Vezi toate serviciile",
         specialization: "Specializare",
-        book_consult: "Programează Consult",
+        book_consult: "Programează Consultație",
         details: "Detalii",
         includes: "Ce include:",
         ortho: "Ortodonție Digitală",
@@ -406,7 +417,10 @@ const resources = {
         history: "Наша История",
         contact: "Контакты",
         blog: "Блог",
-        book: "Запись онлайн"
+        book: "Запись онлайн",
+        gallery: "Галерея фото",
+        reviews: "Отзывы",
+        galleryMedia: "Медиа Галерея"
       },
       common: {
         close: "Закрыть",
@@ -444,13 +458,13 @@ const resources = {
       },
       features: {
         title: "Почему выбирают Cristalexdent?",
-        tech_title: "Цифровые 3D Технологии",
+        tech_title: "Цифровые 3D технологии",
         tech_desc: "Интраоральное сканирование и цифровое планирование для максимальной точности.",
-        pain_title: "Лечение Без Боли",
+        pain_title: "Лечение без боли",
         pain_desc: "Используем новейшие методы седации и анестезии для вашего комфорта.",
-        garantie_title: "Расширенная Гарантия",
+        garantie_title: "Расширенная гарантия",
         garantie_desc: "Предоставляем гарантийный сертификат на все протезные работы и импланты.",
-        steril_title: "Премиум Стерилизация",
+        steril_title: "Премиум стерилизация",
         steril_desc: "Строгие протоколы стерилизации в соответствии с европейскими стандартами."
       },
       testimonials: {
@@ -768,7 +782,10 @@ const resources = {
         history: "Our history",
         contact: "Contact",
         blog: "Blog",
-        book: "Book online"
+        book: "Book online",
+        gallery: "Photo gallery",
+        reviews: "Reviews",
+        galleryMedia: "Media Gallery"
       },
       common: {
         close: "Close",
@@ -806,13 +823,13 @@ const resources = {
       },
       features: {
         title: "Why Choose Cristalexdent?",
-        tech_title: "Digital 3D Technology",
+        tech_title: "Digital 3D technology",
         tech_desc: "Intraoral scanning and digital planning for maximum precision and comfort.",
-        pain_title: "Painless Treatments",
+        pain_title: "Painless treatments",
         pain_desc: "We use the latest sedation and anesthesia methods for your comfort.",
-        garantie_title: "Extended Warranty",
+        garantie_title: "Extended warranty",
         garantie_desc: "We offer warranty certificates for all prosthetic work and implants.",
-        steril_title: "Premium Sterilization",
+        steril_title: "Premium sterilization",
         steril_desc: "Strict sterilization protocols in accordance with European standards."
       },
       testimonials: {
