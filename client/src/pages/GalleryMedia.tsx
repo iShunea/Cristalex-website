@@ -15,7 +15,7 @@ import beforeBraces from "@assets/generated_images/crooked_misaligned_teeth_befo
 import afterBraces from "@assets/generated_images/straight_teeth_after_orthodontic_treatment.png";
 import beforeRestoration from "@assets/generated_images/broken_chipped_tooth_before_restoration.png";
 import afterRestoration from "@assets/generated_images/restored_tooth_after_crown_placement.png";
-import heroImage from "@assets/hero_reception_zambet_sanatos.jpg";
+import heroImage from "@assets/team_cristalexdent.jpg";
 
 export default function GalleryMedia() {
   const { t, i18n } = useTranslation();

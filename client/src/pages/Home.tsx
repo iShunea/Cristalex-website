@@ -40,7 +40,7 @@ import { BookingModal } from "@/components/BookingModal";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SocialReviews } from "@/components/SocialReviews";
 
-import heroImage from "@assets/hero_reception_zambet_sanatos.jpg";
+import heroImage from "@assets/team_cristalexdent.jpg";
 import doctorImage from "@assets/generated_images/friendly_professional_dentist_portrait.png";
 import teamPhoto from "@assets/team_cristalexdent.jpg";
 import techImage from "@assets/generated_images/dental_digital_technology_scanner.png";
