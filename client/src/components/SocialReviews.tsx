@@ -43,6 +43,26 @@ export const SocialReviews = memo(function SocialReviews() {
     }
   }, []);
 
+  // Function to enable video looping
+  const enableVideoLoop = useCallback(() => {
+    // Find all video elements in the embeds
+    const videos = document.querySelectorAll('[data-social-reviews] video');
+    videos.forEach((video: any) => {
+      if (video && !video.hasAttribute('data-loop-enabled')) {
+        video.setAttribute('data-loop-enabled', 'true');
+        video.loop = true;
+
+        // Also add ended event listener as fallback
+        video.addEventListener('ended', () => {
+          video.currentTime = 0;
+          video.play().catch(() => {
+            // Ignore autoplay errors
+          });
+        });
+      }
+    });
+  }, []);
+
   useEffect(() => {
     if (posts.length === 0) return;
 
@@ -79,10 +99,12 @@ export const SocialReviews = memo(function SocialReviews() {
 
     // Re-render embeds multiple times to ensure they load
     const timers = [
-      setTimeout(renderEmbeds, 500),
-      setTimeout(renderEmbeds, 1500),
-      setTimeout(renderEmbeds, 3000),
-      setTimeout(renderEmbeds, 5000),
+      setTimeout(() => { renderEmbeds(); enableVideoLoop(); }, 500),
+      setTimeout(() => { renderEmbeds(); enableVideoLoop(); }, 1500),
+      setTimeout(() => { renderEmbeds(); enableVideoLoop(); }, 3000),
+      setTimeout(() => { renderEmbeds(); enableVideoLoop(); }, 5000),
+      setTimeout(enableVideoLoop, 7000),
+      setTimeout(enableVideoLoop, 10000),
     ];
 
     // Also re-render when the component becomes visible
@@ -91,6 +113,7 @@ export const SocialReviews = memo(function SocialReviews() {
         if (entry.isIntersecting) {
           renderAttempts.current += 1;
           renderEmbeds();
+          setTimeout(enableVideoLoop, 1000);
         }
       });
     }, { threshold: 0.1 });
@@ -104,7 +127,7 @@ export const SocialReviews = memo(function SocialReviews() {
       timers.forEach(clearTimeout);
       observer.disconnect();
     };
-  }, [posts, renderEmbeds]);
+  }, [posts, renderEmbeds, enableVideoLoop]);
 
   if (isLoading) {
     return (
@@ -134,29 +157,29 @@ export const SocialReviews = memo(function SocialReviews() {
 
         <div className="max-w-6xl mx-auto">
           <Carousel className="w-full" opts={{ loop: true, align: "start" }}>
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-2 sm:-ml-3 md:-ml-4">
               {posts.map((post) => (
-                <CarouselItem key={post._id} className="pl-4 md:basis-1/2 lg:basis-1/3" data-testid={`social-post-${post._id}`}>
-                  <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-shadow h-full">
+                <CarouselItem key={post._id} className="pl-2 sm:pl-3 md:pl-4 basis-4/5 sm:basis-3/5 md:basis-1/2 lg:basis-1/3" data-testid={`social-post-${post._id}`}>
+                  <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:border-primary/30 hover:shadow-md transition-all h-full">
                     {/* Platform Badge */}
-                    <div className="p-4 bg-gradient-to-r from-primary to-secondary">
+                    <div className="p-2 sm:p-3 bg-gradient-to-r from-primary to-secondary">
                       <div className="flex items-center gap-2 text-white">
                         {post.platform === "instagram" ? (
                           <>
-                            <Instagram className="w-5 h-5" />
-                            <span className="font-bold text-sm">Instagram</span>
+                            <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span className="font-bold text-xs sm:text-sm">Instagram</span>
                           </>
                         ) : (
                           <>
-                            <SiTiktok className="w-5 h-5" />
-                            <span className="font-bold text-sm">TikTok</span>
+                            <SiTiktok className="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span className="font-bold text-xs sm:text-sm">TikTok</span>
                           </>
                         )}
                       </div>
                     </div>
 
-                    {/* Video Embed - Fixed height container to prevent CLS */}
-                    <div className="aspect-[9/16] relative bg-black flex items-center justify-center overflow-hidden" style={{ minHeight: '500px', containIntrinsicSize: '281px 500px', contentVisibility: 'auto' }}>
+                    {/* Video Embed - Responsive height container */}
+                    <div className="aspect-[9/16] relative bg-black flex items-center justify-center overflow-hidden" style={{ minHeight: '300px', maxHeight: '500px', containIntrinsicSize: '281px 400px', contentVisibility: 'auto' }}>
                       {post.platform === "tiktok" && (post as any).videoUrl ? (
                         <blockquote 
                           className="tiktok-embed w-full h-full" 
@@ -193,8 +216,8 @@ export const SocialReviews = memo(function SocialReviews() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="font-bold text-lg mb-2 text-gray-900" data-testid={`title-post-${post._id}`}>
+                    <div className="p-3 sm:p-4 md:p-5">
+                      <h3 className="font-bold text-sm sm:text-base md:text-lg mb-2 text-gray-900 line-clamp-2" data-testid={`title-post-${post._id}`}>
                         {getTranslatedField(post, 'title' as any, i18n.language, post.title || '')}
                       </h3>
                     </div>
@@ -202,8 +225,8 @@ export const SocialReviews = memo(function SocialReviews() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
-            <CarouselNext className="hidden md:flex -right-12 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
+            <CarouselPrevious className="hidden md:flex -left-16 lg:-left-20 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
+            <CarouselNext className="hidden md:flex -right-16 lg:-right-20 h-12 w-12 bg-white hover:bg-primary hover:text-white border-2 border-gray-200 hover:border-primary transition-all" />
           </Carousel>
 
           <div className="flex justify-center gap-2 mt-8 md:hidden">

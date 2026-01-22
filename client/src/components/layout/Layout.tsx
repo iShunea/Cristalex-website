@@ -184,9 +184,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6">
             {/* Home */}
-            <Link href="/" className={`text-sm font-medium transition-colors hover:text-primary ${
-              location === "/" ? "text-primary font-bold" : "text-gray-600"
-            }`}>
+            <Link
+              href="/"
+              onMouseEnter={() => {
+                setDespreNoiDropdownOpen(false);
+                setTratamenteDropdownOpen(false);
+              }}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === "/" ? "text-primary font-bold" : "text-gray-600"
+              }`}
+            >
               {t("nav.home")}
             </Link>
 
@@ -195,7 +202,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/about">
                 <button
                   onClick={() => setDespreNoiDropdownOpen(false)}
-                  onMouseEnter={() => setDespreNoiDropdownOpen(true)}
+                  onMouseEnter={() => {
+                    setDespreNoiDropdownOpen(true);
+                    setTratamenteDropdownOpen(false);
+                  }}
                   className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
                     location.startsWith("/about") ? "text-primary font-bold" : "text-gray-600"
                   }`}
@@ -228,7 +238,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/services">
                 <button
                   onClick={() => setTratamenteDropdownOpen(false)}
-                  onMouseEnter={() => setTratamenteDropdownOpen(true)}
+                  onMouseEnter={() => {
+                    setTratamenteDropdownOpen(true);
+                    setDespreNoiDropdownOpen(false);
+                  }}
                   className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary cursor-pointer ${
                     location.startsWith("/services") ? "text-primary font-bold" : "text-gray-600"
                   }`}
@@ -257,23 +270,44 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
 
             {/* Blog */}
-            <Link href="/blog" className={`text-sm font-medium transition-colors hover:text-primary ${
-              location === "/blog" ? "text-primary font-bold" : "text-gray-600"
-            }`}>
+            <Link
+              href="/blog"
+              onMouseEnter={() => {
+                setDespreNoiDropdownOpen(false);
+                setTratamenteDropdownOpen(false);
+              }}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === "/blog" ? "text-primary font-bold" : "text-gray-600"
+              }`}
+            >
               {t("nav.blog")}
             </Link>
 
             {/* Contact */}
-            <Link href="/contact" className={`text-sm font-medium transition-colors hover:text-primary ${
-              location === "/contact" ? "text-primary font-bold" : "text-gray-600"
-            }`}>
+            <Link
+              href="/contact"
+              onMouseEnter={() => {
+                setDespreNoiDropdownOpen(false);
+                setTratamenteDropdownOpen(false);
+              }}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === "/contact" ? "text-primary font-bold" : "text-gray-600"
+              }`}
+            >
               {t("nav.contact")}
             </Link>
 
             {/* Galerie Media */}
-            <Link href="/gallery-media" className={`text-sm font-medium transition-colors hover:text-primary ${
-              location === "/gallery-media" ? "text-primary font-bold" : "text-gray-600"
-            }`}>
+            <Link
+              href="/gallery-media"
+              onMouseEnter={() => {
+                setDespreNoiDropdownOpen(false);
+                setTratamenteDropdownOpen(false);
+              }}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location === "/gallery-media" ? "text-primary font-bold" : "text-gray-600"
+              }`}
+            >
               {t("nav.galleryMedia")}
             </Link>
 
@@ -470,12 +504,18 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
             
             <div>
-              <h4 className="font-bold mb-6 text-lg text-slate-900">{t("nav.services")}</h4>
+              <h4 className="font-bold mb-6 text-lg text-slate-900">{t("nav.treatments")}</h4>
               <ul className="space-y-3 text-gray-600 text-sm">
-                <li><Link href="/services#implant" className="hover:text-primary transition-colors">{t("footer.implantology")}</Link></li>
-                <li><Link href="/services#therapy" className="hover:text-primary transition-colors">{t("footer.orthodontics")}</Link></li>
-                <li><Link href="/services#prosth" className="hover:text-primary transition-colors">{t("footer.aesthetic")}</Link></li>
-                <li><Link href="/services#extraction" className="hover:text-primary transition-colors">{t("footer.surgery")}</Link></li>
+                {services.slice(0, 8).map((service) => (
+                  <li key={service.id}>
+                    <Link
+                      href={`/services#${service.id}`}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {service.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -542,7 +582,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <div className="border-t border-gray-200 mt-12 pt-8">
             <div className="text-center text-gray-500 text-sm mb-4">
-              {t("footer.rights")}
+              © {new Date().getFullYear()} Cristalexdent. {i18n.language === 'ro' ? 'Toate drepturile rezervate.' : i18n.language === 'ru' ? 'Все права защищены.' : 'All rights reserved.'}
             </div>
             <div className="text-center text-gray-600 text-sm">
               {t("footer.developed_by")} <a href="https://ishunea.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">iShunea Tech Solutions</a> {t("footer.and")} <a href="https://easyreserv.io" target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/90 font-semibold transition-colors">Easyreserv.io</a>
